@@ -25,7 +25,8 @@ def spawn_pellet(is_agglomerate=False):
         num_pellets = random.randint(2, MAX_PELLETS_PER_AGGLOMERATE)
         
     colSphereId = p.createCollisionShape(p.GEOM_SPHERE, radius=BASE_RADIUS)
-    
+
+    # initial postion of pellets.
     base_pos = [random.uniform(-BOX_SIZE*0.8, BOX_SIZE*0.8), 
                 random.uniform(-BOX_SIZE/2 + BASE_RADIUS*3, BOX_SIZE/2 - BASE_RADIUS*3), 
                 random.uniform(SPAWN_Z, SPAWN_Z + 4.0)]
