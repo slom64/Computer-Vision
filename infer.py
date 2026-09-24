@@ -5,33 +5,58 @@ import numpy as np
 import glob
 from PIL import Image
 from ultralytics import YOLO
-from train_sequence_model import SequenceClassifier
+from train_sequence_model import SequenceClassifier, get_device
 from config import CROP_SIZE, SEQUENCE_LENGTH, IMG_WIDTH, IMG_HEIGHT
 
 def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
-    # Detect GPU / CPU device
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"Running inference engine on: {device}")
+    device = get_device()
+    print(f"Running inference engine on device: {device}")
     
-    # Dynamically locate the most recent YOLO training run weights
+    # 1. Locate YOLO weights
     yolo_model_paths = sorted(glob.glob('runs/detect/train*/weights/best.pt'), key=os.path.getmtime)
     if not yolo_model_paths:
-        print("No trained YOLO weights found in runs/detect/! Make sure to run the training step first.")
+        print("❌ No trained YOLO weights found in runs/detect/!")
+        print("👉 Please run Step 2 (Train YOLO Tracker) first.")
         return
         
     yolo_model_path = yolo_model_paths[-1]
-    print(f"Loading latest YOLO model: {yolo_model_path}")
+    print(f"Loading YOLO model: {yolo_model_path}")
     yolo_model = YOLO(yolo_model_path)
     
-    seq_model_path = 'sequence_model.pt'
-    if not os.path.exists(seq_model_path):
-        print("sequence_model.pt not found! Make sure to run the Sequence training step first.")
+    # 2. Locate Sequence Classifier weights
+    # Priority: sequence_model_resnet.pt, then fallback to sequence_model.pt
+    seq_model_path = None
+    if os.path.exists('sequence_model_resnet.pt'):
+        seq_model_path = 'sequence_model_resnet.pt'
+    elif os.path.exists('sequence_model.pt'):
+        seq_model_path = 'sequence_model.pt'
+    else:
+        print("❌ Sequence model checkpoint not found!")
+        print("👉 Please run Step 4 (Train Deep Sequence Model) to train and save the model.")
         return
         
-    print(f"Loading ResNet-BiLSTM-Attention classifier from: {seq_model_path}")
+    print(f"Loading Sequence Classifier from: {seq_model_path}")
     seq_model = SequenceClassifier().to(device)
-    seq_model.load_state_dict(torch.load(seq_model_path, map_location=device))
-    seq_model.eval()
+    
+    # Robust checkpoint loader with architecture compatibility verification
+    try:
+        checkpoint = torch.load(seq_model_path, map_location=device)
+        if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
+            seq_model.load_state_dict(checkpoint['model_state_dict'])
+        else:
+            seq_model.load_state_dict(checkpoint)
+        seq_model.eval()
+    except RuntimeError as e:
+        print("\n" + "=" * 75)
+        print("⚠️  CHECKPOINT ARCHITECTURE MISMATCH DETECTED")
+        print("=" * 75)
+        print(f"The checkpoint '{seq_model_path}' was trained using an older model architecture.")
+        print("The system has been upgraded to a high-accuracy ResNet-BiLSTM-Attention network.\n")
+        print("👉 TO FIX THIS:")
+        print("   1. Open the notebook and run Step 4: 'Train Deep ResNet-BiLSTM'")
+        print("   2. Once Step 4 finishes training, re-run this Inference cell.")
+        print("=" * 75 + "\n")
+        return
     
     # Permanent classification memory & active temporal buffers
     classified = {}          # track_id -> "single" or "agglomerate"
@@ -46,7 +71,7 @@ def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
     )
     
     if not frames:
-        print("No frames found in frames/! Generate simulation frames first.")
+        print("❌ No frames found in frames/! Please run the simulation (main.py) to generate frames.")
         return
         
     print(f"Processing {len(frames)} frames through the Spatial-Temporal Detection Pipeline...")
@@ -123,7 +148,7 @@ def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
                                 seq_tensor = torch.tensor(
                                     np.stack(suspicious_buffers[track_id]), 
                                     dtype=torch.float32
-                                ).unsqueeze(0).to(device) # (1, Seq_len, 3, CROP_SIZE, CROP_SIZE)
+                                ).unsqueeze(0).to(device)
                                 
                                 with torch.no_grad():
                                     logits = seq_model(seq_tensor)

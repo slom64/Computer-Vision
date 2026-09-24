@@ -17,13 +17,17 @@ def prepare_yolo_dataset():
     valid_pairs = []
     
     for jpg_path in all_jpgs:
-        txt_path = jpg_path.replace('.jpg', '.txt')
+        txt_path = os.path.splitext(jpg_path)[0] + '.txt'
         if os.path.exists(txt_path):
             valid_pairs.append((jpg_path, txt_path))
             
     print(f"Found {len(valid_pairs)} valid image-label pairs.")
-    
+    if len(valid_pairs) == 0:
+        print("No valid pairs found in frames/! Please run main.py first to generate simulation frames.")
+        return
+        
     # Shuffle and split (80% train, 20% val)
+    random.seed(42)
     random.shuffle(valid_pairs)
     split_idx = int(len(valid_pairs) * 0.8)
     
@@ -33,25 +37,26 @@ def prepare_yolo_dataset():
     def copy_pairs(pairs, split):
         for jpg, txt in pairs:
             basename = os.path.basename(jpg)
+            txt_basename = os.path.basename(txt)
             shutil.copy(jpg, os.path.join(dataset_dir, 'images', split, basename))
-            shutil.copy(txt, os.path.join(dataset_dir, 'labels', split, basename.replace('.jpg', '.txt')))
+            shutil.copy(txt, os.path.join(dataset_dir, 'labels', split, txt_basename))
             
     copy_pairs(train_pairs, 'train')
     copy_pairs(val_pairs, 'val')
     print(f"Copied {len(train_pairs)} to train and {len(val_pairs)} to val.")
     
-    # Create dataset.yaml
-    abs_path = os.path.abspath(dataset_dir).replace('\\', '/')
-    yaml_content = f"""path: {abs_path}
+    # Create dataset.yaml with portable relative paths (works across any computer or OS)
+    yaml_content = """# Portable YOLO Dataset Configuration (Relative paths)
+path: ./yolo_dataset
 train: images/train
 val: images/val
 
 names:
   0: pellet
 """
-    with open('dataset.yaml', 'w') as f:
+    with open('dataset.yaml', 'w', encoding='utf-8') as f:
         f.write(yaml_content)
-    print("Created dataset.yaml.")
+    print("Created portable dataset.yaml successfully.")
 
 if __name__ == '__main__':
     prepare_yolo_dataset()

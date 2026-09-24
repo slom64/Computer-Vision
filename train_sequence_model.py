@@ -8,6 +8,15 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from config import SEQUENCE_LENGTH, CROP_SIZE
 
+def get_device():
+    """Auto-detect optimal hardware backend across any computer (NVIDIA GPU, Apple Silicon, or CPU)."""
+    if torch.cuda.is_available():
+        return torch.device('cuda')
+    elif hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+        return torch.device('mps')
+    else:
+        return torch.device('cpu')
+
 class ResidualBlock(nn.Module):
     """Deep 2D Residual Block with BatchNorm, GELU activations, and identity/projection shortcuts."""
     def __init__(self, in_channels, out_channels, stride=1):
@@ -151,25 +160,22 @@ class PelletSequenceDataset(Dataset):
         # Training Augmentations (temporally consistent across the 10 frames)
         if self.is_train:
             if random.random() > 0.5:
-                # Horizontal flip
                 seq = np.flip(seq, axis=-1).copy()
             if random.random() > 0.5:
-                # Vertical flip
                 seq = np.flip(seq, axis=-2).copy()
             if random.random() > 0.5:
-                # Slight brightness scaling
                 scale = random.uniform(0.85, 1.15)
                 seq = np.clip(seq * scale, 0.0, 1.0)
                 
         return torch.tensor(seq, dtype=torch.float32), torch.tensor(self.labels[idx], dtype=torch.long)
 
 def train(epochs=20, batch_size=32, lr=5e-4):
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"Training ResNet-BiLSTM-Attention Model on: {device}")
+    device = get_device()
+    print(f"Training ResNet-BiLSTM-Attention Model on device: {device}")
     
     dataset = PelletSequenceDataset('sequence_dataset', is_train=True)
     if len(dataset) == 0:
-        print("No sequences found in sequence_dataset/! Run extract_sequences.py first.")
+        print("No sequences found in sequence_dataset/! Run Step 3 (extract_sequences.py) first.")
         return
         
     print(f"Loaded {len(dataset)} total training sequences (Single & Agglomerates).")
@@ -180,8 +186,10 @@ def train(epochs=20, batch_size=32, lr=5e-4):
     val_size = len(dataset) - train_size
     train_set, val_set = torch.utils.data.random_split(dataset, [train_size, val_size], generator=generator)
     
-    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, drop_last=(len(train_set) > batch_size))
-    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
+    # DataLoader workers: 0 on Windows to avoid multiprocessing spawn issues across different machines
+    num_workers = 0 if os.name == 'nt' else 2
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, drop_last=(len(train_set) > batch_size), num_workers=num_workers)
+    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
     
     model = SequenceClassifier().to(device)
     criterion = nn.CrossEntropyLoss(label_smoothing=0.05)
@@ -204,7 +212,6 @@ def train(epochs=20, batch_size=32, lr=5e-4):
             loss = criterion(outputs, batch_y)
             loss.backward()
             
-            # Gradient clipping for training stability in recurrent architectures
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=2.0)
             optimizer.step()
             
@@ -241,9 +248,19 @@ def train(epochs=20, batch_size=32, lr=5e-4):
               
         if val_acc >= best_val_acc:
             best_val_acc = val_acc
+            # Save comprehensive checkpoint with architecture metadata
+            save_payload = {
+                'model_state_dict': model.state_dict(),
+                'architecture': 'ResNet-BiLSTM-Attention-v2',
+                'crop_size': CROP_SIZE,
+                'seq_length': SEQUENCE_LENGTH,
+                'val_acc': best_val_acc
+            }
+            torch.save(save_payload, 'sequence_model_resnet.pt')
+            # Also save raw state_dict for direct compatibility
             torch.save(model.state_dict(), 'sequence_model.pt')
             
-    print(f"Training Complete! Best Validation Accuracy: {best_val_acc*100:.2f}%. Model saved to sequence_model.pt")
+    print(f"Training Complete! Best Validation Accuracy: {best_val_acc*100:.2f}%. Model saved to sequence_model_resnet.pt")
 
 if __name__ == '__main__':
     train()
