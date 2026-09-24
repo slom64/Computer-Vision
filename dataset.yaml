@@ -1,4 +1,4 @@
-path: c:/Users/user/Desktop/Computer Vision/yolo_dataset
+path: c:/Users/Es-3rd/Desktop/Computer-Vision/yolo_dataset
 train: images/train
 val: images/val
 
