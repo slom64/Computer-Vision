@@ -1,4 +1,5 @@
 import os
+import shutil
 import csv
 from collections import defaultdict
 import numpy as np
@@ -6,13 +7,17 @@ from PIL import Image
 from config import IMG_WIDTH, IMG_HEIGHT, SEQUENCE_LENGTH, CROP_SIZE
 
 def extract_sequences():
-    os.makedirs('sequence_dataset/single', exist_ok=True)
-    os.makedirs('sequence_dataset/agglomerate', exist_ok=True)
+    # Clean previous extractions to avoid mixing different crop resolutions
+    for sub in ['single', 'agglomerate']:
+        folder = os.path.join('sequence_dataset', sub)
+        if os.path.exists(folder):
+            shutil.rmtree(folder, ignore_errors=True)
+        os.makedirs(folder, exist_ok=True)
     
     # Read CSV
     pellet_data = defaultdict(list)
     if not os.path.exists('dataset.csv'):
-        print("dataset.csv not found! Run the simulation first to generate data.")
+        print("❌ dataset.csv not found! Run the simulation first to generate data.")
         return
         
     with open('dataset.csv', 'r') as f:
@@ -20,7 +25,7 @@ def extract_sequences():
         for row in reader:
             pellet_data[int(row['pellet_id'])].append({
                 'frame': int(row['frame']),
-                'is_agglomerate': row['is_agglomerate'] == 'True',
+                'is_agglomerate': str(row['is_agglomerate']).strip().lower() in ['true', '1'],
                 'x': float(row['x_center']),
                 'y': float(row['y_center']),
                 'w': float(row['width']),
@@ -30,9 +35,8 @@ def extract_sequences():
     print(f"Loaded records for {len(pellet_data)} unique pellets.")
     
     seq_count = 0
-    # Cache recently loaded PIL images to speed up consecutive sequence extraction
-    cached_frame_id = None
-    cached_img = None
+    single_count = 0
+    agg_count = 0
     
     for pid, records in pellet_data.items():
         records.sort(key=lambda x: x['frame'])
@@ -61,16 +65,11 @@ def extract_sequences():
                     valid_sequence = False
                     break
                     
-                if cached_frame_id == r['frame'] and cached_img is not None:
-                    img = cached_img
-                else:
-                    try:
-                        img = Image.open(img_path).convert('RGB')
-                        cached_frame_id = r['frame']
-                        cached_img = img
-                    except Exception:
-                        valid_sequence = False
-                        break
+                try:
+                    img = Image.open(img_path).convert('RGB')
+                except Exception:
+                    valid_sequence = False
+                    break
                 
                 # De-normalize coordinates
                 x_center = r['x'] * IMG_WIDTH
@@ -100,12 +99,18 @@ def extract_sequences():
                 # Shape: (SEQUENCE_LENGTH, 3, CROP_SIZE, CROP_SIZE)
                 seq_np = np.stack(seq_tensors)
                 
-                folder = 'agglomerate' if is_agg else 'single'
+                if is_agg:
+                    folder = 'agglomerate'
+                    agg_count += 1
+                else:
+                    folder = 'single'
+                    single_count += 1
+                    
                 out_path = os.path.join('sequence_dataset', folder, f'pid_{pid}_seq_{seq_count}.npy')
                 np.save(out_path, seq_np)
                 seq_count += 1
                 
-    print(f"Successfully extracted {seq_count} sequences (CROP_SIZE={CROP_SIZE}x{CROP_SIZE}, SEQUENCE_LENGTH={SEQUENCE_LENGTH}).")
+    print(f"[Done] Extracted {seq_count} sequences ({single_count} Single, {agg_count} Agglomerate) at {CROP_SIZE}x{CROP_SIZE}.")
 
 if __name__ == '__main__':
     extract_sequences()

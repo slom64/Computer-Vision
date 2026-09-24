@@ -15,8 +15,8 @@ def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
     # 1. Locate YOLO weights
     yolo_model_paths = sorted(glob.glob('runs/detect/train*/weights/best.pt'), key=os.path.getmtime)
     if not yolo_model_paths:
-        print("❌ No trained YOLO weights found in runs/detect/!")
-        print("👉 Please run Step 2 (Train YOLO Tracker) first.")
+        print("[ERROR] No trained YOLO weights found in runs/detect/!")
+        print("--> Please run Step 2 (Train YOLO Tracker) first.")
         return
         
     yolo_model_path = yolo_model_paths[-1]
@@ -31,8 +31,8 @@ def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
     elif os.path.exists('sequence_model.pt'):
         seq_model_path = 'sequence_model.pt'
     else:
-        print("❌ Sequence model checkpoint not found!")
-        print("👉 Please run Step 4 (Train Deep Sequence Model) to train and save the model.")
+        print("[ERROR] Sequence model checkpoint not found!")
+        print("--> Please run Step 4 (Train Deep Sequence Model) to train and save the model.")
         return
         
     print(f"Loading Sequence Classifier from: {seq_model_path}")
@@ -48,11 +48,11 @@ def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
         seq_model.eval()
     except RuntimeError as e:
         print("\n" + "=" * 75)
-        print("⚠️  CHECKPOINT ARCHITECTURE MISMATCH DETECTED")
+        print("[WARNING] CHECKPOINT ARCHITECTURE MISMATCH DETECTED")
         print("=" * 75)
         print(f"The checkpoint '{seq_model_path}' was trained using an older model architecture.")
         print("The system has been upgraded to a high-accuracy ResNet-BiLSTM-Attention network.\n")
-        print("👉 TO FIX THIS:")
+        print("--> TO FIX THIS:")
         print("   1. Open the notebook and run Step 4: 'Train Deep ResNet-BiLSTM'")
         print("   2. Once Step 4 finishes training, re-run this Inference cell.")
         print("=" * 75 + "\n")
@@ -71,7 +71,7 @@ def infer(conf_threshold=0.15, suspicion_aspect_ratio=1.22):
     )
     
     if not frames:
-        print("❌ No frames found in frames/! Please run the simulation (main.py) to generate frames.")
+        print("[ERROR] No frames found in frames/! Please run the simulation (main.py) to generate frames.")
         return
         
     print(f"Processing {len(frames)} frames through the Spatial-Temporal Detection Pipeline...")

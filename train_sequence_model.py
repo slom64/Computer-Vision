@@ -157,6 +157,16 @@ class PelletSequenceDataset(Dataset):
     def __getitem__(self, idx):
         seq = np.load(self.files[idx]) # Shape: (Seq_len, 3, H, W)
         
+        # Safety guard: ensure spatial shape strictly matches (CROP_SIZE, CROP_SIZE)
+        if seq.shape[-1] != CROP_SIZE or seq.shape[-2] != CROP_SIZE:
+            import cv2
+            resized_frames = []
+            for t in range(seq.shape[0]):
+                frame_hwc = seq[t].transpose(1, 2, 0)
+                frame_resized = cv2.resize(frame_hwc, (CROP_SIZE, CROP_SIZE))
+                resized_frames.append(frame_resized.transpose(2, 0, 1))
+            seq = np.stack(resized_frames)
+        
         # Training Augmentations (temporally consistent across the 10 frames)
         if self.is_train:
             if random.random() > 0.5:
@@ -175,7 +185,7 @@ def train(epochs=20, batch_size=32, lr=5e-4):
     
     dataset = PelletSequenceDataset('sequence_dataset', is_train=True)
     if len(dataset) == 0:
-        print("No sequences found in sequence_dataset/! Run Step 3 (extract_sequences.py) first.")
+        print("❌ No sequences found in sequence_dataset/! Run Step 3 (extract_sequences.py) first.")
         return
         
     print(f"Loaded {len(dataset)} total training sequences (Single & Agglomerates).")
@@ -186,7 +196,6 @@ def train(epochs=20, batch_size=32, lr=5e-4):
     val_size = len(dataset) - train_size
     train_set, val_set = torch.utils.data.random_split(dataset, [train_size, val_size], generator=generator)
     
-    # DataLoader workers: 0 on Windows to avoid multiprocessing spawn issues across different machines
     num_workers = 0 if os.name == 'nt' else 2
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, drop_last=(len(train_set) > batch_size), num_workers=num_workers)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
@@ -248,7 +257,6 @@ def train(epochs=20, batch_size=32, lr=5e-4):
               
         if val_acc >= best_val_acc:
             best_val_acc = val_acc
-            # Save comprehensive checkpoint with architecture metadata
             save_payload = {
                 'model_state_dict': model.state_dict(),
                 'architecture': 'ResNet-BiLSTM-Attention-v2',
@@ -257,10 +265,9 @@ def train(epochs=20, batch_size=32, lr=5e-4):
                 'val_acc': best_val_acc
             }
             torch.save(save_payload, 'sequence_model_resnet.pt')
-            # Also save raw state_dict for direct compatibility
             torch.save(model.state_dict(), 'sequence_model.pt')
             
-    print(f"Training Complete! Best Validation Accuracy: {best_val_acc*100:.2f}%. Model saved to sequence_model_resnet.pt")
+    print(f"[Done] Training Complete! Best Validation Accuracy: {best_val_acc*100:.2f}%. Model saved to sequence_model_resnet.pt")
 
 if __name__ == '__main__':
     train()
