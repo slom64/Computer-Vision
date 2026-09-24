@@ -6,11 +6,29 @@ from config import *
 all_pellets = {}
 next_pellet_id = 1
 
+# Reusable collision and visual shapes for optimal performance and realistic 3D appearance
+_col_sphere_id = None
+_vis_sphere_id = None
+
+def get_sphere_shapes():
+    global _col_sphere_id, _vis_sphere_id
+    if _col_sphere_id is None:
+        _col_sphere_id = p.createCollisionShape(p.GEOM_SPHERE, radius=BASE_RADIUS)
+    if _vis_sphere_id is None:
+        # Realistic off-white pharmaceutical pellet shader with specular highlights
+        _vis_sphere_id = p.createVisualShape(
+            shapeType=p.GEOM_SPHERE, 
+            radius=BASE_RADIUS, 
+            rgbaColor=[0.94, 0.93, 0.89, 1.0], 
+            specularColor=[0.45, 0.45, 0.45]
+        )
+    return _col_sphere_id, _vis_sphere_id
+
 def create_bounding_box():
     thickness = 1.0
     
     # Depth walls (Y-axis) to keep pellets within the camera's focus range
-    colBoxIdY = p.createCollisionShape(p.GEOM_BOX, halfExtents=[BOX_SIZE*3, thickness/2, BOX_SIZE*3]) # Made X-extent huge just in case they bounce on the corners, and Z-extent huge
+    colBoxIdY = p.createCollisionShape(p.GEOM_BOX, halfExtents=[BOX_SIZE*3, thickness/2, BOX_SIZE*3])
     visBoxIdY = p.createVisualShape(p.GEOM_BOX, halfExtents=[BOX_SIZE*3, thickness/2, BOX_SIZE*3], rgbaColor=[1,1,1,0.0])
     
     # Near face
@@ -20,32 +38,34 @@ def create_bounding_box():
 
 def spawn_pellet(is_agglomerate=False):
     global next_pellet_id
+    colSphereId, visSphereId = get_sphere_shapes()
+    
     num_pellets = 1
     if is_agglomerate:
         num_pellets = random.randint(2, MAX_PELLETS_PER_AGGLOMERATE)
-        
-    colSphereId = p.createCollisionShape(p.GEOM_SPHERE, radius=BASE_RADIUS)
 
-    # initial postion of pellets.
+    # Initial spawn position of pellets across the camera width
     base_pos = [random.uniform(-BOX_SIZE*0.8, BOX_SIZE*0.8), 
                 random.uniform(-BOX_SIZE/2 + BASE_RADIUS*3, BOX_SIZE/2 - BASE_RADIUS*3), 
                 random.uniform(SPAWN_Z, SPAWN_Z + 4.0)]
                 
     base_id = p.createMultiBody(baseMass=1.0, 
                                 baseCollisionShapeIndex=colSphereId, 
+                                baseVisualShapeIndex=visSphereId,
                                 basePosition=base_pos)
     
     bodies = [base_id]
     
     if is_agglomerate:
-        occupied = [[0,0,0]]
+        occupied = [[0, 0, 0]]
         for i in range(num_pellets - 1):
             parent_idx = random.randint(0, len(occupied)-1)
             parent_pos = occupied[parent_idx]
             
             theta = random.uniform(0, 2*math.pi)
             phi = random.uniform(0, math.pi)
-            dist = random.uniform(1.6, 1.9) * BASE_RADIUS
+            # Center-to-center distance slightly less than 2*radius so spheres intersect physically
+            dist = random.uniform(1.65, 1.90) * BASE_RADIUS
             
             dx = dist * math.sin(phi) * math.cos(theta)
             dy = dist * math.sin(phi) * math.sin(theta)
@@ -58,6 +78,7 @@ def spawn_pellet(is_agglomerate=False):
             
             new_body = p.createMultiBody(baseMass=1.0, 
                                          baseCollisionShapeIndex=colSphereId, 
+                                         baseVisualShapeIndex=visSphereId,
                                          basePosition=world_pos)
             bodies.append(new_body)
             
@@ -76,20 +97,20 @@ def spawn_pellet(is_agglomerate=False):
                                childFramePosition=[0,0,0])
 
     for b in bodies:
-        p.changeDynamics(b, -1, restitution=RESTITUTION, linearDamping=0.1, angularDamping=0.1)
+        p.changeDynamics(b, -1, restitution=RESTITUTION, linearDamping=0.08, angularDamping=0.08)
         
-    # Larger angle left/right velocity for realistic spread across the huge box
-    vx = random.uniform(-6, 6)
-    vy = random.uniform(-6, 6)
-    vz = random.uniform(-2, -8)
+    # Randomized drift and tumble velocities
+    vx = random.uniform(-5.0, 5.0)
+    vy = random.uniform(-4.0, 4.0)
+    vz = random.uniform(-3.0, -8.0)
     p.resetBaseVelocity(base_id, 
                         linearVelocity=[vx, vy, vz],
-                        angularVelocity=[random.uniform(-5, 5), random.uniform(-5, 5), random.uniform(-5, 5)])
+                        angularVelocity=[random.uniform(-6, 6), random.uniform(-6, 6), random.uniform(-6, 6)])
                         
     pellet_id = next_pellet_id
     next_pellet_id += 1
     
-    # Create debug text
+    # Debug tag
     text_color = [1, 0.2, 0.2] if is_agglomerate else [0.2, 1, 0.2]
     text_id = p.addUserDebugText(str(pellet_id), base_pos, textColorRGB=text_color, textSize=1.5)
     
@@ -97,7 +118,7 @@ def spawn_pellet(is_agglomerate=False):
         'id': pellet_id,
         'is_agglomerate': is_agglomerate,
         'text_id': text_id,
-        'bodies': bodies # Keep track of all bodies in this agglomerate to delete them later
+        'bodies': bodies
     }
 
 def initialize():
@@ -120,20 +141,22 @@ def check_despawns():
         is_agg = info['is_agglomerate']
         
         # Clean up pybullet objects
-        p.removeUserDebugItem(info['text_id'])
+        try:
+            p.removeUserDebugItem(info['text_id'])
+        except:
+            pass
         for b in info['bodies']:
             p.removeBody(b)
             
         del all_pellets[base_id]
         
-        # Respawn with new shapes and structures
+        # Respawn with new shapes and tumbling characteristics
         spawn_pellet(is_agglomerate=is_agg)
 
 def update(update_text=False):
     check_despawns()
     p.stepSimulation()
     
-    # Only update debug text positions occasionally to prevent massive slowdowns
     if update_text:
         for base_id, info in all_pellets.items():
             try:

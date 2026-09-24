@@ -1,14 +1,136 @@
 import os
 import glob
+import random
 import numpy as np
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
+from config import SEQUENCE_LENGTH, CROP_SIZE
+
+class ResidualBlock(nn.Module):
+    """Deep 2D Residual Block with BatchNorm, GELU activations, and identity/projection shortcuts."""
+    def __init__(self, in_channels, out_channels, stride=1):
+        super().__init__()
+        self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False)
+        self.bn1 = nn.BatchNorm2d(out_channels)
+        self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False)
+        self.bn2 = nn.BatchNorm2d(out_channels)
+        self.act = nn.GELU()
+        
+        if stride != 1 or in_channels != out_channels:
+            self.shortcut = nn.Sequential(
+                nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride, bias=False),
+                nn.BatchNorm2d(out_channels)
+            )
+        else:
+            self.shortcut = nn.Identity()
+
+    def forward(self, x):
+        residual = self.shortcut(x)
+        out = self.act(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
+        out = self.act(out + residual)
+        return out
+
+class TemporalAttention(nn.Module):
+    """Multi-Head Temporal Self-Attention over tumbling sequence frames."""
+    def __init__(self, feature_dim, hidden_dim=64):
+        super().__init__()
+        self.attn_net = nn.Sequential(
+            nn.Linear(feature_dim, hidden_dim),
+            nn.Tanh(),
+            nn.Linear(hidden_dim, 1)
+        )
+
+    def forward(self, lstm_outputs):
+        # lstm_outputs: (Batch, Seq_len, Feature_dim)
+        scores = self.attn_net(lstm_outputs) # (Batch, Seq_len, 1)
+        weights = F.softmax(scores, dim=1)    # (Batch, Seq_len, 1)
+        context = torch.sum(lstm_outputs * weights, dim=1) # (Batch, Feature_dim)
+        return context, weights
+
+class SequenceClassifier(nn.Module):
+    """
+    Advanced Spatio-Temporal Classifier:
+    1. Multi-Stage ResNet Spatial Backbone (extracts shape contours & neck joints per frame)
+    2. Bidirectional 2-Layer LSTM (models rigid rotation & translation over time)
+    3. Temporal Attention Pooling (focuses on critical tumbling angles where agglomeration is exposed)
+    4. Deep MLP Classification Head with LayerNorm & Dropout.
+    """
+    def __init__(self, feature_dim=256, lstm_hidden=128, num_classes=2):
+        super().__init__()
+        
+        # Spatial Feature Extractor
+        self.stem = nn.Sequential(
+            nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(32),
+            nn.GELU()
+        )
+        self.stage1 = ResidualBlock(32, 64, stride=2)   # 96 -> 48
+        self.stage2 = ResidualBlock(64, 128, stride=2)  # 48 -> 24
+        self.stage3 = ResidualBlock(128, 256, stride=2) # 24 -> 12
+        self.stage4 = ResidualBlock(256, feature_dim, stride=1)
+        self.pool = nn.AdaptiveAvgPool2d((1, 1))
+        self.spatial_norm = nn.LayerNorm(feature_dim)
+        self.spatial_dropout = nn.Dropout(0.15)
+        
+        # Temporal Modeling (2-layer Bidirectional LSTM)
+        self.lstm = nn.LSTM(
+            input_size=feature_dim,
+            hidden_size=lstm_hidden,
+            num_layers=2,
+            batch_first=True,
+            bidirectional=True,
+            dropout=0.2
+        )
+        
+        # Temporal Attention Mechanism
+        self.temporal_attn = TemporalAttention(feature_dim=lstm_hidden * 2)
+        
+        # Classification Head
+        self.head = nn.Sequential(
+            nn.Linear(lstm_hidden * 2, 128),
+            nn.LayerNorm(128),
+            nn.GELU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 64),
+            nn.GELU(),
+            nn.Linear(64, num_classes)
+        )
+
+    def forward(self, x):
+        # Input x: (Batch, Seq_len, Channels, Height, Width)
+        B, S, C, H, W = x.shape
+        x_flat = x.view(B * S, C, H, W)
+        
+        # Extract spatial feature map per frame
+        feat = self.stem(x_flat)
+        feat = self.stage1(feat)
+        feat = self.stage2(feat)
+        feat = self.stage3(feat)
+        feat = self.stage4(feat)
+        feat = self.pool(feat).squeeze(-1).squeeze(-1) # (B*S, feature_dim)
+        feat = self.spatial_dropout(self.spatial_norm(feat))
+        
+        # Reshape to sequence representation
+        spatial_seq = feat.view(B, S, -1) # (Batch, Seq_len, feature_dim)
+        
+        # Bidirectional Temporal Modeling
+        lstm_out, _ = self.lstm(spatial_seq) # (Batch, Seq_len, lstm_hidden*2)
+        
+        # Attention-weighted Temporal Aggregation
+        context, attn_weights = self.temporal_attn(lstm_out) # (Batch, lstm_hidden*2)
+        
+        # Final logits
+        logits = self.head(context)
+        return logits
 
 class PelletSequenceDataset(Dataset):
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, is_train=True):
         self.files = []
         self.labels = []
+        self.is_train = is_train
         
         agg_files = glob.glob(os.path.join(data_dir, 'agglomerate', '*.npy'))
         for f in agg_files:
@@ -24,78 +146,104 @@ class PelletSequenceDataset(Dataset):
         return len(self.files)
         
     def __getitem__(self, idx):
-        seq = np.load(self.files[idx])
-        # shape (10, 3, 64, 64)
+        seq = np.load(self.files[idx]) # Shape: (Seq_len, 3, H, W)
+        
+        # Training Augmentations (temporally consistent across the 10 frames)
+        if self.is_train:
+            if random.random() > 0.5:
+                # Horizontal flip
+                seq = np.flip(seq, axis=-1).copy()
+            if random.random() > 0.5:
+                # Vertical flip
+                seq = np.flip(seq, axis=-2).copy()
+            if random.random() > 0.5:
+                # Slight brightness scaling
+                scale = random.uniform(0.85, 1.15)
+                seq = np.clip(seq * scale, 0.0, 1.0)
+                
         return torch.tensor(seq, dtype=torch.float32), torch.tensor(self.labels[idx], dtype=torch.long)
 
-class SequenceClassifier(nn.Module):
-    def __init__(self):
-        super().__init__()
-        # Simple CNN feature extractor for 64x64 images
-        self.cnn = nn.Sequential(
-            nn.Conv2d(3, 16, 3, padding=1), nn.ReLU(), nn.MaxPool2d(2), # 32x32
-            nn.Conv2d(16, 32, 3, padding=1), nn.ReLU(), nn.MaxPool2d(2), # 16x16
-            nn.Conv2d(32, 64, 3, padding=1), nn.ReLU(), nn.MaxPool2d(2), # 8x8
-            nn.Flatten(),
-            nn.Linear(64 * 8 * 8, 128),
-            nn.ReLU()
-        )
-        self.lstm = nn.LSTM(input_size=128, hidden_size=64, batch_first=True)
-        self.fc = nn.Linear(64, 2)
-        
-    def forward(self, x):
-        # x is (B, Seq, C, H, W)
-        B, Seq, C, H, W = x.shape
-        # Flatten batch and seq to run through CNN
-        x = x.view(B * Seq, C, H, W)
-        features = self.cnn(x)
-        # Reshape for LSTM
-        features = features.view(B, Seq, -1)
-        lstm_out, (hn, cn) = self.lstm(features)
-        # Take the output of the last time step
-        out = self.fc(lstm_out[:, -1, :])
-        return out
-
-def train():
+def train(epochs=20, batch_size=32, lr=5e-4):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"Using device: {device}")
+    print(f"Training ResNet-BiLSTM-Attention Model on: {device}")
     
-    dataset = PelletSequenceDataset('sequence_dataset')
-    print(f"Loaded {len(dataset)} sequences for training.")
-    
+    dataset = PelletSequenceDataset('sequence_dataset', is_train=True)
     if len(dataset) == 0:
-        print("No data found! Generate more simulation data.")
+        print("No sequences found in sequence_dataset/! Run extract_sequences.py first.")
         return
         
-    loader = DataLoader(dataset, batch_size=32, shuffle=True)
+    print(f"Loaded {len(dataset)} total training sequences (Single & Agglomerates).")
+    
+    # Stratified split: 85% train, 15% validation
+    generator = torch.Generator().manual_seed(42)
+    train_size = int(len(dataset) * 0.85)
+    val_size = len(dataset) - train_size
+    train_set, val_set = torch.utils.data.random_split(dataset, [train_size, val_size], generator=generator)
+    
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, drop_last=(len(train_set) > batch_size))
+    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
     
     model = SequenceClassifier().to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    criterion = nn.CrossEntropyLoss(label_smoothing=0.05)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-3)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-5)
     
-    for epoch in range(10): # Short epochs for rapid prototyping
+    best_val_acc = 0.0
+    
+    for epoch in range(epochs):
         model.train()
-        total_loss = 0
-        correct = 0
+        train_loss = 0.0
+        train_correct = 0
+        total_train = 0
         
-        for batch_x, batch_y in loader:
+        for batch_x, batch_y in train_loader:
             batch_x, batch_y = batch_x.to(device), batch_y.to(device)
             
             optimizer.zero_grad()
             outputs = model(batch_x)
             loss = criterion(outputs, batch_y)
             loss.backward()
+            
+            # Gradient clipping for training stability in recurrent architectures
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=2.0)
             optimizer.step()
             
-            total_loss += loss.item()
+            train_loss += loss.item() * batch_x.size(0)
             preds = outputs.argmax(dim=1)
-            correct += (preds == batch_y).sum().item()
+            train_correct += (preds == batch_y).sum().item()
+            total_train += batch_x.size(0)
             
-        acc = correct / len(dataset)
-        print(f"Epoch {epoch+1}/10 - Loss: {total_loss/len(loader):.4f} - Acc: {acc:.4f}")
+        scheduler.step()
         
-    torch.save(model.state_dict(), 'sequence_model.pt')
-    print("Saved model to sequence_model.pt")
+        # Validation pass
+        model.eval()
+        val_loss = 0.0
+        val_correct = 0
+        total_val = 0
+        
+        with torch.no_grad():
+            for batch_x, batch_y in val_loader:
+                batch_x, batch_y = batch_x.to(device), batch_y.to(device)
+                outputs = model(batch_x)
+                loss = criterion(outputs, batch_y)
+                
+                val_loss += loss.item() * batch_x.size(0)
+                preds = outputs.argmax(dim=1)
+                val_correct += (preds == batch_y).sum().item()
+                total_val += batch_x.size(0)
+                
+        train_acc = train_correct / max(1, total_train)
+        val_acc = val_correct / max(1, total_val)
+        
+        print(f"Epoch [{epoch+1:02d}/{epochs:02d}] "
+              f"Train Loss: {train_loss/total_train:.4f} Acc: {train_acc*100:.1f}% | "
+              f"Val Loss: {val_loss/max(1, total_val):.4f} Acc: {val_acc*100:.1f}%")
+              
+        if val_acc >= best_val_acc:
+            best_val_acc = val_acc
+            torch.save(model.state_dict(), 'sequence_model.pt')
+            
+    print(f"Training Complete! Best Validation Accuracy: {best_val_acc*100:.2f}%. Model saved to sequence_model.pt")
 
 if __name__ == '__main__':
     train()
