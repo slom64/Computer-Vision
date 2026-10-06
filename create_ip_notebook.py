@@ -1560,6 +1560,13 @@ By tracking individual pellet trajectories through time using ByteTrack, we expl
    - An **optical overlap**, in contrast, is an ephemeral collision or line-of-sight intersection. The two constituent particles rapidly diverge within $1-2$ frames ($10-20\\text{ ms}$), creating an abrupt surge in temporal aspect ratio variance ($\\sigma_{AR} > 0.40$).
 2. **Hydrodynamic Settling & Particle Size Dynamics**:
    According to the Ergun and Richardson-Zaki fluidization equations, larger agglomerates exhibit higher terminal settling velocities ($u_t \\propto d_{eq}^{1.5}$), leading to distinct circulation dynamics in Wurster tubes and expansion chambers.
+
+3. **Multi-Frame Temporal Disentanglement (Split Verification Filter)**:
+   - When particles appear connected in Frame $t$, they are flagged as `Candidate Cluster`.
+   - In subsequent frames ($t+1, t+2, \\dots$):
+     - **If they remain connected**: Their cohesion is confirmed as a **True Physical Agglomerate** ($D_{agg}$ confirmed).
+     - **If they separate into distinct individual centroids**: They are recognized as a **Transient Optical Overlap** and retroactively removed from the agglomeration count.
+   - This eliminates the 2D projection ambiguity without requiring expensive multi-camera stereo hardware!
 """
 cells.append(nbf.v4.new_markdown_cell(cell_18_md))
 
@@ -1624,6 +1631,30 @@ print(f"* Long-lived particles tracked across >= 3 frames : {len(long_lived_trac
 print(f"* Mean Single Pellets Aspect Ratio Std. Dev.      : {np.mean(singles_ar_std):.4f}")
 print(f"* Mean Agglomerates Aspect Ratio Std. Dev.        : {np.mean(aggs_ar_std):.4f}")
 print(f"* Conclusion: Bounded AR variance (< 0.15) confirms rigid multi-pellet cohesion, successfully separating true agglomerates from random optical overlaps!")
+
+# 5. Spatial-Temporal Disentanglement of Overlaps vs. Rigid Agglomerates
+from track_yolo_real import disentangle_overlaps_and_agglomerates
+disentangle_summary = disentangle_overlaps_and_agglomerates(tracker_engine, min_hits=3)
+
+print("=" * 80)
+print("  SPATIAL-TEMPORAL OVERLAP DISENTANGLEMENT & AGGLOMERATION CORRECTION")
+print("=" * 80)
+print(f"  * Total Persistent Particle Tracks Analyzed (>= 3 frames) : {disentangle_summary['total_analyzed']}")
+print(f"  * Confirmed Rigid Agglomerates (Permanently Connected)    : {disentangle_summary['n_confirmed_aggs']}")
+print(f"  * Transient Optical Overlaps (Separated in Next Frame!)   : {disentangle_summary['n_transient_overlaps']}")
+print(f"  * Confirmed Single Primary Pellets                        : {disentangle_summary['n_true_singles']}")
+print("-" * 80)
+print(f"  * Raw 2D Agglomeration Degree (Overestimated)             : {disentangle_summary['d_agg_raw_pct']:.2f}%")
+print(f"  * Temporally-Corrected True Agglomeration Degree          : {disentangle_summary['d_agg_corrected_pct']:.2f}%")
+print("=" * 80)
+
+print("Sample Transient Optical Overlaps (Particles that separated in subsequent frames):")
+for o in disentangle_summary['transient_overlaps'][:5]:
+    print(f"  • Track ID {o['id']:3d}: AR History = {o['ar_history']} | Spike Delta = +{o['delta_ar']} | std = {o['ar_std']}")
+
+print("Sample Confirmed Rigid Agglomerates (Locked multi-pellet clusters):")
+for a in disentangle_summary['confirmed_aggs'][:5]:
+    print(f"  • Track ID {a['id']:3d}: AR History = {a['ar_history']} | Mean AR = {a['mean_ar']} | std = {a['ar_std']}")
 """
 cells.append(nbf.v4.new_code_cell(cell_19_code))
 

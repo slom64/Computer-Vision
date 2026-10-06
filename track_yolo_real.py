@@ -349,6 +349,77 @@ def run_bytetrack_on_sequence(
     
     return df_telemetry, annotated_frames, tracker
 
+def disentangle_overlaps_and_agglomerates(tracker, min_hits=3):
+    """
+    Spatial-Temporal Disentanglement State Machine:
+    Differentiates True Rigid Agglomerates from Transient Optical Overlaps across consecutive frames.
+    
+    1. Confirmed Rigid Agglomerate:
+       Particles maintaining cohesive elongation (AR >= 1.25) across >= 2 frames without separation.
+    2. Transient Optical Overlap:
+       Particles exhibiting an abrupt 1-frame elongation spike (delta AR >= 0.30, max AR >= 1.35)
+       that separates back into spherical single pellets (AR <= 1.20) in adjacent frames.
+    3. Confirmed Single Primary Pellet:
+       Consistently spherical pellets (AR < 1.25).
+    """
+    confirmed_aggs = []
+    transient_overlaps = []
+    true_singles = []
+    
+    for tid, t in tracker.tracks.items():
+        if t['total_hits'] >= min_hits:
+            ar_h = [float(x) for x in t['ar_history']]
+            max_ar = max(ar_h)
+            min_ar = min(ar_h)
+            delta_ar = max_ar - min_ar
+            ar_std = float(np.std(ar_h))
+            
+            # Transient Overlap Condition:
+            # High aspect ratio spike for 1 frame, but separates into single in preceding or following frames
+            if max_ar >= 1.35 and min_ar <= 1.20 and delta_ar >= 0.30:
+                transient_overlaps.append({
+                    'id': tid,
+                    'ar_history': [round(x, 2) for x in ar_h],
+                    'max_ar': round(max_ar, 2),
+                    'min_ar': round(min_ar, 2),
+                    'delta_ar': round(delta_ar, 2),
+                    'ar_std': round(ar_std, 3),
+                    'classification': 'Transient Optical Overlap'
+                })
+            elif np.mean(ar_h) >= 1.15 and max_ar >= 1.25 and min_ar >= 1.05:
+                confirmed_aggs.append({
+                    'id': tid,
+                    'ar_history': [round(x, 2) for x in ar_h],
+                    'mean_ar': round(float(np.mean(ar_h)), 2),
+                    'ar_std': round(ar_std, 3),
+                    'classification': 'Confirmed Rigid Agglomerate'
+                })
+            else:
+                true_singles.append({
+                    'id': tid,
+                    'ar_history': [round(x, 2) for x in ar_h],
+                    'mean_ar': round(float(np.mean(ar_h)), 2),
+                    'ar_std': round(ar_std, 3),
+                    'classification': 'Confirmed Single Pellet'
+                })
+                
+    total_analyzed = len(confirmed_aggs) + len(transient_overlaps) + len(true_singles)
+    d_agg_raw = (len(confirmed_aggs) + len(transient_overlaps)) / total_analyzed * 100.0 if total_analyzed > 0 else 0.0
+    d_agg_corrected = len(confirmed_aggs) / total_analyzed * 100.0 if total_analyzed > 0 else 0.0
+    
+    summary = {
+        'total_analyzed': total_analyzed,
+        'n_confirmed_aggs': len(confirmed_aggs),
+        'n_transient_overlaps': len(transient_overlaps),
+        'n_true_singles': len(true_singles),
+        'd_agg_raw_pct': round(d_agg_raw, 2),
+        'd_agg_corrected_pct': round(d_agg_corrected, 2),
+        'confirmed_aggs': confirmed_aggs,
+        'transient_overlaps': transient_overlaps,
+        'true_singles': true_singles
+    }
+    return summary
+
 if __name__ == '__main__':
     run_bytetrack_on_sequence()
 
