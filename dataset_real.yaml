@@ -1,0 +1,8 @@
+# Portable YOLO Dataset Configuration (Relative paths)
+path: C:/Users/user/Desktop/Computer Vision/yolo_real_dataset
+train: images/train
+val: images/val
+
+names:
+  0: single
+  1: agglomerate
