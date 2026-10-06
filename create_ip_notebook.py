@@ -1371,6 +1371,434 @@ With the clean preprocessing checkpoint saved (`preprocessed_checkpoint/crops/` 
 """
 cells.append(nbf.v4.new_markdown_cell(cell_13_md))
 
+
+# ==============================================================================
+# CELL 14: STAGE 10 — DEEP LEARNING CNN CROP CLASSIFIER (Markdown & Code)
+# ==============================================================================
+cell_14_md = """---
+## 🧠 Stage 10: Deep Learning CNN Crop Classifier (Mehle et al. 2017 Architecture)
+
+### 1. Scientific Background & Architecture Design
+In their study, **Mehle, Likar, & Tomaževič (2017)** demonstrated that relying solely on geometric features (such as projected area or equivalent diameter) fails to detect early-stage agglomerates (such as dimers or trimers). This occurs because their sizes heavily overlap with large single primary pellets, resulting in a low true positive rate (~70%) or high false alarm rate.
+
+To overcome this fundamental physical limitation, the authors designed a deep **Convolutional Neural Network (CNN)** inspired by the VGG architecture (ILSVRC-2014) to automatically learn hierarchical visual features:
+* Early conv layers isolate sharp vs. blurred gradient contours and surface highlights.
+* Mid-level layers capture concave contact necks and boundary indentation joints.
+* Deep layers classify whether contacting spheres are rigid fused agglomerates or visual line-of-sight overlaps.
+
+### 2. Architecture Specifications
+* **Input**: $96 \times 96$ standardized monochrome candidate crops (Z-score normalized: $\\frac{x - \\mu}{\\sigma}$).
+* **Stage 1**: $2 \times$ [Conv2D($32, 3 \times 3$) + BatchNorm + ReLU] + MaxPool2D($2 \times 2$) $\\rightarrow 48 \times 48$
+* **Stage 2**: $2 \times$ [Conv2D($64, 3 \times 3$) + BatchNorm + ReLU] + MaxPool2D($2 \times 2$) $\\rightarrow 24 \times 24$
+* **Stage 3**: $2 \times$ [Conv2D($128, 3 \times 3$) + BatchNorm + ReLU] + MaxPool2D($2 \times 2$) $\\rightarrow 12 \times 12$
+* **Stage 4**: Conv2D($256, 3 \times 3$) + BatchNorm + ReLU + MaxPool2D($2 \times 2$) $\\rightarrow 6 \times 6$
+* **Classifier Head**: AdaptiveAvgPool2D($3 \times 3$) + Dropout($0.4$) + Linear($2304 \rightarrow 256$) + ReLU + Dropout($0.2$) + Linear($256 \rightarrow 64$) + ReLU + Linear($64 \rightarrow \text{num\\_classes}$)
+
+### 3. Training & Data Augmentations (Mehle et al. 2017)
+* Random rotation ($0^\\circ$ to $360^\\circ$)
+* Random Gaussian noise ($\\sigma \in [0, 0.01]$)
+* Random horizontal and vertical reflections
+* Stratified 60% Train, 20% Validation, 20% Independent Test split.
+"""
+cells.append(nbf.v4.new_markdown_cell(cell_14_md))
+
+cell_14_code = """# ══════════════════════════════════════════════════════════════════════════════
+# Cell 14: Mehle et al. (2017) CNN Model Architecture & Dataset Definition
+# ══════════════════════════════════════════════════════════════════════════════
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import Dataset, DataLoader
+import random
+
+class PelletCropDataset(Dataset):
+    # Dataset loader for 96x96 candidate pellet crops with Mehle 2017 augmentations
+    def __init__(self, file_paths, labels, areas=None, is_train=True):
+        self.file_paths = file_paths
+        self.labels = labels
+        self.areas = areas if areas is not None else [0] * len(labels)
+        self.is_train = is_train
+
+    def __len__(self):
+        return len(self.file_paths)
+
+    def __getitem__(self, idx):
+        fpath = str(self.file_paths[idx])
+        img = cv2.imread(fpath, cv2.IMREAD_GRAYSCALE)
+        if img is None:
+            img = np.zeros((96, 96), dtype=np.uint8)
+        else:
+            if img.shape != (96, 96):
+                img = cv2.resize(img, (96, 96), interpolation=cv2.INTER_LINEAR)
+
+        img_float = img.astype(np.float32) / 255.0
+
+        if self.is_train:
+            # Random rotation 0 to 360 degrees
+            angle = random.uniform(0, 360)
+            center = (48, 48)
+            rot_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
+            img_float = cv2.warpAffine(img_float, rot_mat, (96, 96), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+
+            # Random horizontal and vertical flips
+            if random.random() > 0.5:
+                img_float = np.fliplr(img_float)
+            if random.random() > 0.5:
+                img_float = np.flipud(img_float)
+
+            # Random Gaussian noise (std 0 to 0.01 per Mehle 2017)
+            if random.random() > 0.5:
+                noise_std = random.uniform(0.001, 0.01)
+                noise = np.random.normal(0, noise_std, img_float.shape).astype(np.float32)
+                img_float = np.clip(img_float + noise, 0.0, 1.0)
+
+        # Standardize per candidate image (Mehle et al. 2017 Section 3.3)
+        mean_val = float(img_float.mean())
+        std_val = float(img_float.std()) + 1e-6
+        img_norm = (img_float - mean_val) / std_val
+
+        tensor_x = torch.tensor(img_norm, dtype=torch.float32).unsqueeze(0)
+        label_y = torch.tensor(self.labels[idx], dtype=torch.long)
+        area_val = torch.tensor(self.areas[idx], dtype=torch.float32)
+
+        return tensor_x, label_y, area_val
+
+def stratified_split(labels, test_ratio=0.20, val_ratio=0.20, seed=42):
+    np.random.seed(seed)
+    labels = np.array(labels)
+    tr_idx, v_idx, ts_idx = [], [], []
+    for c in np.unique(labels):
+        idxs = np.where(labels == c)[0]
+        np.random.shuffle(idxs)
+        n = len(idxs)
+        n_ts = int(round(n * test_ratio))
+        n_v = int(round(n * val_ratio))
+        ts_idx.extend(idxs[:n_ts])
+        v_idx.extend(idxs[n_ts:n_ts + n_v])
+        tr_idx.extend(idxs[n_ts + n_v:])
+    np.random.shuffle(tr_idx)
+    np.random.shuffle(v_idx)
+    np.random.shuffle(ts_idx)
+    return np.array(tr_idx), np.array(v_idx), np.array(ts_idx)
+
+class MehleCNN(nn.Module):
+    # VGG-inspired multi-stage CNN for in-line agglomeration classification (Mehle 2017)
+    def __init__(self, in_channels=1, num_classes=2):
+        super().__init__()
+        # Stage 1: 96x96 -> 48x48
+        self.stage1 = nn.Sequential(
+            nn.Conv2d(in_channels, 32, kernel_size=3, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(32, 32, kernel_size=3, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        # Stage 2: 48x48 -> 24x24
+        self.stage2 = nn.Sequential(
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(64, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        # Stage 3: 24x24 -> 12x12
+        self.stage3 = nn.Sequential(
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(128, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        # Stage 4: 12x12 -> 6x6
+        self.stage4 = nn.Sequential(
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        # Classifier Head
+        self.pool = nn.AdaptiveAvgPool2d((3, 3))
+        self.classifier = nn.Sequential(
+            nn.Linear(256 * 3 * 3, 256),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=0.4),
+            nn.Linear(256, 64),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=0.2),
+            nn.Linear(64, num_classes)
+        )
+        
+    def forward(self, x):
+        x = self.stage1(x)
+        x = self.stage2(x)
+        x = self.stage3(x)
+        x = self.stage4(x)
+        x = self.pool(x)
+        x = torch.flatten(x, 1)
+        logits = self.classifier(x)
+        return logits
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+sample_model = MehleCNN(in_channels=1, num_classes=2).to(device)
+param_count = sum(p.numel() for p in sample_model.parameters() if p.requires_grad)
+print(f"[OK] MehleCNN initialized on {device} with {param_count:,} trainable parameters.")
+"""
+cells.append(nbf.v4.new_code_cell(cell_14_code))
+
+# ==============================================================================
+# CELL 15: TRAINING MEHLE CNN (Code)
+# ==============================================================================
+cell_15_code = """# ══════════════════════════════════════════════════════════════════════════════
+# Cell 15: Model Training on GPU with 60/20/20 Stratified Split
+# ══════════════════════════════════════════════════════════════════════════════
+# Prepare dataset from preprocessed checkpoint
+df_meta = pd.read_csv(METADATA_CSV)
+valid_paths = []
+valid_labels = []
+valid_areas = []
+
+for _, row in df_meta.iterrows():
+    lbl_str = row['initial_label']
+    fname = row['crop_filename']
+    p = CROPS_DIR / lbl_str / fname
+    if p.exists():
+        valid_paths.append(p)
+        # Binary task: 0 = Single Pellet, 1 = Agglomerate
+        valid_labels.append(0 if lbl_str == 'single' else 1)
+        valid_areas.append(float(row['area_px']))
+
+# Stratified Split
+def stratified_split(labels, test_ratio=0.20, val_ratio=0.20, seed=42):
+    np.random.seed(seed)
+    labels = np.array(labels)
+    tr_idx, v_idx, ts_idx = [], [], []
+    for c in np.unique(labels):
+        idxs = np.where(labels == c)[0]
+        np.random.shuffle(idxs)
+        n = len(idxs)
+        n_ts = int(round(n * test_ratio))
+        n_v = int(round(n * val_ratio))
+        ts_idx.extend(idxs[:n_ts])
+        v_idx.extend(idxs[n_ts:n_ts + n_v])
+        tr_idx.extend(idxs[n_ts + n_v:])
+    return np.array(tr_idx), np.array(v_idx), np.array(ts_idx)
+
+tr_idx, val_idx, test_idx = stratified_split(valid_labels)
+
+train_loader = DataLoader(PelletCropDataset([valid_paths[i] for i in tr_idx], [valid_labels[i] for i in tr_idx], [valid_areas[i] for i in tr_idx], is_train=True), batch_size=50, shuffle=True)
+val_loader = DataLoader(PelletCropDataset([valid_paths[i] for i in val_idx], [valid_labels[i] for i in val_idx], [valid_areas[i] for i in val_idx], is_train=False), batch_size=50, shuffle=False)
+test_loader = DataLoader(PelletCropDataset([valid_paths[i] for i in test_idx], [valid_labels[i] for i in test_idx], [valid_areas[i] for i in test_idx], is_train=False), batch_size=50, shuffle=False)
+
+print(f"Data Split: Train={len(tr_idx)} | Val={len(val_idx)} | Test={len(test_idx)}")
+
+# Training
+model = MehleCNN(in_channels=1, num_classes=2).to(device)
+class_counts = np.bincount([valid_labels[i] for i in tr_idx])
+weights = torch.tensor([len(tr_idx) / (2.0 * max(1, c)) for c in class_counts], dtype=torch.float32).to(device)
+criterion = nn.CrossEntropyLoss(weight=weights)
+optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-3)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30, eta_min=1e-5)
+
+epochs = 30
+best_val_acc = 0.0
+save_path = Path('mehle_cnn_best.pt')
+history = {'train_loss': [], 'val_loss': [], 'train_acc': [], 'val_acc': []}
+
+for epoch in range(epochs):
+    model.train()
+    running_loss, running_correct, total = 0.0, 0, 0
+    for x_b, y_b, _ in train_loader:
+        x_b, y_b = x_b.to(device), y_b.to(device)
+        optimizer.zero_grad()
+        out = model(x_b)
+        loss = criterion(out, y_b)
+        loss.backward()
+        nn.utils.clip_grad_norm_(model.parameters(), 2.0)
+        optimizer.step()
+        running_loss += loss.item() * x_b.size(0)
+        running_correct += (torch.argmax(out, 1) == y_b).sum().item()
+        total += x_b.size(0)
+    scheduler.step()
+
+    # Val
+    model.eval()
+    val_loss, val_correct, val_total = 0.0, 0, 0
+    with torch.no_grad():
+        for x_b, y_b, _ in val_loader:
+            x_b, y_b = x_b.to(device), y_b.to(device)
+            out = model(x_b)
+            val_loss += criterion(out, y_b).item() * x_b.size(0)
+            val_correct += (torch.argmax(out, 1) == y_b).sum().item()
+            val_total += x_b.size(0)
+
+    tr_acc = running_correct / total
+    v_acc = val_correct / val_total
+    history['train_loss'].append(running_loss / total)
+    history['val_loss'].append(val_loss / val_total)
+    history['train_acc'].append(tr_acc)
+    history['val_acc'].append(v_acc)
+
+    if (epoch + 1) % 5 == 0 or epoch == epochs - 1:
+        print(f"Epoch [{epoch+1:02d}/{epochs:02d}] Train Acc: {tr_acc*100:5.1f}% | Val Acc: {v_acc*100:5.1f}%")
+
+    if v_acc > best_val_acc:
+        best_val_acc = v_acc
+        torch.save({'model_state_dict': model.state_dict(), 'val_acc': best_val_acc, 'num_classes': 2, 'class_names': ['Single', 'Agglomerate']}, str(save_path))
+
+print(f"[DONE] Best Validation Accuracy: {best_val_acc*100:.2f}%. Model saved to {save_path.resolve()}")
+"""
+cells.append(nbf.v4.new_code_cell(cell_15_code))
+
+# ==============================================================================
+# CELL 16: TEST SET EVALUATION & ROC CURVE (Code)
+# ==============================================================================
+cell_16_code = """# ══════════════════════════════════════════════════════════════════════════════
+# Cell 16: Independent Test Evaluation & Replication of Mehle Fig. 7 (ROC Curve)
+# ══════════════════════════════════════════════════════════════════════════════
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+checkpoint = torch.load('mehle_cnn_best.pt', map_location=device)
+num_classes = checkpoint.get('num_classes', 2)
+eval_model = MehleCNN(in_channels=1, num_classes=num_classes).to(device)
+eval_model.load_state_dict(checkpoint['model_state_dict'])
+eval_model.eval()
+
+# Ensure test_loader is available even if Cell 15 wasn't run in this session
+if 'test_loader' not in globals() or test_loader is None:
+    df_meta_eval = pd.read_csv(METADATA_CSV)
+    v_paths, v_lbls, v_areas = [], [], []
+    for _, r in df_meta_eval.iterrows():
+        p = CROPS_DIR / r['initial_label'] / r['crop_filename']
+        if p.exists():
+            v_paths.append(p)
+            v_lbls.append(0 if r['initial_label'] == 'single' else 1)
+            v_areas.append(float(r['area_px']))
+    _, _, ts_idx = stratified_split(v_lbls)
+    test_loader = DataLoader(PelletCropDataset([v_paths[i] for i in ts_idx], [v_lbls[i] for i in ts_idx], [v_areas[i] for i in ts_idx], is_train=False), batch_size=50, shuffle=False)
+
+all_preds, all_targets, all_probs, all_areas = [], [], [], []
+with torch.no_grad():
+    for x_b, y_b, a_b in test_loader:
+        x_b = x_b.to(device)
+        probs = F.softmax(eval_model(x_b), dim=1)
+        preds = torch.argmax(probs, dim=1).cpu().numpy()
+        all_preds.extend(preds)
+        all_targets.extend(y_b.numpy())
+        all_probs.extend(probs.cpu().numpy()[:, 1])
+        all_areas.extend(a_b.numpy())
+
+all_preds = np.array(all_preds)
+all_targets = np.array(all_targets)
+all_probs = np.array(all_probs)
+all_areas = np.array(all_areas)
+
+# ROC Curve computation (pure numpy)
+def compute_roc(y_true, scores):
+    desc = np.argsort(scores)[::-1]
+    y_true = np.array(y_true)[desc]
+    scores = np.array(scores)[desc]
+    dist = np.where(np.diff(scores))[0]
+    th_idxs = np.r_[dist, y_true.size - 1]
+    tps = np.cumsum(y_true)[th_idxs]
+    fps = 1 + th_idxs - tps
+    tpr = np.r_[0, tps / max(1, y_true.sum())]
+    fpr = np.r_[0, fps / max(1, len(y_true) - y_true.sum())]
+    roc_val = float(np.trapezoid(tpr, fpr)) if hasattr(np, 'trapezoid') else float(np.trapz(tpr, fpr))
+    return fpr, tpr, roc_val
+
+fpr_cnn, tpr_cnn, auc_cnn = compute_roc(all_targets, all_probs)
+fpr_area, tpr_area, auc_area = compute_roc(all_targets, all_areas)
+
+cm = np.zeros((2, 2), dtype=int)
+for t, p in zip(all_targets, all_preds): cm[t, p] += 1
+test_acc = np.mean(all_preds == all_targets)
+
+print("=" * 70)
+print(f"[TEST] Independent Test Set Performance (N = {len(all_targets)} crops)")
+print("=" * 70)
+print(f"* Overall Test Accuracy         : {test_acc*100:.2f}%")
+print(f"* Mehle CNN Classifier ROC AUC : {auc_cnn:.4f}")
+print(f"* Baseline Area Method ROC AUC : {auc_area:.4f}")
+print("=" * 70)
+
+# Multi-Panel Plots
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+# 1. Training curves (or sample crops if history not in scope)
+if 'history' in globals() and len(history.get('train_acc', [])) > 0:
+    axes[0].plot(history['train_acc'], label='Train Acc', color='#1f77b4', lw=2)
+    axes[0].plot(history['val_acc'], label='Val Acc', color='#2ca02c', lw=2)
+    axes[0].set_title('Training & Validation Accuracy', fontweight='bold')
+    axes[0].set_xlabel('Epoch'); axes[0].set_ylabel('Accuracy'); axes[0].legend(); axes[0].grid(True, linestyle=':', alpha=0.6)
+else:
+    axes[0].axis('off')
+
+# 2. Confusion Matrix
+axes[1].imshow(cm, cmap='Blues')
+axes[1].set_title(f'Confusion Matrix (Test Acc: {test_acc*100:.1f}%)', fontweight='bold')
+axes[1].set_xticks([0, 1]); axes[1].set_yticks([0, 1])
+axes[1].set_xticklabels(['Single', 'Agglomerate']); axes[1].set_yticklabels(['Single', 'Agglomerate'])
+axes[1].set_xlabel('Predicted'); axes[1].set_ylabel('Ground Truth')
+for i in range(2):
+    for j in range(2):
+        axes[1].text(j, i, str(cm[i, j]), ha='center', va='center', color='white' if cm[i, j] > cm.max()/2 else 'black', fontweight='bold', fontsize=12)
+
+# 3. ROC Curve Comparison (Replication of Mehle Fig. 7)
+axes[2].plot(fpr_cnn, tpr_cnn, color='#2ca02c', lw=2.5, label=f'Mehle CNN (AUC = {auc_cnn:.3f})')
+axes[2].plot(fpr_area, tpr_area, color='#d62728', lw=1.8, linestyle='--', label=f'Area Threshold Baseline (AUC = {auc_area:.3f})')
+axes[2].plot([0, 1], [0, 1], color='#7f7f7f', linestyle=':', lw=1)
+axes[2].set_xlim([0.0, 1.0]); axes[2].set_ylim([0.0, 1.05])
+axes[2].set_xlabel('False Positive Rate (1 - Specificity)')
+axes[2].set_ylabel('True Positive Rate (Sensitivity)')
+axes[2].set_title('ROC Curve: CNN vs. Area Threshold (Mehle Fig. 7)', fontweight='bold')
+axes[2].legend(loc='lower right', frameon=True)
+axes[2].grid(True, linestyle=':', alpha=0.6)
+
+plt.tight_layout()
+plt.show()
+"""
+cells.append(nbf.v4.new_code_cell(cell_16_code))
+
+# ==============================================================================
+# CELL 17: FULL-FRAME INFERENCE & IN-LINE AGGLOMERATION DEGREE (Code)
+# ==============================================================================
+cell_17_code = """# ══════════════════════════════════════════════════════════════════════════════
+# Cell 17: Full-Frame In-Line Inference & Agglomeration Degree Measurement
+# ══════════════════════════════════════════════════════════════════════════════
+from infer_mehle_cnn import MehleCNNPipeline
+
+pipeline = MehleCNNPipeline(model_path='mehle_cnn_best.pt', device=device)
+
+if 'df_dataset' in globals():
+    test_frame_file = df_dataset[df_dataset['Folder'] == 'exp 1000 back+ext light early agg']['Path'].iloc[0]
+else:
+    sample_files = list(Path('Real-Data/exp 1000 back+ext light early agg').glob('*.bmp'))
+    test_frame_file = str(sample_files[0]) if sample_files else str(list(Path('Real-Data').glob('*/*.bmp'))[0])
+inference_result = pipeline.process_frame(test_frame_file)
+
+print(f"Frame Processed : {Path(test_frame_file).name}")
+print(f"* Total In-Focus Pellets Detected : {inference_result['total_infocus']}")
+print(f"* In-Line Agglomeration Degree    : {inference_result['agg_degree']:.2f}%")
+print(f"* Single Pellets Confirmed        : {inference_result['counts']['single']}")
+print(f"* Agglomerates Confirmed          : {inference_result['counts']['agglomerate']}")
+
+# Display annotated result
+fig, ax = plt.subplots(figsize=(16, 10))
+ax.imshow(cv2.cvtColor(inference_result['vis'], cv2.COLOR_BGR2RGB))
+ax.set_title(f"Real-Time In-Line Inspection: Agglomeration Degree = {inference_result['agg_degree']:.1f}% "
+             f"(Single: {inference_result['counts']['single']} | Agglomerates: {inference_result['counts']['agglomerate']})", 
+             fontsize=12, fontweight='bold', pad=8)
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+"""
+cells.append(nbf.v4.new_code_cell(cell_17_code))
+
 nb.cells = cells
 
 # Save notebook

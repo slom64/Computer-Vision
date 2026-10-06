@@ -1,0 +1,986 @@
+particle_id,frame_file,folder,crop_filename,bbox_x,bbox_y,bbox_w,bbox_h,area_px,eq_diam_px,circularity,aspect_ratio,solidity,F_Lap,F_Ten,is_infocus,initial_label
+0,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00000_exp 1000 b_single.png,1163,1456,35,43,1180.5,38.77,0.873,1.235,0.983,78.31,1929.72,True,single
+1,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00001_exp 1000 b_single.png,1154,1168,41,45,1341.5,41.33,0.884,1.205,0.985,83.71,4519.02,True,single
+2,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00002_exp 1000 b_connected.png,1146,1032,40,58,1523.5,44.04,0.731,1.503,0.932,84.3,2186.19,True,connected
+3,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00003_exp 1000 b_connected.png,783,952,25,30,403.0,22.65,0.613,1.815,0.885,718.83,20909.07,True,connected
+4,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00004_exp 1000 b_connected.png,1455,940,62,99,2811.0,59.83,0.212,1.792,0.702,341.85,7482.82,True,connected
+5,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00005_exp 1000 b_connected.png,1219,926,30,35,393.5,22.38,0.339,1.518,0.577,135.36,3682.75,True,connected
+6,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00006_exp 1000 b_overlapped.png,985,876,39,44,1113.0,37.64,0.473,1.283,0.856,78.4,1734.29,True,overlapped
+7,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00007_exp 1000 b_connected.png,913,872,62,48,1791.5,47.76,0.702,1.911,0.947,92.93,2706.64,True,connected
+8,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00008_exp 1000 b_single.png,1229,871,31,34,826.0,32.43,0.883,1.1,0.983,79.99,1520.78,True,single
+9,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00009_exp 1000 b_overlapped.png,1118,870,31,44,1016.5,35.98,0.826,1.433,0.974,83.3,1934.4,True,overlapped
+10,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00010_exp 1000 b_connected.png,1714,869,33,67,1438.0,42.79,0.54,2.238,0.838,82.61,1616.81,True,connected
+11,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00011_exp 1000 b_overlapped.png,1290,830,34,25,598.5,27.6,0.819,1.495,0.972,92.95,1903.6,True,overlapped
+12,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00012_exp 1000 b_overlapped.png,349,801,38,28,814.0,32.19,0.857,1.37,0.978,76.16,1938.15,True,overlapped
+13,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00013_exp 1000 b_connected.png,1092,792,61,69,2003.5,50.51,0.438,2.097,0.806,77.38,2001.13,True,connected
+14,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00014_exp 1000 b_connected.png,1372,769,64,32,1238.0,39.7,0.499,2.032,0.831,91.57,2154.12,True,connected
+15,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00015_exp 1000 b_overlapped.png,934,765,36,51,1144.0,38.17,0.643,1.395,0.877,74.01,1951.03,True,overlapped
+16,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00016_exp 1000 b_single.png,977,748,39,33,967.5,35.1,0.886,1.188,0.983,111.09,3584.99,True,single
+17,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00017_exp 1000 b_single.png,917,729,36,28,748.0,30.86,0.868,1.296,0.98,96.04,1841.08,True,single
+18,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00018_exp 1000 b_connected.png,1045,704,58,87,2365.0,54.87,0.356,1.525,0.687,75.05,1579.52,True,connected
+19,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00019_exp 1000 b_connected.png,967,680,61,45,1547.0,44.38,0.494,1.387,0.796,100.61,2697.64,True,connected
+20,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00020_exp 1000 b_connected.png,456,647,39,44,992.0,35.54,0.733,1.548,0.941,86.31,1514.75,True,connected
+21,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00021_exp 1000 b_connected.png,1534,635,19,49,394.5,22.41,0.375,4.104,0.831,72.22,2171.49,True,connected
+22,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00022_exp 1000 b_single.png,569,630,36,36,948.5,34.75,0.886,1.092,0.979,92.15,1614.12,True,single
+23,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00023_exp 1000 b_overlapped.png,1116,629,45,43,1242.5,39.77,0.841,1.462,0.978,76.61,1845.44,True,overlapped
+24,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00024_exp 1000 b_connected.png,1354,584,46,100,2918.5,60.96,0.509,2.326,0.816,85.42,4138.45,True,connected
+25,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00025_exp 1000 b_single.png,348,533,31,30,617.0,28.03,0.826,1.138,0.965,97.87,2420.58,True,single
+26,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00026_exp 1000 b_connected.png,852,518,16,19,182.5,15.24,0.762,1.517,0.951,117.34,1878.27,True,connected
+27,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00027_exp 1000 b_connected.png,84,516,19,39,261.5,18.25,0.303,2.313,0.564,335.66,7425.85,True,connected
+28,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00028_exp 1000 b_single.png,1059,506,42,44,1304.5,40.75,0.859,1.288,0.98,96.99,2559.79,True,single
+29,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00029_exp 1000 b_connected.png,1143,492,90,98,3675.0,68.4,0.325,2.029,0.721,80.9,2512.77,True,connected
+30,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00030_exp 1000 b_single.png,1189,463,16,15,177.0,15.01,0.856,1.071,0.978,192.0,7191.11,True,single
+31,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00031_exp 1000 b_connected.png,46,458,40,47,805.5,32.02,0.446,1.667,0.756,102.92,5239.15,True,connected
+32,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00032_exp 1000 b_connected.png,1735,420,47,83,2669.5,58.3,0.641,1.856,0.912,199.99,5173.04,True,connected
+33,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00033_exp 1000 b_single.png,1102,418,33,30,740.5,30.71,0.863,1.103,0.976,104.83,2256.11,True,single
+34,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00034_exp 1000 b_connected.png,1531,413,37,35,736.0,30.61,0.519,1.221,0.801,99.58,2611.61,True,connected
+35,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00035_exp 1000 b_connected.png,1685,407,27,17,165.5,14.52,0.37,2.177,0.654,205.18,3006.79,True,connected
+36,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00036_exp 1000 b_connected.png,1807,406,158,57,4228.5,73.38,0.257,3.732,0.783,281.28,7466.29,True,connected
+37,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00037_exp 1000 b_single.png,1277,393,37,36,1032.0,36.25,0.905,1.029,0.985,106.09,3587.93,True,single
+38,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00038_exp 1000 b_overlapped.png,1039,353,45,32,973.5,35.21,0.8,1.46,0.96,100.97,1607.02,True,overlapped
+39,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00039_exp 1000 b_single.png,1748,345,39,34,984.5,35.4,0.871,1.152,0.975,87.1,2084.05,True,single
+40,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00040_exp 1000 b_overlapped.png,1513,316,58,60,2044.0,51.01,0.684,1.177,0.899,102.26,4213.34,True,overlapped
+41,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00041_exp 1000 b_connected.png,957,303,48,61,1320.5,41.0,0.422,1.676,0.743,84.62,2092.95,True,connected
+42,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00042_exp 1000 b_connected.png,1420,302,65,49,1729.5,46.93,0.508,1.041,0.816,82.14,1957.13,True,connected
+43,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00043_exp 1000 b_connected.png,1208,279,48,42,1290.0,40.53,0.769,1.542,0.962,92.48,1618.84,True,connected
+44,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00044_exp 1000 b_connected.png,1637,270,59,35,1287.5,40.49,0.387,1.706,0.781,90.94,2339.88,True,connected
+45,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00045_exp 1000 b_connected.png,1013,270,62,78,2335.0,54.53,0.433,1.54,0.767,79.62,1967.18,True,connected
+46,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00046_exp 1000 b_single.png,1828,254,39,37,1038.5,36.36,0.865,1.111,0.977,77.1,2470.58,True,single
+47,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00047_exp 1000 b_connected.png,1339,249,27,32,587.5,27.35,0.824,1.551,0.977,92.42,4725.54,True,connected
+48,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00048_exp 1000 b_single.png,1077,221,32,32,744.0,30.78,0.863,1.0,0.975,89.75,2189.85,True,single
+49,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00049_exp 1000 b_single.png,1463,203,33,38,918.0,34.19,0.879,1.156,0.978,113.46,2105.52,True,single
+50,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00050_exp 1000 b_single.png,1099,174,32,38,882.5,33.52,0.854,1.194,0.977,101.89,2079.7,True,single
+51,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00051_exp 1000 b_overlapped.png,1673,172,42,36,1065.5,36.83,0.864,1.335,0.98,91.26,2967.48,True,overlapped
+52,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00052_exp 1000 b_overlapped.png,1391,168,40,45,1331.0,41.17,0.865,1.316,0.983,89.38,2398.46,True,overlapped
+53,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00053_exp 1000 b_single.png,889,138,36,34,826.5,32.44,0.846,1.028,0.97,117.65,3638.24,True,single
+54,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00054_exp 1000 b_single.png,950,92,39,33,875.0,33.38,0.843,1.059,0.971,77.65,1703.56,True,single
+55,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00055_exp 1000 b_single.png,1724,89,40,35,1042.0,36.42,0.872,1.147,0.979,93.29,2816.78,True,single
+56,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00056_exp 1000 b_connected.png,95,89,17,19,187.0,15.43,0.774,1.706,0.957,187.83,5899.94,True,connected
+57,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00057_exp 1000 b_single.png,1420,74,43,36,1159.5,38.42,0.878,1.2,0.984,95.62,3189.71,True,single
+58,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00058_exp 1000 b_single.png,1086,73,36,42,1128.0,37.9,0.858,1.181,0.975,93.44,1728.06,True,single
+59,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00059_exp 1000 b_single.png,1282,72,35,35,906.0,33.96,0.88,1.082,0.979,150.03,6544.78,True,single
+60,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00060_exp 1000 b_connected.png,1228,68,59,65,1916.0,49.39,0.591,1.948,0.872,88.18,2525.03,True,connected
+61,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00061_exp 1000 b_connected.png,1145,61,54,39,1318.0,40.96,0.644,1.662,0.877,84.49,2193.25,True,connected
+62,Pic_20260914110617188-243.bmp,exp 1000 back+ext light early agg,p00062_exp 1000 b_single.png,359,45,25,24,435.5,23.55,0.895,1.043,0.98,110.83,3743.92,True,single
+63,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00063_exp 1000 b_overlapped.png,1187,1455,36,50,1381.5,41.94,0.824,1.464,0.974,71.44,1556.6,True,overlapped
+64,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00064_exp 1000 b_single.png,1046,1401,34,33,788.5,31.69,0.863,1.088,0.978,105.01,3311.47,True,single
+65,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00065_exp 1000 b_connected.png,1000,1388,12,19,141.5,13.42,0.7,2.051,0.937,127.4,3271.41,True,connected
+66,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00066_exp 1000 b_single.png,1100,1228,37,46,1261.0,40.07,0.869,1.25,0.981,139.73,5885.09,True,single
+67,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00067_exp 1000 b_single.png,1244,1134,34,39,979.5,35.31,0.867,1.152,0.976,107.81,4710.16,True,single
+68,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00068_exp 1000 b_overlapped.png,1155,1120,18,26,315.0,20.03,0.783,1.471,0.969,77.46,1769.56,True,overlapped
+69,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00069_exp 1000 b_overlapped.png,1208,1056,34,45,1152.0,38.3,0.865,1.333,0.981,82.32,3458.58,True,overlapped
+70,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00070_exp 1000 b_single.png,1017,979,23,27,444.0,23.78,0.855,1.182,0.97,148.75,2513.07,True,single
+71,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00071_exp 1000 b_connected.png,1572,965,45,49,1509.0,43.83,0.817,1.637,0.978,83.27,2268.85,True,connected
+72,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00072_exp 1000 b_connected.png,781,953,26,28,324.5,20.33,0.496,1.176,0.789,361.9,15391.18,True,connected
+73,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00073_exp 1000 b_connected.png,1449,939,67,93,3052.5,62.34,0.242,1.299,0.71,424.82,7537.88,True,connected
+74,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00074_exp 1000 b_connected.png,1224,939,57,127,3208.5,63.92,0.304,2.892,0.693,86.05,4630.85,True,connected
+75,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00075_exp 1000 b_connected.png,1140,938,26,41,495.0,25.1,0.452,1.837,0.716,152.55,4298.37,True,connected
+76,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00076_exp 1000 b_overlapped.png,1342,910,41,57,1531.5,44.16,0.746,1.456,0.939,85.21,3205.42,True,overlapped
+77,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00077_exp 1000 b_connected.png,973,907,36,13,235.5,17.32,0.403,2.935,0.788,167.57,3486.5,True,connected
+78,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00078_exp 1000 b_single.png,1045,894,33,27,548.5,26.43,0.738,1.098,0.94,133.8,2909.29,True,single
+79,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00079_exp 1000 b_connected.png,162,864,94,29,1454.0,43.03,0.199,3.984,0.745,302.52,8238.36,True,connected
+80,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00080_exp 1000 b_connected.png,1101,863,25,36,610.0,27.87,0.797,1.535,0.963,112.64,1678.54,True,connected
+81,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00081_exp 1000 b_connected.png,1017,858,24,39,665.5,29.11,0.726,1.877,0.962,115.48,3483.03,True,connected
+82,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00082_exp 1000 b_connected.png,1219,853,57,47,1308.5,40.82,0.476,1.904,0.805,85.08,2181.52,True,connected
+83,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00083_exp 1000 b_single.png,607,851,34,31,754.0,30.98,0.861,1.274,0.98,115.95,2817.7,True,single
+84,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00084_exp 1000 b_single.png,1076,819,34,30,727.5,30.43,0.873,1.175,0.977,152.91,3495.0,True,single
+85,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00085_exp 1000 b_connected.png,1372,809,74,73,2446.0,55.81,0.518,2.342,0.834,88.62,2131.59,True,connected
+86,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00086_exp 1000 b_single.png,152,804,17,16,183.0,15.26,0.869,1.067,0.963,138.1,1984.0,True,single
+87,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00087_exp 1000 b_single.png,46,804,30,36,753.0,30.96,0.865,1.2,0.979,89.74,1624.97,True,single
+88,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00088_exp 1000 b_connected.png,916,803,79,57,1841.0,48.42,0.421,2.594,0.782,101.33,2331.51,True,connected
+89,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00089_exp 1000 b_single.png,1165,799,30,28,635.5,28.45,0.907,1.074,0.985,95.32,2897.4,True,single
+90,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00090_exp 1000 b_single.png,1373,769,35,31,789.5,31.71,0.859,1.133,0.973,149.06,4272.75,True,single
+91,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00091_exp 1000 b_single.png,828,768,23,24,396.0,22.45,0.837,1.136,0.966,109.32,1943.8,True,single
+92,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00092_exp 1000 b_single.png,1208,751,32,30,716.0,30.19,0.878,1.069,0.977,90.51,1800.95,True,single
+93,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00093_exp 1000 b_connected.png,993,742,60,39,1221.0,39.43,0.452,2.043,0.797,83.79,5030.53,True,connected
+94,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00094_exp 1000 b_single.png,1152,730,35,37,970.5,35.15,0.889,1.059,0.983,110.25,2364.58,True,single
+95,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00095_exp 1000 b_connected.png,944,699,43,47,1281.5,40.39,0.805,1.541,0.967,127.31,6193.93,True,connected
+96,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00096_exp 1000 b_single.png,1248,683,29,33,704.0,29.94,0.883,1.143,0.98,100.15,2750.2,True,single
+97,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00097_exp 1000 b_single.png,1294,677,41,44,1303.0,40.73,0.876,1.071,0.98,146.37,7109.89,True,single
+98,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00098_exp 1000 b_single.png,1381,670,36,32,851.0,32.92,0.869,1.188,0.975,94.65,2488.52,True,single
+99,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00099_exp 1000 b_single.png,94,652,33,32,724.0,30.36,0.808,1.032,0.969,112.32,1639.76,True,single
+100,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00100_exp 1000 b_connected.png,1008,635,32,61,1362.5,41.65,0.636,2.015,0.898,108.79,2808.66,True,connected
+101,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00101_exp 1000 b_overlapped.png,1050,629,46,32,1056.5,36.68,0.826,1.333,0.978,136.8,2380.15,True,overlapped
+102,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00102_exp 1000 b_single.png,1232,615,39,41,1073.5,36.97,0.803,1.275,0.963,106.33,2958.44,True,single
+103,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00103_exp 1000 b_single.png,1217,574,36,35,924.0,34.3,0.867,1.029,0.981,150.61,4361.26,True,single
+104,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00104_exp 1000 b_connected.png,351,565,16,16,122.5,12.49,0.645,2.487,0.942,161.58,3676.55,True,connected
+105,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00105_exp 1000 b_connected.png,82,564,24,29,280.5,18.9,0.488,1.772,0.721,186.89,5634.18,True,connected
+106,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00106_exp 1000 b_connected.png,430,561,30,24,469.0,24.44,0.789,1.513,0.95,125.99,1937.15,True,connected
+107,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00107_exp 1000 b_single.png,1615,557,38,42,1179.5,38.75,0.851,1.238,0.977,100.78,2513.42,True,single
+108,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00108_exp 1000 b_overlapped.png,1093,528,45,36,991.0,35.52,0.602,1.411,0.876,115.92,1746.4,True,overlapped
+109,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00109_exp 1000 b_overlapped.png,1308,524,43,45,1311.0,40.86,0.836,1.352,0.977,84.54,2912.67,True,overlapped
+110,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00110_exp 1000 b_single.png,740,510,35,32,793.5,31.79,0.868,1.22,0.977,105.83,2360.71,True,single
+111,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00111_exp 1000 b_single.png,563,508,31,26,599.5,27.63,0.849,1.2,0.974,107.48,1606.94,True,single
+112,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00112_exp 1000 b_connected.png,1269,488,66,42,1712.0,46.69,0.706,1.932,0.939,94.01,3131.57,True,connected
+113,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00113_exp 1000 b_connected.png,1523,477,13,14,105.5,11.59,0.781,1.692,0.963,169.39,3144.32,True,connected
+114,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00114_exp 1000 b_single.png,816,474,26,25,489.5,24.96,0.844,1.042,0.967,123.42,2489.57,True,single
+115,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00115_exp 1000 b_single.png,1286,446,16,14,159.0,14.23,0.919,1.154,0.991,159.65,4275.73,True,single
+116,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00116_exp 1000 b_single.png,1389,441,43,39,1173.5,38.65,0.855,1.17,0.98,120.6,6106.76,True,single
+117,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00117_exp 1000 b_single.png,414,432,29,25,509.0,25.46,0.856,1.167,0.963,216.08,6733.38,True,single
+118,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00118_exp 1000 b_connected.png,1731,428,47,75,2065.5,51.28,0.477,1.742,0.785,221.5,4366.55,True,connected
+119,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00119_exp 1000 b_connected.png,1807,406,156,59,3350.0,65.31,0.275,4.588,0.792,214.49,7635.01,True,connected
+120,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00120_exp 1000 b_connected.png,30,403,36,21,410.5,22.86,0.627,1.717,0.898,106.91,3008.91,True,connected
+121,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00121_exp 1000 b_connected.png,1642,399,66,36,1131.0,37.95,0.3,1.857,0.725,129.64,4069.28,True,connected
+122,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00122_exp 1000 b_single.png,1073,381,32,35,844.5,32.79,0.866,1.097,0.98,100.3,1553.36,True,single
+123,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00123_exp 1000 b_single.png,337,367,33,29,733.0,30.55,0.898,1.143,0.984,103.71,1900.07,True,single
+124,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00124_exp 1000 b_connected.png,1597,350,37,36,760.0,31.11,0.607,1.294,0.83,144.7,5636.57,True,connected
+125,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00125_exp 1000 b_single.png,1055,330,35,34,858.0,33.05,0.882,1.043,0.976,104.6,1904.29,True,single
+126,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00126_exp 1000 b_single.png,418,324,32,29,679.5,29.41,0.877,1.107,0.976,122.04,2827.79,True,single
+127,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00127_exp 1000 b_connected.png,1537,315,33,26,290.5,19.23,0.428,1.984,0.68,83.47,2030.07,True,connected
+128,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00128_exp 1000 b_overlapped.png,1157,271,44,45,1369.0,41.75,0.849,1.331,0.983,121.83,5248.26,True,overlapped
+129,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00129_exp 1000 b_connected.png,1292,266,78,45,2045.5,51.03,0.532,2.194,0.85,124.27,3523.45,True,connected
+130,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00130_exp 1000 b_connected.png,1216,244,59,111,3744.5,69.05,0.437,1.836,0.797,112.83,4563.77,True,connected
+131,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00131_exp 1000 b_single.png,1371,233,42,40,1150.0,38.27,0.877,1.255,0.985,78.36,2715.39,True,single
+132,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00132_exp 1000 b_single.png,1536,217,33,34,833.5,32.58,0.893,1.031,0.981,113.72,3496.92,True,single
+133,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00133_exp 1000 b_connected.png,1641,215,10,21,113.5,12.02,0.544,2.222,0.912,192.66,2860.12,True,connected
+134,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00134_exp 1000 b_single.png,1329,215,28,28,577.5,27.12,0.876,1.0,0.979,99.86,1896.27,True,single
+135,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00135_exp 1000 b_single.png,1000,214,35,39,871.0,33.3,0.725,1.045,0.922,108.63,2450.4,True,single
+136,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00136_exp 1000 b_single.png,922,214,27,27,541.5,26.26,0.899,1.0,0.979,136.48,3917.98,True,single
+137,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00137_exp 1000 b_connected.png,1441,208,75,56,2238.0,53.38,0.621,1.898,0.872,94.07,3192.5,True,connected
+138,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00138_exp 1000 b_single.png,1127,178,39,39,1118.5,37.74,0.89,1.229,0.984,143.91,7712.86,True,single
+139,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00139_exp 1000 b_single.png,585,175,37,30,838.0,32.66,0.869,1.241,0.98,138.4,2615.79,True,single
+140,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00140_exp 1000 b_single.png,1341,147,38,36,1061.5,36.76,0.875,1.057,0.977,141.12,4953.2,True,single
+141,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00141_exp 1000 b_single.png,1171,140,40,36,1028.5,36.19,0.857,1.124,0.972,137.11,6017.66,True,single
+142,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00142_exp 1000 b_single.png,768,137,36,31,780.5,31.52,0.818,1.07,0.965,120.84,2399.98,True,single
+143,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00143_exp 1000 b_single.png,1087,132,37,32,810.0,32.11,0.815,1.173,0.949,116.08,2287.39,True,single
+144,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00144_exp 1000 b_connected.png,227,130,28,46,779.5,31.5,0.617,1.976,0.897,91.4,1670.63,True,connected
+145,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00145_exp 1000 b_connected.png,1224,125,51,68,1996.5,50.42,0.613,2.195,0.893,95.03,3208.36,True,connected
+146,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00146_exp 1000 b_single.png,293,83,24,23,400.5,22.58,0.859,1.045,0.965,156.32,4432.72,True,single
+147,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00147_exp 1000 b_single.png,64,83,32,27,563.0,26.77,0.82,1.081,0.962,137.11,3267.61,True,single
+148,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00148_exp 1000 b_connected.png,1202,78,76,40,1894.0,49.11,0.428,2.037,0.784,122.06,3241.02,True,connected
+149,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00149_exp 1000 b_connected.png,1502,77,31,34,685.0,29.53,0.837,1.545,0.98,111.89,6397.88,True,connected
+150,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00150_exp 1000 b_single.png,1312,71,33,37,874.5,33.37,0.876,1.143,0.978,92.55,2084.83,True,single
+151,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00151_exp 1000 b_single.png,1388,57,38,43,1205.5,39.18,0.844,1.243,0.974,102.25,2762.47,True,single
+152,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00152_exp 1000 b_single.png,310,45,31,33,807.0,32.05,0.895,1.067,0.986,162.28,3354.88,True,single
+153,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00153_exp 1000 b_single.png,623,44,32,33,720.5,30.29,0.814,1.254,0.964,105.93,1630.88,True,single
+154,Pic_20260914110617199-244.bmp,exp 1000 back+ext light early agg,p00154_exp 1000 b_single.png,1011,41,33,33,765.5,31.22,0.832,1.0,0.97,141.41,5135.51,True,single
+155,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00155_exp 1000 b_connected.png,1406,1281,23,27,187.5,15.45,0.309,2.22,0.555,123.81,2482.14,True,connected
+156,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00156_exp 1000 b_overlapped.png,1171,1233,52,39,1431.0,42.68,0.853,1.241,0.985,75.75,3460.74,True,overlapped
+157,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00157_exp 1000 b_single.png,1296,1139,36,37,989.5,35.49,0.893,1.029,0.983,136.17,8032.53,True,single
+158,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00158_exp 1000 b_connected.png,1491,1120,84,39,2158.5,52.42,0.44,2.184,0.787,80.07,2440.96,True,connected
+159,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00159_exp 1000 b_connected.png,1141,1084,56,67,2166.0,52.52,0.582,1.044,0.851,109.97,2494.65,True,connected
+160,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00160_exp 1000 b_connected.png,1127,1084,20,22,240.5,17.5,0.708,1.75,0.949,152.08,2432.48,True,connected
+161,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00161_exp 1000 b_single.png,983,1063,28,26,466.0,24.36,0.79,1.059,0.956,92.08,1992.57,True,single
+162,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00162_exp 1000 b_single.png,1230,1050,37,45,1237.5,39.69,0.871,1.222,0.982,96.9,3362.94,True,single
+163,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00163_exp 1000 b_connected.png,1394,1019,45,28,774.0,31.39,0.479,1.795,0.775,84.06,1758.38,True,connected
+164,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00164_exp 1000 b_single.png,962,1003,33,32,796.5,31.85,0.88,1.032,0.979,92.03,1702.63,True,single
+165,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00165_exp 1000 b_connected.png,1454,996,34,32,576.5,27.09,0.5,1.178,0.755,384.89,6066.32,True,connected
+166,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00166_exp 1000 b_connected.png,1495,984,13,32,129.5,12.84,0.232,3.372,0.598,563.97,9259.88,True,connected
+167,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00167_exp 1000 b_single.png,1233,980,36,43,1138.0,38.07,0.87,1.2,0.978,103.67,6232.48,True,single
+168,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00168_exp 1000 b_overlapped.png,786,953,21,21,232.5,17.21,0.622,1.378,0.864,516.12,21458.95,True,overlapped
+169,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00169_exp 1000 b_connected.png,900,908,26,11,175.5,14.95,0.558,2.5,0.898,200.1,6944.62,True,connected
+170,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00170_exp 1000 b_single.png,1034,889,37,33,978.5,35.3,0.861,1.125,0.981,120.12,2441.08,True,single
+171,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00171_exp 1000 b_connected.png,164,864,40,23,536.5,26.14,0.484,1.85,0.791,536.79,8021.44,True,connected
+172,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00172_exp 1000 b_connected.png,140,863,18,10,104.5,11.53,0.619,1.889,0.893,293.0,2951.89,True,connected
+173,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00173_exp 1000 b_connected.png,893,857,33,31,528.5,25.94,0.649,1.768,0.92,139.29,3559.52,True,connected
+174,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00174_exp 1000 b_single.png,339,845,29,27,554.5,26.57,0.886,1.027,0.975,118.03,2475.25,True,single
+175,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00175_exp 1000 b_overlapped.png,1004,840,33,44,1094.0,37.32,0.858,1.344,0.982,105.85,3985.6,True,overlapped
+176,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00176_exp 1000 b_single.png,853,838,23,20,296.0,19.41,0.719,1.158,0.911,172.01,5233.48,True,single
+177,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00177_exp 1000 b_single.png,946,837,35,41,1082.0,37.12,0.893,1.176,0.984,156.08,6399.57,True,single
+178,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00178_exp 1000 b_connected.png,1336,829,46,47,1211.5,39.28,0.638,1.682,0.88,70.73,1647.8,True,connected
+179,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00179_exp 1000 b_single.png,188,828,18,19,202.5,16.06,0.706,1.059,0.906,148.32,1568.54,True,single
+180,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00180_exp 1000 b_single.png,1223,822,34,37,952.5,34.82,0.885,1.091,0.982,122.36,3349.16,True,single
+181,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00181_exp 1000 b_connected.png,642,806,45,45,648.5,28.73,0.313,1.64,0.617,87.11,1681.52,True,connected
+182,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00182_exp 1000 b_single.png,339,804,34,31,792.0,31.76,0.904,1.1,0.986,155.94,5354.62,True,single
+183,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00183_exp 1000 b_overlapped.png,390,797,19,28,344.5,20.94,0.723,1.447,0.926,115.71,2597.41,True,overlapped
+184,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00184_exp 1000 b_single.png,1276,791,37,35,942.5,34.64,0.88,1.039,0.98,110.73,3683.1,True,single
+185,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00185_exp 1000 b_connected.png,115,788,22,11,157.5,14.16,0.678,2.1,0.949,173.22,3121.02,True,connected
+186,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00186_exp 1000 b_overlapped.png,1192,770,54,43,1444.5,42.89,0.718,1.447,0.929,106.67,5292.44,True,overlapped
+187,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00187_exp 1000 b_single.png,1371,769,34,30,773.0,31.37,0.858,1.138,0.972,159.42,3872.78,True,single
+188,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00188_exp 1000 b_single.png,1135,759,27,23,434.5,23.52,0.849,1.182,0.975,128.75,2022.23,True,single
+189,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00189_exp 1000 b_single.png,212,753,20,24,301.5,19.59,0.762,1.184,0.939,109.96,1587.36,True,single
+190,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00190_exp 1000 b_single.png,915,743,29,30,623.5,28.18,0.874,1.036,0.975,144.92,3946.11,True,single
+191,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00191_exp 1000 b_single.png,237,730,33,34,676.0,29.34,0.782,1.274,0.958,169.72,3878.35,True,single
+192,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00192_exp 1000 b_single.png,1182,725,38,35,923.5,34.29,0.851,1.023,0.971,113.15,2750.45,True,single
+193,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00193_exp 1000 b_connected.png,1404,705,35,71,1862.5,48.7,0.653,2.098,0.923,131.48,1757.05,True,connected
+194,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00194_exp 1000 b_single.png,833,692,13,14,123.5,12.54,0.864,1.083,0.969,147.59,2460.03,True,single
+195,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00195_exp 1000 b_single.png,558,692,29,24,492.5,25.04,0.856,1.157,0.968,145.3,2227.79,True,single
+196,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00196_exp 1000 b_overlapped.png,196,681,29,32,611.0,27.89,0.785,1.423,0.966,132.34,1738.68,True,overlapped
+197,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00197_exp 1000 b_single.png,1238,664,38,39,1116.0,37.7,0.875,1.027,0.979,128.18,4915.45,True,single
+198,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00198_exp 1000 b_connected.png,926,647,79,80,2545.5,56.93,0.368,1.813,0.656,95.86,1721.46,True,connected
+199,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00199_exp 1000 b_single.png,768,634,30,30,635.0,28.43,0.864,1.278,0.975,114.92,1601.01,True,single
+200,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00200_exp 1000 b_single.png,636,622,31,26,599.5,27.63,0.871,1.2,0.976,123.17,1528.82,True,single
+201,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00201_exp 1000 b_single.png,771,599,34,29,722.0,30.32,0.832,1.179,0.972,133.5,3170.54,True,single
+202,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00202_exp 1000 b_single.png,1013,578,27,25,462.5,24.27,0.843,1.039,0.966,134.28,5702.37,True,single
+203,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00203_exp 1000 b_single.png,162,528,23,31,451.5,23.98,0.77,1.103,0.943,143.43,2197.66,True,single
+204,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00204_exp 1000 b_connected.png,948,516,52,84,2055.0,51.15,0.45,2.501,0.781,88.66,2142.3,True,connected
+205,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00205_exp 1000 b_single.png,1143,509,39,37,1044.5,36.47,0.887,1.025,0.982,175.6,11116.35,True,single
+206,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00206_exp 1000 b_connected.png,410,503,15,13,100.5,11.31,0.715,2.182,0.962,289.25,9914.48,True,connected
+207,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00207_exp 1000 b_overlapped.png,1314,502,40,42,1122.0,37.8,0.825,1.328,0.966,97.03,2434.32,True,overlapped
+208,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00208_exp 1000 b_connected.png,1053,498,37,74,1590.5,45.0,0.506,2.028,0.834,103.91,1981.39,True,connected
+209,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00209_exp 1000 b_connected.png,757,484,40,57,1291.0,40.54,0.475,1.457,0.765,112.9,1525.91,True,connected
+210,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00210_exp 1000 b_connected.png,944,480,15,29,281.0,18.92,0.661,2.0,0.934,136.22,1758.66,True,connected
+211,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00211_exp 1000 b_connected.png,850,473,34,50,875.5,33.39,0.601,2.27,0.909,87.73,1505.04,True,connected
+212,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00212_exp 1000 b_single.png,1372,459,16,17,187.5,15.45,0.87,1.067,0.969,188.61,5730.57,True,single
+213,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00213_exp 1000 b_connected.png,1729,421,61,82,2652.0,58.11,0.306,1.274,0.77,162.26,3351.04,True,connected
+214,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00214_exp 1000 b_connected.png,1807,406,154,56,3917.5,70.63,0.277,3.635,0.751,275.7,6482.63,True,connected
+215,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00215_exp 1000 b_overlapped.png,547,394,27,21,362.5,21.48,0.761,1.491,0.946,142.81,4715.9,True,overlapped
+216,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00216_exp 1000 b_single.png,869,368,34,35,869.0,33.26,0.875,1.174,0.981,120.56,3239.84,True,single
+217,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00217_exp 1000 b_single.png,478,366,29,28,587.5,27.35,0.853,1.037,0.965,172.42,3333.77,True,single
+218,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00218_exp 1000 b_single.png,1759,358,37,33,911.5,34.07,0.876,1.125,0.98,123.28,2483.38,True,single
+219,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00219_exp 1000 b_connected.png,1665,346,85,76,2821.0,59.93,0.416,1.985,0.791,89.46,3011.67,True,connected
+220,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00220_exp 1000 b_overlapped.png,1645,329,46,39,1371.0,41.78,0.891,1.184,0.985,120.42,8365.23,True,overlapped
+221,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00221_exp 1000 b_single.png,1211,329,40,39,1178.0,38.73,0.884,1.026,0.982,123.51,7860.51,True,single
+222,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00222_exp 1000 b_connected.png,1540,315,22,12,109.0,11.78,0.44,2.706,0.741,216.56,1804.54,True,connected
+223,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00223_exp 1000 b_connected.png,57,307,47,49,820.0,32.31,0.334,1.871,0.646,100.12,1546.16,True,connected
+224,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00224_exp 1000 b_connected.png,683,303,26,33,363.5,21.51,0.461,1.354,0.74,141.78,1922.67,True,connected
+225,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00225_exp 1000 b_overlapped.png,1245,282,39,44,1288.5,40.5,0.88,1.132,0.984,124.74,5261.13,True,overlapped
+226,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00226_exp 1000 b_single.png,480,281,33,31,726.5,30.41,0.872,1.023,0.972,132.97,3814.82,True,single
+227,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00227_exp 1000 b_connected.png,356,252,42,30,705.5,29.97,0.577,1.801,0.894,159.65,3838.05,True,connected
+228,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00228_exp 1000 b_single.png,446,237,36,29,721.5,30.31,0.761,1.25,0.944,139.55,2838.94,True,single
+229,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00229_exp 1000 b_single.png,850,233,32,30,685.0,29.53,0.859,1.139,0.972,141.61,3650.84,True,single
+230,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00230_exp 1000 b_single.png,1543,231,35,33,777.5,31.46,0.838,1.083,0.959,187.69,4197.99,True,single
+231,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00231_exp 1000 b_connected.png,1676,229,50,76,2253.5,53.57,0.493,1.922,0.824,100.56,6150.1,True,connected
+232,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00232_exp 1000 b_single.png,1282,219,34,39,1010.5,35.87,0.894,1.152,0.984,117.94,4269.94,True,single
+233,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00233_exp 1000 b_single.png,1159,197,27,30,593.5,27.49,0.884,1.115,0.983,206.72,8222.15,True,single
+234,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00234_exp 1000 b_overlapped.png,585,155,33,24,557.5,26.64,0.79,1.391,0.963,161.54,3531.41,True,overlapped
+235,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00235_exp 1000 b_overlapped.png,1501,152,48,42,1417.0,42.48,0.841,1.412,0.983,133.86,2697.15,True,overlapped
+236,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00236_exp 1000 b_single.png,230,146,21,19,266.5,18.42,0.857,1.243,0.976,172.72,2512.59,True,single
+237,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00237_exp 1000 b_single.png,700,126,33,26,629.5,28.31,0.841,1.28,0.971,155.69,3138.63,True,single
+238,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00238_exp 1000 b_connected.png,1045,119,53,42,891.5,33.69,0.398,1.864,0.75,90.25,1824.24,True,connected
+239,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00239_exp 1000 b_connected.png,1365,118,45,57,1815.0,48.07,0.827,1.456,0.97,124.57,5552.45,True,connected
+240,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00240_exp 1000 b_connected.png,1199,107,45,41,1088.5,37.23,0.717,1.571,0.928,114.66,1778.89,True,connected
+241,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00241_exp 1000 b_connected.png,1245,63,48,55,1752.0,47.23,0.786,1.228,0.95,102.82,3149.13,True,connected
+242,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00242_exp 1000 b_connected.png,595,37,51,27,944.5,34.68,0.699,2.145,0.961,186.12,6316.48,True,connected
+243,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00243_exp 1000 b_single.png,1747,28,28,31,514.0,25.58,0.808,1.118,0.964,127.27,1696.03,True,single
+244,Pic_20260914110617209-245.bmp,exp 1000 back+ext light early agg,p00244_exp 1000 b_connected.png,1308,26,57,36,1598.5,45.11,0.761,1.6,0.953,122.34,2752.81,True,connected
+245,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00245_exp 1000 b_overlapped.png,1341,1285,35,51,1371.0,41.78,0.838,1.471,0.98,116.78,5736.8,True,overlapped
+246,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00246_exp 1000 b_overlapped.png,1322,1025,36,49,1267.5,40.17,0.817,1.479,0.975,83.41,2626.32,True,overlapped
+247,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00247_exp 1000 b_single.png,1139,1005,41,39,1177.0,38.71,0.888,1.157,0.984,89.61,2499.58,True,single
+248,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00248_exp 1000 b_connected.png,911,969,26,16,285.5,19.07,0.783,1.667,0.968,75.45,1663.32,True,connected
+249,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00249_exp 1000 b_single.png,790,952,17,17,159.0,14.23,0.731,1.195,0.924,1322.25,45561.65,True,single
+250,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00250_exp 1000 b_connected.png,1451,939,66,74,2574.0,57.25,0.448,1.146,0.776,288.24,5822.09,True,connected
+251,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00251_exp 1000 b_connected.png,1128,909,26,9,139.0,13.3,0.523,3.125,0.936,213.94,2401.91,True,connected
+252,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00252_exp 1000 b_connected.png,763,893,34,22,534.5,26.09,0.811,1.571,0.981,110.88,4818.45,True,connected
+253,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00253_exp 1000 b_connected.png,1038,889,19,29,388.0,22.23,0.803,1.556,0.965,105.12,2431.31,True,connected
+254,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00254_exp 1000 b_connected.png,832,885,53,30,810.0,32.11,0.526,2.479,0.845,99.01,1718.26,True,connected
+255,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00255_exp 1000 b_connected.png,796,871,39,25,742.5,30.75,0.778,1.583,0.968,105.65,1865.18,True,connected
+256,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00256_exp 1000 b_connected.png,966,868,37,52,1193.0,38.97,0.487,1.38,0.806,104.51,1887.29,True,connected
+257,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00257_exp 1000 b_single.png,1157,867,34,29,720.0,30.28,0.868,1.179,0.978,90.24,2183.57,True,single
+258,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00258_exp 1000 b_connected.png,141,863,103,29,1527.5,44.1,0.294,4.707,0.803,143.4,3374.25,True,connected
+259,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00259_exp 1000 b_connected.png,49,852,87,27,775.0,31.41,0.195,4.089,0.622,197.34,4179.03,True,connected
+260,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00260_exp 1000 b_connected.png,264,850,30,20,440.0,23.67,0.785,1.526,0.964,127.02,3089.43,True,connected
+261,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00261_exp 1000 b_connected.png,1193,829,54,31,1189.5,38.92,0.701,1.898,0.941,110.36,2147.07,True,connected
+262,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00262_exp 1000 b_single.png,867,820,36,31,829.5,32.5,0.851,1.167,0.975,93.69,2031.08,True,single
+263,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00263_exp 1000 b_single.png,1249,809,34,39,999.0,35.66,0.893,1.152,0.984,119.42,3450.03,True,single
+264,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00264_exp 1000 b_overlapped.png,1485,775,19,27,372.5,21.78,0.843,1.444,0.979,108.12,3799.66,True,overlapped
+265,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00265_exp 1000 b_single.png,1373,769,37,30,810.0,32.11,0.858,1.241,0.975,107.62,3049.7,True,single
+266,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00266_exp 1000 b_single.png,945,756,38,32,889.0,33.64,0.864,1.188,0.974,102.55,2116.49,True,single
+267,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00267_exp 1000 b_connected.png,1072,754,64,94,2490.5,56.31,0.358,1.98,0.71,84.17,1869.04,True,connected
+268,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00268_exp 1000 b_connected.png,361,746,26,19,211.0,16.39,0.454,1.762,0.784,106.17,1893.53,True,connected
+269,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00269_exp 1000 b_connected.png,1150,718,92,56,2669.5,58.3,0.396,1.765,0.748,106.04,4674.57,True,connected
+270,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00270_exp 1000 b_single.png,768,705,34,31,746.5,30.83,0.882,1.071,0.977,98.39,1931.28,True,single
+271,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00271_exp 1000 b_connected.png,906,674,104,77,3578.5,67.5,0.27,1.805,0.695,85.49,1892.39,True,connected
+272,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00272_exp 1000 b_connected.png,1070,647,96,86,4012.0,71.47,0.294,1.105,0.671,85.57,3464.69,True,connected
+273,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00273_exp 1000 b_single.png,990,638,32,31,734.0,30.57,0.885,1.033,0.979,84.36,1584.62,True,single
+274,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00274_exp 1000 b_connected.png,52,631,15,23,142.5,13.47,0.502,1.824,0.789,423.09,16009.08,True,connected
+275,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00275_exp 1000 b_single.png,625,629,35,29,736.0,30.61,0.854,1.273,0.972,104.49,3012.76,True,single
+276,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00276_exp 1000 b_single.png,886,622,38,32,824.5,32.4,0.844,1.116,0.974,79.57,1760.8,True,single
+277,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00277_exp 1000 b_connected.png,945,611,37,50,1212.5,39.29,0.803,1.642,0.98,92.84,1599.48,True,connected
+278,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00278_exp 1000 b_single.png,1640,597,40,42,1212.5,39.29,0.804,1.106,0.952,99.78,2377.1,True,single
+279,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00279_exp 1000 b_single.png,799,594,29,30,591.0,27.43,0.86,1.051,0.972,108.79,2174.51,True,single
+280,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00280_exp 1000 b_single.png,1130,578,42,37,1142.0,38.13,0.889,1.152,0.984,133.42,6693.3,True,single
+281,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00281_exp 1000 b_connected.png,754,567,47,33,821.0,32.33,0.497,1.617,0.79,97.95,1872.72,True,connected
+282,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00282_exp 1000 b_single.png,1227,558,36,35,925.5,34.33,0.895,1.156,0.985,101.48,1555.98,True,single
+283,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00283_exp 1000 b_single.png,1064,552,39,37,1073.0,36.96,0.886,1.056,0.979,172.56,9328.49,True,single
+284,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00284_exp 1000 b_connected.png,969,550,31,47,1134.0,38.0,0.847,1.533,0.983,88.14,1685.07,True,connected
+285,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00285_exp 1000 b_overlapped.png,47,546,57,54,1638.5,45.67,0.576,1.447,0.858,149.42,5623.96,True,overlapped
+286,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00286_exp 1000 b_overlapped.png,849,524,29,33,582.5,27.23,0.666,1.122,0.906,149.71,3186.05,True,overlapped
+287,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00287_exp 1000 b_connected.png,707,510,30,16,286.0,19.08,0.623,1.933,0.915,121.35,3711.55,True,connected
+288,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00288_exp 1000 b_overlapped.png,894,508,15,21,228.0,17.04,0.868,1.429,0.979,108.04,1962.37,True,overlapped
+289,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00289_exp 1000 b_overlapped.png,80,507,22,31,348.5,21.06,0.641,1.133,0.897,136.51,3431.09,True,overlapped
+290,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00290_exp 1000 b_single.png,1447,502,15,17,166.5,14.56,0.836,1.196,0.951,134.28,3234.07,True,single
+291,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00291_exp 1000 b_connected.png,462,480,21,18,182.0,15.22,0.59,1.962,0.886,177.84,8194.72,True,connected
+292,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00292_exp 1000 b_overlapped.png,196,464,34,30,661.5,29.02,0.759,1.415,0.958,106.92,3559.26,True,overlapped
+293,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00293_exp 1000 b_single.png,1245,455,36,38,990.0,35.5,0.856,1.138,0.972,112.95,2263.38,True,single
+294,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00294_exp 1000 b_connected.png,996,455,54,80,2189.0,52.79,0.521,1.771,0.806,89.48,2971.81,True,connected
+295,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00295_exp 1000 b_single.png,148,437,20,22,296.0,19.41,0.779,1.105,0.934,139.65,4715.34,True,single
+296,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00296_exp 1000 b_overlapped.png,262,434,28,37,636.0,28.46,0.695,1.045,0.902,109.73,2180.55,True,overlapped
+297,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00297_exp 1000 b_connected.png,1734,422,55,81,2567.5,57.18,0.357,1.385,0.783,190.36,4021.1,True,connected
+298,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00298_exp 1000 b_connected.png,1164,419,73,37,2006.0,50.54,0.67,2.026,0.924,109.57,2629.64,True,connected
+299,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00299_exp 1000 b_overlapped.png,158,412,28,26,485.0,24.85,0.816,1.347,0.963,115.07,1561.87,True,overlapped
+300,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00300_exp 1000 b_connected.png,1809,407,154,57,3611.5,67.81,0.232,3.745,0.707,282.98,7350.77,True,connected
+301,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00301_exp 1000 b_overlapped.png,847,363,31,33,569.0,26.92,0.626,1.136,0.867,93.04,1723.9,True,overlapped
+302,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00302_exp 1000 b_connected.png,1036,357,13,22,178.0,15.05,0.727,2.091,0.965,94.55,2053.76,True,connected
+303,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00303_exp 1000 b_connected.png,1510,316,64,60,2158.0,52.42,0.623,1.381,0.866,152.13,5339.3,True,connected
+304,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00304_exp 1000 b_single.png,706,309,40,32,891.5,33.69,0.833,1.027,0.974,96.28,2825.88,True,single
+305,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00305_exp 1000 b_single.png,1831,307,35,37,878.0,33.44,0.812,1.167,0.955,92.58,1725.73,True,single
+306,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00306_exp 1000 b_single.png,538,277,31,26,576.0,27.08,0.847,1.2,0.975,176.64,5756.11,True,single
+307,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00307_exp 1000 b_connected.png,1416,274,71,43,1833.0,48.31,0.441,1.782,0.796,85.19,2521.26,True,connected
+308,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00308_exp 1000 b_single.png,1227,271,31,32,731.0,30.51,0.902,1.0,0.982,107.7,2741.27,True,single
+309,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00309_exp 1000 b_single.png,1702,267,42,36,1101.5,37.45,0.85,1.194,0.973,97.96,3153.34,True,single
+310,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00310_exp 1000 b_connected.png,919,248,57,50,1671.5,46.13,0.536,1.143,0.832,84.42,1816.64,True,connected
+311,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00311_exp 1000 b_single.png,168,244,22,24,351.0,21.14,0.833,1.0,0.966,126.6,2660.78,True,single
+312,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00312_exp 1000 b_single.png,769,235,35,37,995.5,35.6,0.893,1.059,0.983,117.01,2409.76,True,single
+313,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00313_exp 1000 b_single.png,360,229,35,32,821.0,32.33,0.834,1.097,0.973,130.96,4498.44,True,single
+314,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00314_exp 1000 b_overlapped.png,1343,218,30,38,766.0,31.23,0.817,1.421,0.973,88.32,1782.99,True,overlapped
+315,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00315_exp 1000 b_single.png,460,214,34,28,622.5,28.15,0.829,1.162,0.968,112.83,2225.15,True,single
+316,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00316_exp 1000 b_overlapped.png,1078,179,25,36,654.5,28.87,0.825,1.458,0.981,152.15,5367.73,True,overlapped
+317,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00317_exp 1000 b_connected.png,1286,140,47,79,2328.5,54.45,0.625,1.981,0.887,97.62,4614.62,True,connected
+318,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00318_exp 1000 b_single.png,1821,134,35,40,985.5,35.42,0.865,1.061,0.976,91.99,2378.39,True,single
+319,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00319_exp 1000 b_single.png,510,133,31,31,712.0,30.11,0.893,1.0,0.981,177.99,3657.78,True,single
+320,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00320_exp 1000 b_connected.png,1584,119,40,72,1958.5,49.94,0.608,1.821,0.883,114.66,5011.87,True,connected
+321,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00321_exp 1000 b_single.png,814,112,38,31,869.0,33.26,0.857,1.187,0.974,99.96,1582.24,True,single
+322,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00322_exp 1000 b_single.png,1282,90,39,35,1007.0,35.81,0.888,1.217,0.984,121.86,4469.59,True,single
+323,Pic_20260914110617219-246.bmp,exp 1000 back+ext light early agg,p00323_exp 1000 b_connected.png,1198,73,38,46,1220.5,39.42,0.838,1.53,0.982,79.69,1734.75,True,connected
+324,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00324_exp 1000 b_connected.png,1392,1301,24,35,364.0,21.53,0.361,1.589,0.637,114.44,1545.82,True,connected
+325,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00325_exp 1000 b_single.png,1334,1279,35,37,970.0,35.14,0.897,1.059,0.983,91.39,3469.77,True,single
+326,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00326_exp 1000 b_connected.png,1222,1160,64,49,1960.0,49.96,0.67,1.519,0.91,94.31,3139.77,True,connected
+327,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00327_exp 1000 b_single.png,1316,1150,41,40,1253.5,39.95,0.893,1.026,0.984,184.89,11662.53,True,single
+328,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00328_exp 1000 b_single.png,1042,1081,28,33,727.5,30.43,0.856,1.185,0.982,111.53,2549.19,True,single
+329,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00329_exp 1000 b_connected.png,828,1025,13,15,123.0,12.51,0.851,1.571,0.98,153.66,4111.97,True,connected
+330,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00330_exp 1000 b_connected.png,1455,998,30,42,849.0,32.88,0.566,1.386,0.845,645.63,6743.11,True,connected
+331,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00331_exp 1000 b_connected.png,786,950,20,24,198.5,15.9,0.555,2.62,0.93,620.8,23734.63,True,connected
+332,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00332_exp 1000 b_connected.png,1411,934,11,35,146.0,13.63,0.273,3.562,0.619,118.02,2540.9,True,connected
+333,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00333_exp 1000 b_connected.png,775,891,39,23,629.0,28.3,0.736,1.727,0.965,108.34,4509.97,True,connected
+334,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00334_exp 1000 b_single.png,735,861,32,31,729.0,30.47,0.865,1.033,0.978,164.59,4753.85,True,single
+335,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00335_exp 1000 b_connected.png,1029,858,149,61,4029.0,71.62,0.257,2.467,0.662,105.39,3901.57,True,connected
+336,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00336_exp 1000 b_single.png,367,844,32,27,647.0,28.7,0.874,1.192,0.978,211.8,7328.88,True,single
+337,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00337_exp 1000 b_connected.png,1512,842,20,38,486.0,24.88,0.606,1.945,0.887,161.08,7022.91,True,connected
+338,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00338_exp 1000 b_overlapped.png,639,839,36,48,1224.0,39.48,0.809,1.343,0.955,128.0,1898.36,True,overlapped
+339,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00339_exp 1000 b_single.png,772,835,36,35,855.0,32.99,0.853,1.238,0.97,118.03,1749.23,True,single
+340,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00340_exp 1000 b_single.png,478,825,36,34,878.5,33.44,0.862,1.117,0.974,151.4,4934.09,True,single
+341,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00341_exp 1000 b_connected.png,723,821,23,38,540.5,26.23,0.624,1.796,0.888,130.45,2698.46,True,connected
+342,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00342_exp 1000 b_connected.png,814,811,93,55,2204.5,52.98,0.322,2.215,0.679,105.12,3620.72,True,connected
+343,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00343_exp 1000 b_single.png,529,810,29,32,640.5,28.56,0.867,1.025,0.972,130.99,3079.16,True,single
+344,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00344_exp 1000 b_single.png,858,784,28,36,754.5,30.99,0.846,1.296,0.977,127.05,2843.23,True,single
+345,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00345_exp 1000 b_connected.png,302,782,34,57,1140.0,38.1,0.61,1.651,0.889,99.08,2415.96,True,connected
+346,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00346_exp 1000 b_single.png,1381,780,38,36,1036.5,36.33,0.887,1.057,0.983,154.73,5766.52,True,single
+347,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00347_exp 1000 b_single.png,1131,762,38,49,1237.5,39.69,0.819,1.018,0.962,136.89,2785.07,True,single
+348,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00348_exp 1000 b_overlapped.png,189,754,29,32,596.0,27.55,0.817,1.34,0.964,106.58,1707.56,True,overlapped
+349,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00349_exp 1000 b_overlapped.png,917,750,24,32,553.5,26.55,0.84,1.348,0.981,147.58,2025.68,True,overlapped
+350,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00350_exp 1000 b_connected.png,762,740,52,30,1055.0,36.65,0.697,1.801,0.928,145.39,2458.71,True,connected
+351,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00351_exp 1000 b_connected.png,1474,737,41,62,1581.5,44.87,0.593,1.616,0.851,123.61,2895.94,True,connected
+352,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00352_exp 1000 b_connected.png,1018,720,42,35,989.0,35.49,0.805,1.585,0.977,100.57,2583.98,True,connected
+353,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00353_exp 1000 b_overlapped.png,554,720,25,23,327.0,20.4,0.63,1.369,0.853,162.04,3256.74,True,overlapped
+354,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00354_exp 1000 b_single.png,882,712,33,32,775.5,31.42,0.876,1.01,0.977,128.32,2926.07,True,single
+355,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00355_exp 1000 b_single.png,721,710,27,28,558.5,26.67,0.886,1.038,0.976,114.34,1906.71,True,single
+356,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00356_exp 1000 b_single.png,1106,691,51,38,1316.5,40.94,0.763,1.256,0.959,107.9,5917.25,True,single
+357,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00357_exp 1000 b_connected.png,963,660,63,57,1802.5,47.91,0.585,2.054,0.859,96.2,3199.66,True,connected
+358,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00358_exp 1000 b_single.png,826,654,31,32,742.5,30.75,0.906,1.033,0.985,112.4,1645.09,True,single
+359,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00359_exp 1000 b_single.png,1569,653,39,39,1148.5,38.24,0.881,1.0,0.981,134.41,7975.84,True,single
+360,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00360_exp 1000 b_connected.png,1201,649,99,72,2537.5,56.84,0.31,2.163,0.616,71.63,1882.59,True,connected
+361,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00361_exp 1000 b_overlapped.png,416,637,23,34,476.5,24.63,0.621,1.5,0.902,113.66,1666.22,True,overlapped
+362,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00362_exp 1000 b_single.png,698,596,27,30,540.0,26.22,0.815,1.1,0.953,134.69,1763.62,True,single
+363,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00363_exp 1000 b_overlapped.png,1490,595,22,26,337.0,20.71,0.719,1.449,0.93,111.04,1819.74,True,overlapped
+364,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00364_exp 1000 b_single.png,1430,590,36,34,909.0,34.02,0.865,1.047,0.972,149.59,5634.33,True,single
+365,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00365_exp 1000 b_overlapped.png,292,581,31,41,800.0,31.92,0.692,1.332,0.905,124.57,3119.92,True,overlapped
+366,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00366_exp 1000 b_single.png,1106,559,36,38,1021.0,36.06,0.9,1.057,0.986,131.06,6209.76,True,single
+367,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00367_exp 1000 b_connected.png,317,549,51,46,1115.0,37.68,0.55,2.048,0.868,103.8,1640.69,True,connected
+368,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00368_exp 1000 b_overlapped.png,1458,547,13,19,148.5,13.75,0.745,1.447,0.94,152.57,1582.57,True,overlapped
+369,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00369_exp 1000 b_connected.png,1633,530,46,46,1306.5,40.79,0.728,1.687,0.955,120.33,2476.59,True,connected
+370,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00370_exp 1000 b_overlapped.png,1328,529,19,13,169.5,14.69,0.812,1.5,0.958,236.34,6774.24,True,overlapped
+371,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00371_exp 1000 b_connected.png,1380,525,65,45,1457.0,43.07,0.399,1.994,0.768,108.75,2746.41,True,connected
+372,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00372_exp 1000 b_connected.png,426,502,50,48,1430.0,42.67,0.709,1.793,0.93,103.89,2583.32,True,connected
+373,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00373_exp 1000 b_connected.png,948,471,55,76,1853.5,48.58,0.416,1.774,0.718,108.42,2178.66,True,connected
+374,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00374_exp 1000 b_single.png,299,469,24,25,443.0,23.75,0.897,1.043,0.981,171.84,4832.07,True,single
+375,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00375_exp 1000 b_connected.png,1733,466,49,37,896.5,33.79,0.487,1.402,0.782,177.45,4097.4,True,connected
+376,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00376_exp 1000 b_single.png,1217,464,39,35,1040.5,36.4,0.874,1.118,0.979,131.47,5389.43,True,single
+377,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00377_exp 1000 b_connected.png,50,440,42,30,329.0,20.47,0.305,1.178,0.527,87.83,2859.1,True,connected
+378,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00378_exp 1000 b_single.png,347,424,28,27,502.0,25.28,0.807,1.286,0.961,105.18,2527.39,True,single
+379,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00379_exp 1000 b_single.png,132,423,21,24,327.5,20.42,0.758,1.15,0.949,156.55,2472.13,True,single
+380,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00380_exp 1000 b_single.png,1148,422,31,35,785.5,31.62,0.873,1.11,0.975,128.98,4146.08,True,single
+381,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00381_exp 1000 b_overlapped.png,567,413,31,41,913.0,34.09,0.844,1.319,0.978,111.09,1807.58,True,overlapped
+382,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00382_exp 1000 b_single.png,463,409,32,28,653.0,28.83,0.868,1.259,0.977,159.02,3969.86,True,single
+383,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00383_exp 1000 b_connected.png,1813,404,147,54,3288.5,64.71,0.291,3.635,0.8,252.74,6119.49,True,connected
+384,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00384_exp 1000 b_single.png,837,395,29,27,568.5,26.9,0.841,1.077,0.974,139.95,1942.55,True,single
+385,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00385_exp 1000 b_single.png,1026,382,31,36,870.5,33.29,0.893,1.167,0.984,150.51,2959.68,True,single
+386,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00386_exp 1000 b_single.png,1068,381,34,32,814.5,32.2,0.886,1.065,0.981,127.09,2694.87,True,single
+387,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00387_exp 1000 b_overlapped.png,1127,363,35,47,1285.5,40.46,0.859,1.353,0.983,172.47,10341.49,True,overlapped
+388,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00388_exp 1000 b_single.png,1153,322,35,37,950.5,34.79,0.888,1.059,0.979,128.47,4367.45,True,single
+389,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00389_exp 1000 b_single.png,1042,322,34,35,900.5,33.86,0.916,1.03,0.987,163.53,6819.8,True,single
+390,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00390_exp 1000 b_connected.png,1097,314,45,25,801.0,31.94,0.698,1.865,0.922,163.83,7999.88,True,connected
+391,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00391_exp 1000 b_single.png,1465,307,28,31,598.0,27.59,0.849,1.186,0.963,172.44,5879.8,True,single
+392,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00392_exp 1000 b_connected.png,1226,303,44,52,1333.0,41.2,0.675,1.572,0.916,98.21,4656.98,True,connected
+393,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00393_exp 1000 b_single.png,1241,264,39,35,1006.5,35.8,0.879,1.118,0.982,138.98,6389.62,True,single
+394,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00394_exp 1000 b_single.png,1642,261,34,41,1001.0,35.7,0.87,1.082,0.979,111.28,2281.93,True,single
+395,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00395_exp 1000 b_single.png,556,237,32,36,866.0,33.21,0.854,1.129,0.977,126.18,2650.62,True,single
+396,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00396_exp 1000 b_single.png,851,220,33,33,802.5,31.97,0.873,1.0,0.974,118.38,1906.0,True,single
+397,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00397_exp 1000 b_single.png,1522,212,35,32,806.0,32.03,0.892,1.0,0.98,98.35,1821.93,True,single
+398,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00398_exp 1000 b_connected.png,1265,194,69,70,2720.0,58.85,0.576,1.127,0.839,110.15,3149.49,True,connected
+399,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00399_exp 1000 b_connected.png,189,193,27,27,459.0,24.17,0.732,1.74,0.949,209.62,3774.95,True,connected
+400,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00400_exp 1000 b_single.png,304,189,28,27,501.0,25.26,0.756,1.239,0.945,116.99,1624.81,True,single
+401,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00401_exp 1000 b_connected.png,1679,139,55,37,1303.0,40.73,0.756,1.8,0.972,122.88,3199.84,True,connected
+402,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00402_exp 1000 b_single.png,983,127,29,30,650.5,28.78,0.848,1.036,0.978,152.25,3318.21,True,single
+403,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00403_exp 1000 b_single.png,1273,120,36,39,990.5,35.51,0.87,1.084,0.976,146.01,9083.06,True,single
+404,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00404_exp 1000 b_connected.png,1487,94,68,100,2954.0,61.33,0.387,2.145,0.715,97.11,1786.64,True,connected
+405,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00405_exp 1000 b_single.png,1645,83,33,36,818.5,32.28,0.85,1.0,0.964,150.28,6002.82,True,single
+406,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00406_exp 1000 b_overlapped.png,1740,71,43,43,1197.0,39.04,0.837,1.5,0.979,86.97,1735.18,True,overlapped
+407,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00407_exp 1000 b_overlapped.png,594,56,31,34,709.0,30.05,0.792,1.474,0.972,124.42,1721.72,True,overlapped
+408,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00408_exp 1000 b_single.png,897,45,33,35,875.5,33.39,0.885,1.062,0.98,185.34,4731.63,True,single
+409,Pic_20260914104818860-31.bmp,exp 1000 back+external light,p00409_exp 1000 b_connected.png,126,28,18,12,117.5,12.23,0.662,1.786,0.929,181.01,2111.92,True,connected
+410,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00410_exp 1000 b_single.png,1352,1405,31,31,711.0,30.09,0.892,1.0,0.98,77.61,1589.36,True,single
+411,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00411_exp 1000 b_single.png,1365,1307,38,40,1172.0,38.63,0.875,1.054,0.982,163.22,7890.25,True,single
+412,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00412_exp 1000 b_single.png,1296,1258,36,40,1107.5,37.55,0.889,1.114,0.984,108.42,4698.12,True,single
+413,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00413_exp 1000 b_single.png,1016,1239,33,33,827.5,32.46,0.9,1.0,0.984,95.72,2249.96,True,single
+414,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00414_exp 1000 b_connected.png,127,1166,13,28,227.0,17.0,0.627,2.25,0.934,82.82,1547.51,True,connected
+415,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00415_exp 1000 b_connected.png,783,1151,15,19,174.0,14.88,0.765,1.607,0.948,110.48,2695.35,True,connected
+416,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00416_exp 1000 b_single.png,919,1113,35,30,766.5,31.24,0.803,1.172,0.968,99.51,1513.22,True,single
+417,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00417_exp 1000 b_connected.png,1057,1033,22,46,691.0,29.66,0.641,2.216,0.961,107.73,3476.91,True,connected
+418,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00418_exp 1000 b_single.png,981,1025,24,26,377.0,21.91,0.748,1.208,0.937,77.5,1613.18,True,single
+419,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00419_exp 1000 b_connected.png,1179,998,44,73,1770.5,47.48,0.501,2.258,0.879,73.28,1677.98,True,connected
+420,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00420_exp 1000 b_connected.png,1454,995,34,45,1009.5,35.85,0.579,1.261,0.848,671.03,7630.41,True,connected
+421,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00421_exp 1000 b_single.png,1347,968,38,39,1149.5,38.26,0.893,1.027,0.982,105.1,3387.22,True,single
+422,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00422_exp 1000 b_connected.png,776,950,29,24,333.0,20.59,0.545,1.421,0.777,572.12,21613.05,True,connected
+423,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00423_exp 1000 b_single.png,1562,926,35,40,983.5,35.39,0.831,1.138,0.971,121.43,2302.24,True,single
+424,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00424_exp 1000 b_overlapped.png,783,888,37,26,627.5,28.27,0.748,1.5,0.963,179.17,6258.31,True,overlapped
+425,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00425_exp 1000 b_overlapped.png,864,883,16,21,229.0,17.08,0.814,1.333,0.956,218.27,2527.58,True,overlapped
+426,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00426_exp 1000 b_single.png,704,882,20,25,360.5,21.42,0.834,1.263,0.966,168.45,6355.02,True,single
+427,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00427_exp 1000 b_single.png,1731,873,14,15,118.5,12.28,0.728,1.049,0.915,1270.03,17901.98,True,single
+428,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00428_exp 1000 b_connected.png,385,866,47,24,639.0,28.52,0.457,2.162,0.786,113.23,3933.39,True,connected
+429,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00429_exp 1000 b_connected.png,967,857,49,61,1657.0,45.93,0.474,1.708,0.783,97.17,2027.03,True,connected
+430,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00430_exp 1000 b_connected.png,921,844,53,36,1112.0,37.63,0.689,1.653,0.925,109.25,2783.54,True,connected
+431,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00431_exp 1000 b_connected.png,1232,835,57,132,3114.0,62.97,0.287,2.352,0.596,93.99,1837.88,True,connected
+432,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00432_exp 1000 b_single.png,1165,835,37,35,956.5,34.9,0.894,1.106,0.982,120.0,4598.13,True,single
+433,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00433_exp 1000 b_connected.png,504,812,17,16,102.5,11.42,0.547,3.333,0.972,395.82,17397.18,True,connected
+434,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00434_exp 1000 b_single.png,997,804,38,40,994.0,35.58,0.83,1.217,0.97,129.06,7309.29,True,single
+435,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00435_exp 1000 b_connected.png,851,780,51,41,1123.5,37.82,0.499,1.704,0.816,125.78,2325.99,True,connected
+436,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00436_exp 1000 b_overlapped.png,1115,761,47,44,1260.0,40.05,0.697,1.32,0.926,132.53,4257.08,True,overlapped
+437,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00437_exp 1000 b_single.png,1267,760,36,37,979.0,35.31,0.893,1.041,0.982,142.55,5810.91,True,single
+438,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00438_exp 1000 b_overlapped.png,562,760,42,32,1043.5,36.45,0.876,1.323,0.984,115.6,2255.35,True,overlapped
+439,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00439_exp 1000 b_connected.png,1468,754,69,35,1681.5,46.27,0.594,2.22,0.902,127.8,1505.31,True,connected
+440,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00440_exp 1000 b_connected.png,495,749,47,31,1111.0,37.61,0.794,1.533,0.976,156.77,4120.18,True,connected
+441,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00441_exp 1000 b_single.png,1305,748,25,20,355.0,21.26,0.862,1.263,0.973,137.19,3739.62,True,single
+442,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00442_exp 1000 b_single.png,1631,747,36,40,1090.0,37.25,0.866,1.114,0.979,135.01,3060.26,True,single
+443,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00443_exp 1000 b_single.png,1406,734,34,43,988.5,35.48,0.762,1.211,0.936,151.8,4900.0,True,single
+444,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00444_exp 1000 b_connected.png,777,710,63,98,3154.5,63.38,0.45,2.13,0.821,123.74,3296.31,True,connected
+445,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00445_exp 1000 b_overlapped.png,864,706,34,51,1198.5,39.06,0.742,1.497,0.941,123.09,3076.93,True,overlapped
+446,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00446_exp 1000 b_connected.png,744,692,56,33,1153.5,38.32,0.613,1.719,0.872,126.35,2219.8,True,connected
+447,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00447_exp 1000 b_single.png,317,675,27,27,506.5,25.39,0.864,1.147,0.968,124.09,1601.11,True,single
+448,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00448_exp 1000 b_single.png,349,674,29,26,528.0,25.93,0.871,1.176,0.971,118.08,1885.41,True,single
+449,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00449_exp 1000 b_single.png,1059,656,33,35,866.5,33.22,0.895,1.062,0.981,127.19,5176.74,True,single
+450,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00450_exp 1000 b_single.png,1361,645,37,31,875.5,33.39,0.885,1.2,0.983,115.13,1932.92,True,single
+451,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00451_exp 1000 b_connected.png,1249,634,40,47,1123.5,37.82,0.757,1.721,0.947,99.79,1865.07,True,connected
+452,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00452_exp 1000 b_single.png,932,633,35,38,969.0,35.13,0.866,1.088,0.982,130.98,2036.22,True,single
+453,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00453_exp 1000 b_single.png,763,628,35,31,811.0,32.13,0.872,1.133,0.977,140.17,2916.08,True,single
+454,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00454_exp 1000 b_single.png,1611,627,31,40,935.5,34.51,0.852,1.3,0.977,103.89,1575.64,True,single
+455,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00455_exp 1000 b_overlapped.png,1363,600,44,29,818.0,32.27,0.721,1.499,0.931,129.14,2063.65,True,overlapped
+456,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00456_exp 1000 b_single.png,974,594,35,35,889.0,33.64,0.864,1.073,0.976,126.28,3725.83,True,single
+457,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00457_exp 1000 b_connected.png,1020,591,42,71,1833.0,48.31,0.576,1.757,0.852,125.37,1816.09,True,connected
+458,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00458_exp 1000 b_connected.png,1140,588,62,62,2312.0,54.26,0.665,1.714,0.901,101.24,4719.44,True,connected
+459,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00459_exp 1000 b_single.png,256,584,22,20,309.0,19.84,0.862,1.105,0.972,162.1,1606.86,True,single
+460,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00460_exp 1000 b_single.png,915,567,33,36,832.0,32.55,0.874,1.19,0.979,135.75,2029.91,True,single
+461,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00461_exp 1000 b_overlapped.png,968,563,30,27,553.5,26.55,0.825,1.385,0.967,154.02,5590.13,True,overlapped
+462,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00462_exp 1000 b_single.png,1215,559,32,35,830.5,32.52,0.87,1.158,0.976,119.07,1994.35,True,single
+463,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00463_exp 1000 b_single.png,1023,544,31,31,688.5,29.61,0.874,1.0,0.975,113.63,6258.95,True,single
+464,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00464_exp 1000 b_single.png,1408,539,37,32,877.5,33.43,0.874,1.161,0.977,144.54,2939.92,True,single
+465,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00465_exp 1000 b_single.png,629,534,36,35,918.5,34.2,0.853,1.03,0.967,128.93,2295.13,True,single
+466,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00466_exp 1000 b_connected.png,758,532,53,62,1398.0,42.19,0.482,2.148,0.794,114.34,1823.35,True,connected
+467,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00467_exp 1000 b_connected.png,1594,511,12,24,179.5,15.12,0.643,2.282,0.93,107.28,2008.47,True,connected
+468,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00468_exp 1000 b_overlapped.png,308,500,36,33,780.5,31.52,0.811,1.496,0.976,111.7,1669.08,True,overlapped
+469,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00469_exp 1000 b_connected.png,1104,487,46,83,2382.0,55.07,0.422,1.828,0.746,125.24,1737.75,True,connected
+470,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00470_exp 1000 b_connected.png,1665,486,10,18,124.0,12.57,0.743,1.889,0.95,146.58,1911.19,True,connected
+471,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00471_exp 1000 b_connected.png,1334,480,70,52,2133.0,52.11,0.558,1.86,0.841,94.62,5576.32,True,connected
+472,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00472_exp 1000 b_single.png,463,474,34,29,730.0,30.49,0.86,1.179,0.976,130.19,2111.84,True,single
+473,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00473_exp 1000 b_overlapped.png,1166,457,17,18,199.5,15.94,0.833,1.474,0.973,138.67,3281.95,True,overlapped
+474,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00474_exp 1000 b_single.png,293,457,37,29,787.5,31.67,0.838,1.286,0.971,161.02,4273.77,True,single
+475,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00475_exp 1000 b_single.png,1498,451,40,45,1325.0,41.07,0.891,1.035,0.982,136.31,7220.45,True,single
+476,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00476_exp 1000 b_overlapped.png,397,450,37,26,764.0,31.19,0.861,1.44,0.985,163.07,3484.29,True,overlapped
+477,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00477_exp 1000 b_single.png,354,440,27,28,552.5,26.52,0.876,1.038,0.974,125.15,1845.33,True,single
+478,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00478_exp 1000 b_single.png,510,439,29,29,589.5,27.4,0.863,1.079,0.973,112.31,1691.36,True,single
+479,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00479_exp 1000 b_single.png,1272,414,32,35,819.5,32.3,0.878,1.097,0.981,91.3,1937.8,True,single
+480,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00480_exp 1000 b_connected.png,1790,403,189,67,4439.5,75.18,0.189,4.435,0.714,250.04,5653.46,True,connected
+481,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00481_exp 1000 b_connected.png,1668,401,56,22,305.5,19.72,0.187,3.557,0.509,413.96,6376.81,True,connected
+482,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00482_exp 1000 b_single.png,122,400,30,29,588.0,27.36,0.856,1.167,0.966,218.45,4265.71,True,single
+483,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00483_exp 1000 b_overlapped.png,1337,398,34,45,1178.0,38.73,0.853,1.333,0.982,139.15,4497.46,True,overlapped
+484,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00484_exp 1000 b_connected.png,1625,397,36,21,304.0,19.67,0.393,1.823,0.733,184.91,2027.42,True,connected
+485,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00485_exp 1000 b_single.png,1054,379,37,38,1016.5,35.98,0.875,1.025,0.976,147.57,8541.23,True,single
+486,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00486_exp 1000 b_single.png,1372,360,30,28,619.5,28.09,0.884,1.074,0.979,120.91,1570.07,True,single
+487,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00487_exp 1000 b_connected.png,1473,331,27,38,254.5,18.0,0.22,1.696,0.403,123.13,3786.22,True,connected
+488,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00488_exp 1000 b_overlapped.png,933,330,34,45,1123.5,37.82,0.792,1.377,0.962,115.51,1597.13,True,overlapped
+489,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00489_exp 1000 b_single.png,235,316,34,31,793.0,31.78,0.886,1.1,0.98,133.31,4638.54,True,single
+490,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00490_exp 1000 b_single.png,1363,312,37,39,1071.5,36.94,0.876,1.056,0.975,131.25,3742.0,True,single
+491,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00491_exp 1000 b_connected.png,983,307,60,46,1395.0,42.14,0.488,2.092,0.808,110.88,2107.34,True,connected
+492,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00492_exp 1000 b_single.png,808,303,34,38,912.0,34.08,0.861,1.2,0.975,125.27,1651.8,True,single
+493,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00493_exp 1000 b_single.png,671,295,29,34,698.5,29.82,0.852,1.138,0.968,107.52,1891.2,True,single
+494,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00494_exp 1000 b_overlapped.png,1225,268,44,54,1708.5,46.64,0.82,1.327,0.953,125.02,7623.47,True,overlapped
+495,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00495_exp 1000 b_single.png,1291,266,46,39,1316.0,40.93,0.87,1.184,0.98,104.27,8077.43,True,single
+496,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00496_exp 1000 b_connected.png,1138,266,51,34,1192.0,38.96,0.712,1.515,0.931,124.76,2796.07,True,connected
+497,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00497_exp 1000 b_single.png,915,251,27,36,672.0,29.25,0.829,1.145,0.968,120.02,1623.25,True,single
+498,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00498_exp 1000 b_overlapped.png,1682,228,37,46,1252.0,39.93,0.848,1.383,0.98,103.7,5628.38,True,overlapped
+499,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00499_exp 1000 b_single.png,45,216,31,25,566.5,26.86,0.838,1.25,0.968,137.64,3616.42,True,single
+500,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00500_exp 1000 b_single.png,117,194,36,31,796.0,31.84,0.862,1.244,0.975,189.27,5669.38,True,single
+501,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00501_exp 1000 b_single.png,1749,164,41,38,1090.5,37.26,0.873,1.1,0.981,124.24,5157.8,True,single
+502,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00502_exp 1000 b_single.png,1583,140,35,33,802.5,31.97,0.865,1.221,0.976,124.44,1857.7,True,single
+503,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00503_exp 1000 b_single.png,395,140,29,28,575.0,27.06,0.868,1.241,0.981,124.52,2436.68,True,single
+504,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00504_exp 1000 b_single.png,1171,138,29,35,769.5,31.3,0.883,1.214,0.981,124.37,1838.23,True,single
+505,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00505_exp 1000 b_connected.png,1358,130,57,70,2348.5,54.68,0.465,1.101,0.816,149.44,3891.71,True,connected
+506,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00506_exp 1000 b_single.png,1540,125,35,36,919.5,34.22,0.871,1.029,0.979,122.38,1845.52,True,single
+507,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00507_exp 1000 b_overlapped.png,513,125,58,59,1909.5,49.31,0.63,1.358,0.856,107.21,1737.2,True,overlapped
+508,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00508_exp 1000 b_single.png,928,122,38,34,970.0,35.14,0.845,1.059,0.97,161.05,3667.18,True,single
+509,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00509_exp 1000 b_connected.png,1366,85,58,49,1528.0,44.11,0.672,1.904,0.929,110.97,3385.92,True,connected
+510,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00510_exp 1000 b_connected.png,1793,68,64,73,2248.5,53.51,0.583,2.413,0.895,73.7,1553.82,True,connected
+511,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00511_exp 1000 b_overlapped.png,790,62,33,29,648.5,28.73,0.804,1.441,0.974,149.56,2420.32,True,overlapped
+512,Pic_20260914104818870-32.bmp,exp 1000 back+external light,p00512_exp 1000 b_connected.png,1543,45,59,54,1818.5,48.12,0.636,1.599,0.865,93.05,2080.89,True,connected
+513,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00513_exp 1000 b_single.png,1338,1380,35,35,906.0,33.96,0.862,1.0,0.974,92.91,3480.6,True,single
+514,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00514_exp 1000 b_single.png,979,1328,41,48,1499.0,43.69,0.835,1.212,0.976,92.84,3510.02,True,single
+515,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00515_exp 1000 b_single.png,1032,1294,33,33,810.0,32.11,0.891,1.0,0.981,73.96,1952.5,True,single
+516,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00516_exp 1000 b_single.png,1308,1193,35,38,999.5,35.67,0.885,1.088,0.979,72.32,2056.39,True,single
+517,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00517_exp 1000 b_single.png,1713,981,34,39,981.5,35.35,0.852,1.118,0.971,89.21,1953.23,True,single
+518,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00518_exp 1000 b_single.png,773,946,33,38,841.0,32.72,0.789,1.041,0.967,190.99,8674.03,True,single
+519,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00519_exp 1000 b_connected.png,1450,940,66,98,3446.5,66.24,0.287,1.684,0.747,401.12,8507.3,True,connected
+520,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00520_exp 1000 b_connected.png,1377,927,33,33,607.0,27.8,0.396,1.037,0.682,121.22,3790.19,True,connected
+521,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00521_exp 1000 b_single.png,1547,918,32,40,971.5,35.17,0.877,1.258,0.986,92.67,2694.16,True,single
+522,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00522_exp 1000 b_connected.png,724,866,43,44,921.0,34.24,0.511,1.779,0.789,73.44,2372.28,True,connected
+523,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00523_exp 1000 b_connected.png,1311,862,61,72,2121.0,51.97,0.478,2.085,0.815,81.35,2076.79,True,connected
+524,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00524_exp 1000 b_connected.png,452,857,53,31,973.0,35.2,0.544,1.738,0.856,102.77,3735.58,True,connected
+525,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00525_exp 1000 b_single.png,1374,855,26,23,414.5,22.97,0.852,1.136,0.97,99.26,1584.61,True,single
+526,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00526_exp 1000 b_connected.png,1120,842,76,63,2717.0,58.82,0.432,1.234,0.793,103.94,3741.06,True,connected
+527,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00527_exp 1000 b_connected.png,1265,831,32,55,1224.0,39.48,0.728,1.933,0.963,85.59,1636.5,True,connected
+528,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00528_exp 1000 b_connected.png,922,829,45,30,933.5,34.48,0.759,1.517,0.958,92.63,1807.51,True,connected
+529,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00529_exp 1000 b_connected.png,709,825,31,54,1344.5,41.37,0.789,1.767,0.974,92.38,1523.29,True,connected
+530,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00530_exp 1000 b_single.png,1310,810,23,27,427.5,23.33,0.861,1.208,0.972,123.94,5576.76,True,single
+531,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00531_exp 1000 b_connected.png,288,782,36,26,600.5,27.65,0.728,1.595,0.941,93.02,1617.15,True,connected
+532,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00532_exp 1000 b_single.png,842,771,32,33,810.5,32.12,0.895,1.032,0.983,148.0,3555.93,True,single
+533,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00533_exp 1000 b_overlapped.png,1036,768,47,50,1418.0,42.49,0.672,1.0,0.905,127.44,6168.63,True,overlapped
+534,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00534_exp 1000 b_single.png,901,766,34,32,809.5,32.1,0.9,1.065,0.984,106.6,3386.42,True,single
+535,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00535_exp 1000 b_connected.png,1315,745,58,68,1992.5,50.37,0.594,2.125,0.873,76.95,3067.69,True,connected
+536,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00536_exp 1000 b_single.png,1375,725,18,18,232.5,17.21,0.903,1.0,0.981,134.76,4402.83,True,single
+537,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00537_exp 1000 b_overlapped.png,1219,707,43,45,1319.0,40.98,0.827,1.304,0.982,93.06,2740.22,True,overlapped
+538,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00538_exp 1000 b_single.png,1089,670,35,35,901.0,33.87,0.894,1.043,0.983,110.31,5259.18,True,single
+539,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00539_exp 1000 b_single.png,657,660,30,32,695.5,29.76,0.883,1.069,0.979,102.86,2632.07,True,single
+540,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00540_exp 1000 b_single.png,1460,659,34,39,979.5,35.31,0.85,1.152,0.975,95.38,1819.54,True,single
+541,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00541_exp 1000 b_single.png,713,654,28,28,575.5,27.07,0.896,1.0,0.983,120.23,1802.08,True,single
+542,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00542_exp 1000 b_single.png,619,640,30,26,551.0,26.49,0.869,1.054,0.972,103.83,1953.77,True,single
+543,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00543_exp 1000 b_connected.png,1420,631,46,96,1417.0,42.48,0.266,2.416,0.579,96.54,1628.73,True,connected
+544,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00544_exp 1000 b_overlapped.png,1247,624,31,42,935.5,34.51,0.828,1.367,0.978,112.12,1667.15,True,overlapped
+545,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00545_exp 1000 b_connected.png,820,620,38,41,768.5,31.28,0.528,1.486,0.821,93.65,2008.85,True,connected
+546,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00546_exp 1000 b_connected.png,864,609,60,66,1964.5,50.01,0.393,1.376,0.781,102.13,2199.97,True,connected
+547,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00547_exp 1000 b_single.png,1288,603,32,31,726.0,30.4,0.896,1.15,0.982,135.36,3746.64,True,single
+548,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00548_exp 1000 b_single.png,487,594,28,27,545.5,26.35,0.888,1.038,0.979,111.32,2148.12,True,single
+549,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00549_exp 1000 b_connected.png,745,586,41,73,1708.5,46.64,0.461,1.831,0.767,116.15,3549.38,True,connected
+550,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00550_exp 1000 b_single.png,1114,585,29,29,617.5,28.04,0.881,1.0,0.978,105.2,2205.9,True,single
+551,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00551_exp 1000 b_connected.png,1234,584,26,16,198.5,15.9,0.584,2.63,0.919,81.43,2024.6,True,connected
+552,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00552_exp 1000 b_single.png,1004,569,28,32,646.0,28.68,0.879,1.148,0.976,110.53,1628.54,True,single
+553,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00553_exp 1000 b_connected.png,1134,543,51,66,1595.5,45.07,0.454,2.016,0.811,126.52,4214.23,True,connected
+554,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00554_exp 1000 b_single.png,1408,539,36,33,893.0,33.72,0.88,1.094,0.979,174.71,6177.07,True,single
+555,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00555_exp 1000 b_connected.png,1015,518,56,63,1605.0,45.21,0.529,2.302,0.836,101.99,2384.57,True,connected
+556,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00556_exp 1000 b_single.png,404,497,26,25,481.0,24.75,0.865,1.042,0.973,104.47,1548.11,True,single
+557,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00557_exp 1000 b_single.png,1064,474,34,41,1032.0,36.25,0.88,1.212,0.982,157.42,5541.66,True,single
+558,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00558_exp 1000 b_single.png,1014,471,32,35,789.5,31.71,0.864,1.219,0.976,96.76,1697.78,True,single
+559,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00559_exp 1000 b_single.png,1331,462,33,34,811.5,32.14,0.888,1.068,0.982,237.75,10228.75,True,single
+560,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00560_exp 1000 b_single.png,1048,445,30,25,535.0,26.1,0.86,1.208,0.971,119.32,3392.4,True,single
+561,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00561_exp 1000 b_single.png,901,427,28,24,503.5,25.32,0.868,1.174,0.979,139.47,3300.26,True,single
+562,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00562_exp 1000 b_connected.png,1733,417,45,86,2510.5,56.54,0.551,2.082,0.885,166.94,3360.55,True,connected
+563,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00563_exp 1000 b_connected.png,1783,403,186,67,3835.0,69.88,0.152,4.401,0.621,250.48,6751.54,True,connected
+564,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00564_exp 1000 b_single.png,1478,402,38,38,970.0,35.14,0.821,1.275,0.971,85.79,2537.97,True,single
+565,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00565_exp 1000 b_single.png,395,398,30,31,666.0,29.12,0.87,1.015,0.974,149.16,2953.1,True,single
+566,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00566_exp 1000 b_single.png,1168,367,42,39,1237.5,39.69,0.882,1.079,0.981,138.39,9911.57,True,single
+567,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00567_exp 1000 b_single.png,1285,357,36,36,941.5,34.62,0.898,1.109,0.984,107.09,3216.65,True,single
+568,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00568_exp 1000 b_single.png,880,340,45,36,937.0,34.54,0.711,1.297,0.903,114.43,1847.99,True,single
+569,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00569_exp 1000 b_single.png,743,328,39,40,1144.0,38.17,0.874,1.026,0.979,118.29,3243.56,True,single
+570,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00570_exp 1000 b_connected.png,1233,319,35,60,1518.0,43.96,0.78,1.735,0.97,120.92,4601.83,True,connected
+571,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00571_exp 1000 b_overlapped.png,1513,315,53,61,2016.0,50.66,0.713,1.261,0.908,120.71,4320.07,True,overlapped
+572,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00572_exp 1000 b_connected.png,831,312,48,45,1318.0,40.96,0.756,1.66,0.967,100.97,1565.18,True,connected
+573,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00573_exp 1000 b_single.png,1361,266,40,38,1118.5,37.74,0.874,1.054,0.982,114.48,3590.43,True,single
+574,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00574_exp 1000 b_single.png,701,263,35,39,1001.0,35.7,0.849,1.118,0.979,117.87,2403.24,True,single
+575,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00575_exp 1000 b_overlapped.png,324,246,40,29,827.0,32.45,0.837,1.393,0.976,101.32,1754.46,True,overlapped
+576,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00576_exp 1000 b_single.png,1152,245,34,37,952.5,34.82,0.903,1.091,0.984,177.88,6315.28,True,single
+577,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00577_exp 1000 b_overlapped.png,1242,241,31,44,1065.0,36.82,0.858,1.433,0.984,122.01,5178.47,True,overlapped
+578,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00578_exp 1000 b_connected.png,915,239,39,53,1416.5,42.47,0.778,1.563,0.967,100.87,1735.78,True,connected
+579,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00579_exp 1000 b_single.png,1641,221,38,35,1032.5,36.26,0.896,1.088,0.984,132.46,4718.21,True,single
+580,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00580_exp 1000 b_connected.png,1486,217,41,54,1258.5,40.03,0.417,1.496,0.814,110.33,2420.11,True,connected
+581,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00581_exp 1000 b_single.png,166,135,28,28,572.5,27.0,0.869,1.0,0.984,108.9,2080.22,True,single
+582,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00582_exp 1000 b_single.png,1076,126,31,39,866.5,33.22,0.85,1.287,0.975,111.25,2010.87,True,single
+583,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00583_exp 1000 b_single.png,264,125,33,28,640.5,28.56,0.867,1.133,0.976,114.23,2019.97,True,single
+584,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00584_exp 1000 b_connected.png,1456,102,74,66,2748.5,59.16,0.435,1.124,0.79,110.44,2728.82,True,connected
+585,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00585_exp 1000 b_single.png,1635,101,32,30,660.5,29.0,0.838,1.079,0.966,129.65,3006.27,True,single
+586,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00586_exp 1000 b_overlapped.png,492,94,32,32,695.0,29.75,0.844,1.311,0.967,100.61,2422.9,True,overlapped
+587,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00587_exp 1000 b_connected.png,1825,71,73,51,2093.0,51.62,0.513,1.777,0.822,78.31,1882.76,True,connected
+588,Pic_20260914104818880-33.bmp,exp 1000 back+external light,p00588_exp 1000 b_single.png,1440,56,33,36,890.5,33.67,0.887,1.094,0.981,105.71,3620.35,True,single
+589,Pic_20260914115335252-2.bmp,exp 1000 bak light only no pellets,p00589_exp 1000 b_connected.png,1457,1010,32,30,655.5,28.89,0.577,1.08,0.829,489.68,3545.31,True,connected
+590,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00590_exp 1000 n_connected.png,1177,1073,38,41,1180.5,38.77,0.878,1.081,0.982,88.55,3107.34,True,connected
+591,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00591_exp 1000 n_connected.png,1455,993,36,46,875.0,33.38,0.467,1.17,0.756,532.29,6465.51,True,connected
+592,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00592_exp 1000 n_connected.png,1503,945,16,28,124.0,12.57,0.329,3.582,0.693,957.54,11030.41,True,connected
+593,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00593_exp 1000 n_connected.png,1153,877,34,38,966.0,35.07,0.876,1.121,0.978,174.08,5627.96,True,connected
+594,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00594_exp 1000 n_connected.png,1033,830,51,38,993.0,35.56,0.383,1.519,0.747,88.93,1707.22,True,connected
+595,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00595_exp 1000 n_single.png,1098,794,19,24,328.5,20.45,0.85,1.278,0.968,160.36,2132.54,True,single
+596,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00596_exp 1000 n_connected.png,124,790,19,13,141.0,13.4,0.691,1.541,0.91,174.7,1939.06,True,connected
+597,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00597_exp 1000 n_connected.png,1263,783,33,38,945.0,34.69,0.886,1.156,0.984,93.6,2211.24,True,connected
+598,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00598_exp 1000 n_connected.png,247,736,14,23,186.5,15.41,0.676,2.057,0.93,126.73,5077.63,True,connected
+599,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00599_exp 1000 n_connected.png,1224,673,39,35,1032.5,36.26,0.901,1.118,0.987,102.88,2475.35,True,connected
+600,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00600_exp 1000 n_overlapped.png,1104,645,28,23,451.5,23.98,0.817,1.471,0.971,121.5,4205.64,True,overlapped
+601,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00601_exp 1000 n_connected.png,1627,625,40,35,970.5,35.15,0.824,1.452,0.975,74.7,1585.03,True,connected
+602,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00602_exp 1000 n_connected.png,804,618,10,23,113.5,12.02,0.527,3.043,0.927,102.72,2067.09,True,connected
+603,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00603_exp 1000 n_connected.png,203,609,18,15,153.5,13.98,0.745,1.75,0.945,132.61,3144.13,True,connected
+604,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00604_exp 1000 n_overlapped.png,949,574,31,33,729.5,30.48,0.876,1.071,0.977,92.44,2123.64,True,overlapped
+605,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00605_exp 1000 n_connected.png,160,487,19,25,165.5,14.52,0.497,3.6,0.932,184.28,6698.77,True,connected
+606,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00606_exp 1000 n_single.png,1114,471,30,30,635.0,28.43,0.864,1.133,0.975,88.75,1656.72,True,single
+607,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00607_exp 1000 n_overlapped.png,1240,458,34,34,753.5,30.97,0.83,1.242,0.966,89.75,1572.6,True,overlapped
+608,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00608_exp 1000 n_single.png,1359,444,24,25,409.5,22.83,0.868,1.241,0.977,119.88,1874.62,True,single
+609,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00609_exp 1000 n_connected.png,1762,435,25,16,154.5,14.03,0.434,2.044,0.745,518.87,3433.58,True,connected
+610,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00610_exp 1000 n_connected.png,1166,371,35,36,957.5,34.92,0.889,1.029,0.981,105.31,3264.76,True,connected
+611,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00611_exp 1000 n_single.png,1105,366,26,26,444.0,23.78,0.845,1.194,0.976,90.04,2057.26,True,single
+612,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00612_exp 1000 n_connected.png,305,355,13,20,136.5,13.18,0.663,2.344,0.951,280.45,14370.45,True,connected
+613,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00613_exp 1000 n_connected.png,1484,337,43,40,578.5,27.14,0.294,1.471,0.54,177.4,7028.66,True,connected
+614,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00614_exp 1000 n_connected.png,1200,334,57,58,1623.5,45.47,0.5,2.087,0.835,72.51,2050.49,True,connected
+615,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00615_exp 1000 n_connected.png,1540,315,31,29,350.0,21.11,0.48,1.7,0.725,110.82,2108.32,True,connected
+616,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00616_exp 1000 n_connected.png,1233,297,36,38,1038.5,36.36,0.889,1.057,0.984,103.98,3138.79,True,connected
+617,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00617_exp 1000 n_connected.png,807,266,14,13,103.5,11.48,0.766,1.692,0.95,394.76,27374.32,True,connected
+618,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00618_exp 1000 n_connected.png,259,239,21,20,233.0,17.22,0.716,2.176,0.967,619.43,32484.98,True,connected
+619,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00619_exp 1000 n_connected.png,859,237,23,24,306.0,19.74,0.521,1.045,0.802,141.25,2374.82,True,connected
+620,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00620_exp 1000 n_connected.png,1147,232,36,36,980.5,35.33,0.88,1.0,0.981,115.64,3577.41,True,connected
+621,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00621_exp 1000 n_single.png,649,210,12,15,129.5,12.84,0.858,1.273,0.974,249.9,11731.24,True,single
+622,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00622_exp 1000 n_overlapped.png,1217,196,34,37,894.5,33.75,0.883,1.021,0.981,80.77,1853.48,True,overlapped
+623,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00623_exp 1000 n_single.png,342,141,18,14,159.5,14.25,0.839,1.158,0.973,269.17,10287.35,True,single
+624,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00624_exp 1000 n_connected.png,239,134,21,24,320.0,20.19,0.759,1.696,0.957,107.77,2493.19,True,connected
+625,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00625_exp 1000 n_connected.png,1454,131,42,38,1102.0,37.46,0.847,1.211,0.973,73.85,1949.98,True,connected
+626,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00626_exp 1000 n_connected.png,648,89,32,19,217.5,16.64,0.429,3.684,0.881,95.69,3720.25,True,connected
+627,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00627_exp 1000 n_connected.png,1029,51,29,41,301.0,19.58,0.311,3.467,0.693,103.67,1990.22,True,connected
+628,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00628_exp 1000 n_overlapped.png,363,39,16,16,159.0,14.23,0.817,1.495,0.961,202.5,6564.62,True,overlapped
+629,Pic_20260914104605651-28.bmp,exp 1000 no external light,p00629_exp 1000 n_connected.png,1537,34,42,41,1198.5,39.06,0.878,1.096,0.984,77.14,3162.68,True,connected
+630,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00630_exp 1000 n_connected.png,1451,945,68,93,3180.5,63.64,0.402,1.696,0.794,461.85,9282.91,True,connected
+631,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00631_exp 1000 n_overlapped.png,1150,900,30,33,575.5,27.07,0.654,1.214,0.862,84.38,1820.13,True,overlapped
+632,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00632_exp 1000 n_connected.png,689,875,15,19,133.0,13.01,0.64,1.938,0.93,72.62,1792.48,True,connected
+633,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00633_exp 1000 n_overlapped.png,1044,811,25,32,533.0,26.05,0.804,1.304,0.967,75.2,2234.16,True,overlapped
+634,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00634_exp 1000 n_single.png,1105,726,35,32,832.5,32.56,0.892,1.097,0.982,93.48,2850.34,True,single
+635,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00635_exp 1000 n_single.png,1381,515,20,20,289.0,19.18,0.879,1.0,0.978,76.46,1955.62,True,single
+636,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00636_exp 1000 n_connected.png,1731,435,56,68,2439.0,55.73,0.64,1.157,0.894,243.53,10302.72,True,connected
+637,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00637_exp 1000 n_connected.png,1492,316,80,60,2179.0,52.67,0.47,1.696,0.808,154.52,6376.9,True,connected
+638,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00638_exp 1000 n_single.png,107,316,15,14,144.0,13.54,0.863,1.077,0.963,225.25,10101.57,True,single
+639,Pic_20260914104605662-29.bmp,exp 1000 no external light,p00639_exp 1000 n_overlapped.png,225,93,14,14,116.0,12.15,0.802,1.4,0.947,134.54,5748.63,True,overlapped
+640,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00640_exp 1000 n_connected.png,1453,945,66,94,3474.5,66.51,0.373,1.729,0.797,487.01,10352.9,True,connected
+641,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00641_exp 1000 n_single.png,1080,661,30,32,690.5,29.65,0.876,1.127,0.979,76.79,1641.08,True,single
+642,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00642_exp 1000 n_single.png,1179,634,33,45,930.5,34.42,0.769,1.245,0.948,72.97,1843.25,True,single
+643,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00643_exp 1000 n_connected.png,1731,436,52,67,2363.5,54.86,0.647,1.245,0.902,274.82,9845.84,True,connected
+644,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00644_exp 1000 n_single.png,603,318,14,14,120.5,12.39,0.857,1.187,0.96,223.46,9949.32,True,single
+645,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00645_exp 1000 n_connected.png,1508,316,65,60,1967.5,50.05,0.568,1.537,0.844,177.27,7037.76,True,connected
+646,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00646_exp 1000 n_single.png,1348,310,33,29,692.5,29.69,0.879,1.237,0.982,94.03,2131.35,True,single
+647,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00647_exp 1000 n_overlapped.png,670,303,19,14,180.5,15.16,0.744,1.385,0.96,226.06,6084.07,True,overlapped
+648,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00648_exp 1000 n_single.png,1290,50,40,32,890.5,33.67,0.815,1.076,0.963,78.66,2402.33,True,single
+649,Pic_20260914104605672-30.bmp,exp 1000 no external light,p00649_exp 1000 n_connected.png,124,40,17,13,140.5,13.37,0.792,1.6,0.956,144.2,6549.19,True,connected
+650,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00650_exp 1500 n_connected.png,1453,944,67,95,3369.5,65.5,0.403,1.564,0.77,433.61,9191.07,True,connected
+651,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00651_exp 1500 n_connected.png,969,897,37,24,598.0,27.59,0.685,1.65,0.914,90.05,2039.17,True,connected
+652,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00652_exp 1500 n_connected.png,1201,719,37,29,793.0,31.78,0.853,1.286,0.975,107.61,2008.37,True,connected
+653,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00653_exp 1500 n_connected.png,381,712,13,24,209.0,16.31,0.743,1.917,0.965,170.3,7389.94,True,connected
+654,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00654_exp 1500 n_connected.png,183,697,18,12,114.0,12.05,0.659,2.389,0.954,227.02,11072.65,True,connected
+655,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00655_exp 1500 n_connected.png,1155,666,54,38,1289.0,40.51,0.668,1.441,0.911,81.47,1979.23,True,connected
+656,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00656_exp 1500 n_connected.png,66,660,18,11,132.5,12.99,0.774,1.7,0.953,289.04,8618.1,True,connected
+657,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00657_exp 1500 n_connected.png,1188,604,38,37,984.0,35.4,0.872,1.128,0.981,80.66,2402.17,True,connected
+658,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00658_exp 1500 n_connected.png,482,603,28,33,151.0,13.87,0.212,6.95,0.709,72.69,1628.88,True,connected
+659,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00659_exp 1500 n_single.png,988,531,21,22,301.0,19.58,0.848,1.142,0.963,105.73,2038.95,True,single
+660,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00660_exp 1500 n_connected.png,361,518,18,16,124.5,12.59,0.536,1.228,0.771,177.41,9655.44,True,connected
+661,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00661_exp 1500 n_single.png,174,513,14,17,155.5,14.07,0.807,1.162,0.957,249.28,17157.38,True,single
+662,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00662_exp 1500 n_connected.png,1247,473,37,59,1320.0,41.0,0.604,1.621,0.871,95.81,2681.59,True,connected
+663,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00663_exp 1500 n_connected.png,1132,471,45,55,1486.0,43.5,0.711,1.534,0.93,89.73,2151.04,True,connected
+664,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00664_exp 1500 n_connected.png,1351,470,36,35,899.5,33.84,0.807,1.011,0.96,76.75,1703.92,True,connected
+665,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00665_exp 1500 n_connected.png,1732,431,54,72,2548.0,56.96,0.658,1.291,0.898,248.93,7336.45,True,connected
+666,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00666_exp 1500 n_connected.png,475,410,18,19,195.0,15.76,0.721,1.92,0.951,157.87,4381.57,True,connected
+667,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00667_exp 1500 n_single.png,45,397,14,17,153.5,13.98,0.796,1.231,0.95,286.69,11183.63,True,single
+668,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00668_exp 1500 n_connected.png,48,320,20,10,119.5,12.33,0.674,2.1,0.956,210.61,5625.31,True,connected
+669,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00669_exp 1500 n_connected.png,1541,316,30,25,243.5,17.61,0.419,2.085,0.67,150.63,3868.42,True,connected
+670,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00670_exp 1500 n_connected.png,379,290,14,14,123.0,12.51,0.806,1.714,0.972,240.39,9328.11,True,connected
+671,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00671_exp 1500 n_connected.png,169,267,14,21,162.5,14.38,0.678,2.043,0.939,110.7,2179.88,True,connected
+672,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00672_exp 1500 n_connected.png,539,166,18,15,158.0,14.18,0.785,1.625,0.955,150.68,3491.8,True,connected
+673,Pic_20260914105824970-37.bmp,exp 1500 no ext. light,p00673_exp 1500 n_connected.png,36,35,22,22,241.0,17.52,0.663,2.5,0.97,210.01,14357.86,True,connected
+674,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00674_exp 1500 n_connected.png,1456,1008,35,32,518.0,25.68,0.445,1.26,0.706,434.97,4614.76,True,connected
+675,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00675_exp 1500 n_connected.png,1330,915,34,33,869.5,33.27,0.892,1.031,0.984,94.59,1869.98,True,connected
+676,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00676_exp 1500 n_connected.png,466,883,10,17,112.0,11.94,0.806,1.778,0.97,330.3,9156.89,True,connected
+677,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00677_exp 1500 n_connected.png,870,824,33,67,1722.0,46.82,0.651,2.062,0.919,101.12,1655.49,True,connected
+678,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00678_exp 1500 n_connected.png,1265,819,32,36,860.5,33.1,0.888,1.129,0.981,112.63,1677.92,True,connected
+679,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00679_exp 1500 n_connected.png,336,811,21,9,109.5,11.81,0.56,2.5,0.912,293.61,8322.63,True,connected
+680,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00680_exp 1500 n_connected.png,945,803,24,50,754.5,30.99,0.594,2.184,0.906,99.87,2162.14,True,connected
+681,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00681_exp 1500 n_connected.png,388,797,18,46,336.5,20.7,0.377,4.636,0.906,98.12,1865.79,True,connected
+682,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00682_exp 1500 n_connected.png,613,769,18,14,139.0,13.3,0.749,2.029,0.972,308.1,15157.63,True,connected
+683,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00683_exp 1500 n_connected.png,46,761,19,11,103.5,11.48,0.556,2.366,0.877,122.71,1547.16,True,connected
+684,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00684_exp 1500 n_connected.png,100,750,19,16,149.5,13.8,0.681,2.303,0.949,208.3,9317.7,True,connected
+685,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00685_exp 1500 n_connected.png,1232,746,36,33,893.0,33.72,0.899,1.094,0.986,115.94,2549.86,True,connected
+686,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00686_exp 1500 n_connected.png,1058,737,32,43,948.0,34.74,0.793,1.668,0.974,100.24,1546.23,True,connected
+687,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00687_exp 1500 n_connected.png,1149,700,40,43,1053.5,36.62,0.786,1.816,0.98,106.9,2910.9,True,connected
+688,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00688_exp 1500 n_overlapped.png,129,699,22,21,292.5,19.3,0.783,1.432,0.953,163.21,6720.95,True,overlapped
+689,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00689_exp 1500 n_connected.png,1277,684,49,35,1257.0,40.01,0.827,1.343,0.979,110.37,3271.12,True,connected
+690,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00690_exp 1500 n_connected.png,486,661,16,9,103.0,11.45,0.803,1.875,0.986,469.12,12885.35,True,connected
+691,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00691_exp 1500 n_connected.png,91,661,13,20,146.0,13.63,0.726,1.913,0.951,181.53,8027.55,True,connected
+692,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00692_exp 1500 n_connected.png,247,660,25,11,176.0,14.97,0.618,2.4,0.939,210.32,3898.63,True,connected
+693,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00693_exp 1500 n_connected.png,1103,634,39,59,1263.5,40.11,0.486,1.368,0.818,120.15,4091.97,True,connected
+694,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00694_exp 1500 n_connected.png,1064,631,17,29,295.0,19.38,0.568,1.787,0.806,163.88,4213.64,True,connected
+695,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00695_exp 1500 n_connected.png,1035,622,15,18,143.5,13.52,0.73,1.733,0.95,130.66,2417.1,True,connected
+696,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00696_exp 1500 n_overlapped.png,1311,596,34,29,618.0,28.05,0.781,1.394,0.969,118.93,6300.91,True,overlapped
+697,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00697_exp 1500 n_connected.png,120,593,24,9,110.0,11.83,0.478,3.593,0.898,353.83,9523.7,True,connected
+698,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00698_exp 1500 n_overlapped.png,892,591,31,30,641.0,28.57,0.837,1.25,0.97,106.87,1690.31,True,overlapped
+699,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00699_exp 1500 n_overlapped.png,425,580,15,17,151.5,13.89,0.797,1.33,0.941,146.42,3810.23,True,overlapped
+700,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00700_exp 1500 n_connected.png,1219,568,35,36,942.0,34.63,0.884,1.029,0.98,131.22,2833.0,True,connected
+701,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00701_exp 1500 n_connected.png,824,565,16,23,189.5,15.53,0.483,1.679,0.76,160.53,6300.45,True,connected
+702,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00702_exp 1500 n_connected.png,968,560,22,18,198.0,15.88,0.539,1.335,0.797,194.65,7024.54,True,connected
+703,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00703_exp 1500 n_connected.png,69,555,13,15,110.0,11.83,0.761,1.571,0.944,243.32,10925.42,True,connected
+704,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00704_exp 1500 n_connected.png,1038,553,37,46,1076.5,37.02,0.726,1.472,0.939,97.22,1811.07,True,connected
+705,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00705_exp 1500 n_connected.png,1296,527,42,55,1564.0,44.62,0.76,1.59,0.949,100.06,2309.04,True,connected
+706,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00706_exp 1500 n_connected.png,1137,503,49,74,2125.0,52.02,0.599,1.803,0.873,109.1,2067.55,True,connected
+707,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00707_exp 1500 n_connected.png,1219,494,40,49,1368.5,41.74,0.802,1.406,0.95,109.09,2773.25,True,connected
+708,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00708_exp 1500 n_connected.png,67,488,15,24,227.5,17.02,0.723,1.961,0.954,134.33,4649.42,True,connected
+709,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00709_exp 1500 n_connected.png,137,471,17,12,124.5,12.59,0.727,1.625,0.94,319.85,15267.16,True,connected
+710,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00710_exp 1500 n_connected.png,438,469,19,24,290.5,19.23,0.777,1.706,0.962,171.49,4395.36,True,connected
+711,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00711_exp 1500 n_connected.png,296,462,18,12,120.5,12.39,0.679,2.0,0.934,242.13,9973.24,True,connected
+712,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00712_exp 1500 n_connected.png,731,455,20,12,142.0,13.45,0.696,1.975,0.931,250.58,8750.83,True,connected
+713,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00713_exp 1500 n_overlapped.png,1132,442,31,28,613.5,27.95,0.882,1.026,0.978,107.04,2087.07,True,overlapped
+714,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00714_exp 1500 n_connected.png,207,434,12,24,201.5,16.02,0.676,2.091,0.942,236.99,9538.35,True,connected
+715,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00715_exp 1500 n_connected.png,1801,433,25,49,353.5,21.22,0.214,2.146,0.491,188.43,1551.24,True,connected
+716,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00716_exp 1500 n_connected.png,1731,430,57,73,2574.5,57.25,0.596,1.492,0.854,147.85,4687.78,True,connected
+717,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00717_exp 1500 n_connected.png,489,426,13,37,203.0,16.08,0.349,5.462,0.886,138.63,2903.87,True,connected
+718,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00718_exp 1500 n_connected.png,1223,416,38,33,933.5,34.48,0.85,1.156,0.977,116.78,1861.13,True,connected
+719,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00719_exp 1500 n_connected.png,1056,406,35,32,824.0,32.39,0.873,1.097,0.975,132.28,3793.8,True,connected
+720,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00720_exp 1500 n_connected.png,293,397,23,11,131.5,12.94,0.542,2.879,0.92,366.93,10704.38,True,connected
+721,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00721_exp 1500 n_connected.png,1138,372,33,40,997.0,35.63,0.857,1.219,0.979,134.63,4213.48,True,connected
+722,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00722_exp 1500 n_single.png,479,368,16,13,128.0,12.77,0.808,1.235,0.952,253.25,7947.67,True,single
+723,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00723_exp 1500 n_connected.png,403,359,14,17,135.5,13.13,0.713,1.65,0.928,410.8,11643.13,True,connected
+724,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00724_exp 1500 n_connected.png,1051,358,36,39,906.5,33.97,0.796,1.062,0.943,117.2,2993.04,True,connected
+725,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00725_exp 1500 n_connected.png,781,337,16,21,197.5,15.86,0.777,1.611,0.971,160.68,5111.15,True,connected
+726,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00726_exp 1500 n_connected.png,406,323,16,17,161.0,14.32,0.764,1.933,0.97,188.58,7154.12,True,connected
+727,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00727_exp 1500 n_connected.png,659,299,15,22,188.5,15.49,0.712,1.984,0.959,222.26,13014.52,True,connected
+728,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00728_exp 1500 n_overlapped.png,157,265,22,29,445.0,23.8,0.816,1.333,0.983,105.86,1987.94,True,overlapped
+729,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00729_exp 1500 n_single.png,949,237,12,14,115.5,12.13,0.84,1.182,0.959,463.01,19375.1,True,single
+730,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00730_exp 1500 n_overlapped.png,1548,175,28,27,508.5,25.44,0.874,1.088,0.978,109.61,2079.16,True,overlapped
+731,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00731_exp 1500 n_connected.png,146,146,17,11,132.0,12.96,0.779,1.6,0.95,369.2,14586.18,True,connected
+732,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00732_exp 1500 n_connected.png,249,122,12,37,296.0,19.41,0.519,3.577,0.937,175.87,5436.95,True,connected
+733,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00733_exp 1500 n_connected.png,432,106,19,13,114.5,12.07,0.602,2.609,0.927,173.6,5301.04,True,connected
+734,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00734_exp 1500 n_connected.png,1615,99,34,43,921.0,34.24,0.779,1.584,0.972,104.58,1910.79,True,connected
+735,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00735_exp 1500 n_connected.png,1258,29,50,76,1913.0,49.35,0.499,2.205,0.804,82.42,1501.98,True,connected
+736,Pic_20260914105824980-38.bmp,exp 1500 no ext. light,p00736_exp 1500 n_single.png,675,28,13,15,131.5,12.94,0.885,1.167,0.974,146.79,1845.47,True,single
+737,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00737_exp 1500 n_connected.png,1280,1055,36,38,1007.0,35.81,0.888,1.118,0.98,111.03,3721.64,True,connected
+738,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00738_exp 1500 n_overlapped.png,1117,883,33,33,794.0,31.8,0.873,1.043,0.977,135.92,3060.68,True,overlapped
+739,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00739_exp 1500 n_single.png,758,847,15,16,167.0,14.58,0.846,1.071,0.954,108.87,2203.41,True,single
+740,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00740_exp 1500 n_connected.png,170,845,29,17,249.0,17.81,0.61,2.444,0.95,231.93,13688.57,True,connected
+741,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00741_exp 1500 n_connected.png,1030,821,35,42,1079.0,37.07,0.772,1.23,0.953,113.45,3390.28,True,connected
+742,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00742_exp 1500 n_overlapped.png,313,810,14,19,165.0,14.49,0.82,1.471,0.979,130.01,3262.57,True,overlapped
+743,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00743_exp 1500 n_connected.png,70,806,14,29,221.0,16.77,0.562,2.814,0.902,123.35,2054.33,True,connected
+744,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00744_exp 1500 n_connected.png,795,775,20,16,180.5,15.16,0.731,1.938,0.963,244.5,8693.01,True,connected
+745,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00745_exp 1500 n_overlapped.png,900,769,30,30,684.0,29.51,0.887,1.0,0.981,161.58,6462.44,True,overlapped
+746,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00746_exp 1500 n_connected.png,870,767,47,97,1517.0,43.95,0.283,2.62,0.618,103.9,1565.43,True,connected
+747,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00747_exp 1500 n_connected.png,990,764,42,51,1191.5,38.95,0.678,1.927,0.936,102.1,2108.65,True,connected
+748,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00748_exp 1500 n_connected.png,1141,760,30,73,1090.0,37.25,0.352,2.59,0.759,123.77,1856.88,True,connected
+749,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00749_exp 1500 n_connected.png,35,749,20,26,261.0,18.23,0.661,2.222,0.941,248.68,7468.34,True,connected
+750,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00750_exp 1500 n_single.png,704,739,13,15,123.0,12.51,0.851,1.118,0.965,205.44,5276.38,True,single
+751,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00751_exp 1500 n_connected.png,668,739,14,23,203.0,16.08,0.634,1.714,0.855,185.73,2661.99,True,connected
+752,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00752_exp 1500 n_single.png,353,738,16,17,186.5,15.41,0.828,1.156,0.947,152.56,3579.05,True,single
+753,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00753_exp 1500 n_connected.png,1058,731,42,36,962.0,35.0,0.773,1.489,0.967,123.56,2285.16,True,connected
+754,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00754_exp 1500 n_single.png,926,727,29,32,650.0,28.77,0.87,1.158,0.98,127.54,2353.54,True,single
+755,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00755_exp 1500 n_connected.png,45,717,15,13,103.5,11.48,0.696,1.971,0.945,179.88,5654.26,True,connected
+756,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00756_exp 1500 n_connected.png,1159,683,38,36,1022.0,36.07,0.883,1.057,0.978,119.25,4697.49,True,connected
+757,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00757_exp 1500 n_connected.png,1461,677,44,36,1077.5,37.04,0.664,1.229,0.888,121.27,4738.68,True,connected
+758,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00758_exp 1500 n_connected.png,39,635,13,37,173.0,14.84,0.315,4.759,0.769,156.64,2591.32,True,connected
+759,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00759_exp 1500 n_connected.png,76,612,22,39,460.0,24.2,0.499,1.97,0.815,171.68,6392.29,True,connected
+760,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00760_exp 1500 n_connected.png,1177,611,32,19,313.0,19.96,0.574,2.737,0.91,103.99,1717.04,True,connected
+761,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00761_exp 1500 n_overlapped.png,1017,599,37,28,643.0,28.61,0.692,1.2,0.91,147.63,1643.7,True,overlapped
+762,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00762_exp 1500 n_overlapped.png,1339,579,32,28,692.0,29.68,0.877,1.148,0.979,117.89,2099.18,True,overlapped
+763,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00763_exp 1500 n_single.png,1437,567,27,23,431.5,23.44,0.819,1.182,0.969,143.89,3789.27,True,single
+764,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00764_exp 1500 n_connected.png,765,563,28,36,410.0,22.85,0.464,1.888,0.766,132.89,5346.45,True,connected
+765,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00765_exp 1500 n_connected.png,182,555,25,11,161.0,14.32,0.566,2.4,0.915,249.69,4262.18,True,connected
+766,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00766_exp 1500 n_connected.png,1084,546,45,70,1947.5,49.8,0.502,1.617,0.822,117.64,4477.84,True,connected
+767,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00767_exp 1500 n_single.png,368,540,14,13,117.5,12.23,0.822,1.079,0.944,267.79,6939.45,True,single
+768,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00768_exp 1500 n_connected.png,955,521,61,75,1990.5,50.34,0.312,1.299,0.641,107.65,3176.86,True,connected
+769,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00769_exp 1500 n_connected.png,1111,499,38,37,1006.0,35.79,0.83,1.183,0.969,143.16,3828.7,True,connected
+770,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00770_exp 1500 n_overlapped.png,1325,473,36,33,888.0,33.62,0.875,1.094,0.978,154.61,2634.24,True,overlapped
+771,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00771_exp 1500 n_connected.png,96,467,21,20,215.0,16.55,0.621,2.044,0.917,388.63,11590.66,True,connected
+772,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00772_exp 1500 n_connected.png,690,466,29,23,226.5,16.98,0.425,3.0,0.83,115.53,2630.65,True,connected
+773,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00773_exp 1500 n_single.png,406,460,19,18,206.0,16.2,0.794,1.291,0.936,217.21,8448.96,True,single
+774,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00774_exp 1500 n_connected.png,1210,436,37,44,1205.0,39.17,0.871,1.194,0.982,129.55,3845.26,True,connected
+775,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00775_exp 1500 n_connected.png,221,426,21,14,180.0,15.14,0.736,1.667,0.95,200.85,10021.14,True,connected
+776,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00776_exp 1500 n_connected.png,1112,395,33,91,1127.5,37.89,0.213,2.88,0.475,102.27,2459.37,True,connected
+777,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00777_exp 1500 n_single.png,383,386,15,19,190.5,15.57,0.82,1.286,0.962,195.94,8157.75,True,single
+778,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00778_exp 1500 n_single.png,449,367,18,22,277.5,18.8,0.829,1.235,0.97,136.07,3217.73,True,single
+779,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00779_exp 1500 n_connected.png,29,358,17,11,133.0,13.01,0.826,1.6,0.974,222.85,5602.39,True,connected
+780,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00780_exp 1500 n_connected.png,981,347,37,40,1021.0,36.06,0.831,1.42,0.978,124.17,2545.56,True,connected
+781,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00781_exp 1500 n_connected.png,1285,338,45,47,1469.5,43.26,0.873,1.327,0.983,122.39,4188.72,True,connected
+782,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00782_exp 1500 n_overlapped.png,1204,333,39,30,797.5,31.87,0.828,1.265,0.977,130.64,1920.43,True,overlapped
+783,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00783_exp 1500 n_overlapped.png,1362,328,39,36,889.0,33.64,0.82,1.004,0.964,94.67,1979.04,True,overlapped
+784,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00784_exp 1500 n_overlapped.png,790,328,15,15,126.0,12.67,0.807,1.4,0.958,256.26,5381.79,True,overlapped
+785,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00785_exp 1500 n_connected.png,1051,327,27,37,659.5,28.98,0.81,1.615,0.981,106.15,2647.1,True,connected
+786,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00786_exp 1500 n_connected.png,447,325,18,23,200.5,15.98,0.605,1.988,0.92,227.38,9706.17,True,connected
+787,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00787_exp 1500 n_single.png,147,315,19,21,255.5,18.04,0.791,1.008,0.945,122.83,2328.6,True,single
+788,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00788_exp 1500 n_connected.png,1131,312,38,47,1198.5,39.06,0.813,1.329,0.97,132.63,3714.93,True,connected
+789,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00789_exp 1500 n_connected.png,639,305,11,18,116.5,12.18,0.716,1.897,0.959,594.48,15966.62,True,connected
+790,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00790_exp 1500 n_connected.png,1126,262,41,39,1006.5,35.8,0.795,1.048,0.94,130.28,3822.44,True,connected
+791,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00791_exp 1500 n_connected.png,278,253,19,19,226.0,16.96,0.781,1.646,0.956,204.02,7441.57,True,connected
+792,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00792_exp 1500 n_connected.png,688,220,15,18,154.0,14.0,0.765,1.8,0.963,243.84,7237.44,True,connected
+793,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00793_exp 1500 n_connected.png,1490,216,38,45,1205.5,39.18,0.832,1.354,0.977,110.61,2306.32,True,connected
+794,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00794_exp 1500 n_connected.png,113,167,21,14,161.5,14.34,0.628,1.538,0.897,122.42,1546.48,True,connected
+795,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00795_exp 1500 n_overlapped.png,1573,134,35,32,763.5,31.18,0.836,1.29,0.971,158.29,2901.16,True,overlapped
+796,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00796_exp 1500 n_overlapped.png,1165,113,38,33,910.0,34.04,0.889,1.087,0.982,129.87,2054.81,True,overlapped
+797,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00797_exp 1500 n_connected.png,502,95,21,18,187.0,15.43,0.629,2.0,0.93,258.15,10092.57,True,connected
+798,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00798_exp 1500 n_connected.png,420,90,15,37,233.0,17.22,0.369,3.576,0.765,156.56,2475.0,True,connected
+799,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00799_exp 1500 n_overlapped.png,1251,70,33,34,842.5,32.75,0.883,1.031,0.985,129.64,2628.36,True,overlapped
+800,Pic_20260914105825164-39.bmp,exp 1500 no ext. light,p00800_exp 1500 n_connected.png,942,56,19,17,120.5,12.39,0.532,3.541,0.934,241.81,10328.92,True,connected
+801,Pic_20260914104358959-22.bmp,Exp 2000,p00801_Exp 2000_connected.png,1128,1291,31,52,1254.0,39.96,0.807,1.7,0.979,172.07,6673.98,True,connected
+802,Pic_20260914104358959-22.bmp,Exp 2000,p00802_Exp 2000_connected.png,1460,1020,29,20,352.5,21.19,0.58,1.548,0.814,218.92,2164.5,True,connected
+803,Pic_20260914104358959-22.bmp,Exp 2000,p00803_Exp 2000_connected.png,1540,964,29,28,548.0,26.41,0.827,1.516,0.974,277.54,7162.45,True,connected
+804,Pic_20260914104358959-22.bmp,Exp 2000,p00804_Exp 2000_overlapped.png,956,865,34,32,703.0,29.92,0.659,1.053,0.895,138.46,3391.83,True,overlapped
+805,Pic_20260914104358959-22.bmp,Exp 2000,p00805_Exp 2000_connected.png,582,863,18,9,107.0,11.67,0.69,2.125,0.939,306.36,6151.65,True,connected
+806,Pic_20260914104358959-22.bmp,Exp 2000,p00806_Exp 2000_connected.png,1395,850,37,28,606.5,27.79,0.604,1.201,0.834,132.45,3462.17,True,connected
+807,Pic_20260914104358959-22.bmp,Exp 2000,p00807_Exp 2000_connected.png,1305,841,69,39,1507.5,43.81,0.527,1.829,0.829,115.4,3465.2,True,connected
+808,Pic_20260914104358959-22.bmp,Exp 2000,p00808_Exp 2000_connected.png,738,832,15,14,106.0,11.62,0.635,2.278,0.938,142.7,1876.87,True,connected
+809,Pic_20260914104358959-22.bmp,Exp 2000,p00809_Exp 2000_connected.png,464,827,18,19,151.0,13.87,0.606,2.462,0.915,150.84,4589.42,True,connected
+810,Pic_20260914104358959-22.bmp,Exp 2000,p00810_Exp 2000_connected.png,131,818,39,27,470.5,24.48,0.504,2.494,0.882,205.8,6587.83,True,connected
+811,Pic_20260914104358959-22.bmp,Exp 2000,p00811_Exp 2000_connected.png,966,785,34,44,935.5,34.51,0.804,1.25,0.979,98.1,1603.89,True,connected
+812,Pic_20260914104358959-22.bmp,Exp 2000,p00812_Exp 2000_connected.png,93,778,14,23,209.5,16.33,0.73,1.692,0.952,118.73,3091.72,True,connected
+813,Pic_20260914104358959-22.bmp,Exp 2000,p00813_Exp 2000_overlapped.png,1513,774,22,30,387.0,22.2,0.651,1.318,0.88,115.9,1865.28,True,overlapped
+814,Pic_20260914104358959-22.bmp,Exp 2000,p00814_Exp 2000_connected.png,1241,769,36,43,997.0,35.63,0.743,1.235,0.944,130.1,4200.24,True,connected
+815,Pic_20260914104358959-22.bmp,Exp 2000,p00815_Exp 2000_connected.png,267,768,16,18,145.5,13.61,0.684,1.712,0.912,144.88,2106.75,True,connected
+816,Pic_20260914104358959-22.bmp,Exp 2000,p00816_Exp 2000_connected.png,1445,765,48,42,1222.0,39.44,0.761,1.738,0.965,97.09,2182.96,True,connected
+817,Pic_20260914104358959-22.bmp,Exp 2000,p00817_Exp 2000_connected.png,1100,729,36,39,1026.5,36.15,0.85,1.027,0.974,146.08,5421.74,True,connected
+818,Pic_20260914104358959-22.bmp,Exp 2000,p00818_Exp 2000_connected.png,476,728,19,23,177.5,15.03,0.562,2.83,0.942,228.16,11815.63,True,connected
+819,Pic_20260914104358959-22.bmp,Exp 2000,p00819_Exp 2000_connected.png,607,711,15,16,102.5,11.42,0.617,2.364,0.932,253.02,4673.26,True,connected
+820,Pic_20260914104358959-22.bmp,Exp 2000,p00820_Exp 2000_connected.png,244,709,35,16,210.0,16.35,0.375,4.483,0.832,196.13,5575.52,True,connected
+821,Pic_20260914104358959-22.bmp,Exp 2000,p00821_Exp 2000_connected.png,328,657,47,44,231.5,17.17,0.154,7.703,0.635,99.44,2676.35,True,connected
+822,Pic_20260914104358959-22.bmp,Exp 2000,p00822_Exp 2000_connected.png,1127,648,38,35,988.5,35.48,0.875,1.088,0.978,142.33,3780.87,True,connected
+823,Pic_20260914104358959-22.bmp,Exp 2000,p00823_Exp 2000_connected.png,1551,644,13,40,268.5,18.49,0.419,3.591,0.848,105.8,2364.7,True,connected
+824,Pic_20260914104358959-22.bmp,Exp 2000,p00824_Exp 2000_single.png,250,640,17,20,223.5,16.87,0.81,1.188,0.957,295.9,10413.86,True,single
+825,Pic_20260914104358959-22.bmp,Exp 2000,p00825_Exp 2000_connected.png,1339,626,38,49,1344.0,41.37,0.853,1.297,0.981,162.21,6248.28,True,connected
+826,Pic_20260914104358959-22.bmp,Exp 2000,p00826_Exp 2000_connected.png,1386,604,43,45,1352.0,41.49,0.848,1.373,0.98,106.42,2801.2,True,connected
+827,Pic_20260914104358959-22.bmp,Exp 2000,p00827_Exp 2000_overlapped.png,995,587,30,32,671.0,29.23,0.862,1.333,0.978,119.7,2169.56,True,overlapped
+828,Pic_20260914104358959-22.bmp,Exp 2000,p00828_Exp 2000_overlapped.png,256,568,22,29,452.0,23.99,0.829,1.333,0.976,119.95,2012.48,True,overlapped
+829,Pic_20260914104358959-22.bmp,Exp 2000,p00829_Exp 2000_overlapped.png,1322,546,35,32,790.5,31.73,0.865,1.167,0.975,139.72,5348.54,True,overlapped
+830,Pic_20260914104358959-22.bmp,Exp 2000,p00830_Exp 2000_connected.png,27,518,27,48,631.0,28.34,0.524,2.658,0.885,103.66,2392.12,True,connected
+831,Pic_20260914104358959-22.bmp,Exp 2000,p00831_Exp 2000_connected.png,905,512,12,18,106.0,11.62,0.613,1.971,0.895,334.07,14556.87,True,connected
+832,Pic_20260914104358959-22.bmp,Exp 2000,p00832_Exp 2000_connected.png,87,491,26,16,236.5,17.35,0.648,2.297,0.944,303.77,20212.15,True,connected
+833,Pic_20260914104358959-22.bmp,Exp 2000,p00833_Exp 2000_connected.png,46,485,24,23,245.0,17.66,0.522,1.908,0.821,271.97,9310.08,True,connected
+834,Pic_20260914104358959-22.bmp,Exp 2000,p00834_Exp 2000_connected.png,56,417,19,10,128.5,12.79,0.751,2.0,0.97,380.54,9138.89,True,connected
+835,Pic_20260914104358959-22.bmp,Exp 2000,p00835_Exp 2000_connected.png,1228,404,54,35,1479.0,43.39,0.833,1.559,0.981,128.95,3281.71,True,connected
+836,Pic_20260914104358959-22.bmp,Exp 2000,p00836_Exp 2000_connected.png,239,339,44,19,285.5,19.07,0.333,5.705,0.919,143.28,5813.7,True,connected
+837,Pic_20260914104358959-22.bmp,Exp 2000,p00837_Exp 2000_overlapped.png,1805,317,37,30,807.0,32.05,0.855,1.289,0.975,89.67,1815.49,True,overlapped
+838,Pic_20260914104358959-22.bmp,Exp 2000,p00838_Exp 2000_connected.png,1367,304,36,34,905.5,33.95,0.889,1.061,0.983,188.76,6142.71,True,connected
+839,Pic_20260914104358959-22.bmp,Exp 2000,p00839_Exp 2000_connected.png,786,296,19,18,154.5,14.03,0.634,2.75,0.963,113.95,1715.19,True,connected
+840,Pic_20260914104358959-22.bmp,Exp 2000,p00840_Exp 2000_connected.png,276,271,29,28,322.0,20.25,0.516,3.268,0.927,96.36,2414.22,True,connected
+841,Pic_20260914104358959-22.bmp,Exp 2000,p00841_Exp 2000_connected.png,267,221,28,25,287.0,19.12,0.551,3.05,0.944,107.41,2647.84,True,connected
+842,Pic_20260914104358959-22.bmp,Exp 2000,p00842_Exp 2000_connected.png,1359,209,36,52,1314.0,40.9,0.798,1.457,0.978,126.57,2620.55,True,connected
+843,Pic_20260914104358959-22.bmp,Exp 2000,p00843_Exp 2000_overlapped.png,1176,160,29,30,636.5,28.47,0.85,1.036,0.974,137.64,1696.98,True,overlapped
+844,Pic_20260914104358959-22.bmp,Exp 2000,p00844_Exp 2000_connected.png,285,124,24,31,391.5,22.33,0.655,1.672,0.89,140.34,6546.05,True,connected
+845,Pic_20260914104358959-22.bmp,Exp 2000,p00845_Exp 2000_connected.png,374,118,23,19,217.0,16.62,0.627,1.896,0.895,122.55,3873.51,True,connected
+846,Pic_20260914104358959-22.bmp,Exp 2000,p00846_Exp 2000_connected.png,607,94,16,33,140.5,13.37,0.289,5.053,0.794,152.85,4361.41,True,connected
+847,Pic_20260914104358959-22.bmp,Exp 2000,p00847_Exp 2000_connected.png,575,80,14,17,144.0,13.54,0.765,1.826,0.963,155.89,2091.34,True,connected
+848,Pic_20260914104358959-22.bmp,Exp 2000,p00848_Exp 2000_connected.png,1590,70,41,40,1165.0,38.51,0.868,1.073,0.98,111.28,3551.68,True,connected
+849,Pic_20260914104358959-22.bmp,Exp 2000,p00849_Exp 2000_connected.png,452,45,31,43,619.5,28.09,0.536,2.462,0.88,121.53,1982.38,True,connected
+850,Pic_20260914104358959-22.bmp,Exp 2000,p00850_Exp 2000_connected.png,45,32,15,38,341.0,20.84,0.507,2.643,0.902,153.42,5975.42,True,connected
+851,Pic_20260914104358969-23.bmp,Exp 2000,p00851_Exp 2000_connected.png,1457,1015,30,24,465.0,24.33,0.585,1.379,0.82,491.46,4788.52,True,connected
+852,Pic_20260914104358969-23.bmp,Exp 2000,p00852_Exp 2000_connected.png,1168,982,21,16,109.0,11.78,0.323,1.66,0.536,145.69,2065.8,True,connected
+853,Pic_20260914104358969-23.bmp,Exp 2000,p00853_Exp 2000_connected.png,1541,965,22,25,327.0,20.4,0.713,1.748,0.929,133.87,4022.73,True,connected
+854,Pic_20260914104358969-23.bmp,Exp 2000,p00854_Exp 2000_connected.png,1503,945,17,29,114.0,12.05,0.271,3.45,0.616,708.62,7880.77,True,connected
+855,Pic_20260914104358969-23.bmp,Exp 2000,p00855_Exp 2000_connected.png,1055,944,18,23,149.5,13.8,0.284,2.346,0.654,342.89,3597.77,True,connected
+856,Pic_20260914104358969-23.bmp,Exp 2000,p00856_Exp 2000_connected.png,1193,885,34,29,762.0,31.15,0.815,1.179,0.957,131.31,2922.92,True,connected
+857,Pic_20260914104358969-23.bmp,Exp 2000,p00857_Exp 2000_connected.png,493,871,20,11,114.0,12.05,0.551,2.855,0.901,113.02,2013.2,True,connected
+858,Pic_20260914104358969-23.bmp,Exp 2000,p00858_Exp 2000_connected.png,1095,866,34,44,1092.0,37.29,0.835,1.359,0.974,93.57,3081.46,True,connected
+859,Pic_20260914104358969-23.bmp,Exp 2000,p00859_Exp 2000_connected.png,148,864,29,10,172.5,14.82,0.51,3.431,0.927,162.87,5301.66,True,connected
+860,Pic_20260914104358969-23.bmp,Exp 2000,p00860_Exp 2000_connected.png,411,862,19,13,139.0,13.3,0.714,1.739,0.949,169.26,4286.62,True,connected
+861,Pic_20260914104358969-23.bmp,Exp 2000,p00861_Exp 2000_connected.png,978,815,16,16,158.5,14.21,0.795,1.687,0.981,133.01,2844.81,True,connected
+862,Pic_20260914104358969-23.bmp,Exp 2000,p00862_Exp 2000_overlapped.png,82,802,13,17,146.5,13.66,0.786,1.333,0.951,196.95,6011.46,True,overlapped
+863,Pic_20260914104358969-23.bmp,Exp 2000,p00863_Exp 2000_connected.png,830,791,19,12,134.0,13.06,0.712,1.826,0.934,112.8,2285.42,True,connected
+864,Pic_20260914104358969-23.bmp,Exp 2000,p00864_Exp 2000_connected.png,1119,787,35,42,1095.5,37.35,0.884,1.206,0.983,126.61,4983.2,True,connected
+865,Pic_20260914104358969-23.bmp,Exp 2000,p00865_Exp 2000_connected.png,976,760,91,41,2191.0,52.82,0.438,2.299,0.776,91.27,1896.86,True,connected
+866,Pic_20260914104358969-23.bmp,Exp 2000,p00866_Exp 2000_single.png,636,753,14,13,118.0,12.26,0.849,1.083,0.971,402.65,20117.45,True,single
+867,Pic_20260914104358969-23.bmp,Exp 2000,p00867_Exp 2000_connected.png,1039,622,34,28,701.5,29.89,0.87,1.222,0.978,103.95,1797.14,True,connected
+868,Pic_20260914104358969-23.bmp,Exp 2000,p00868_Exp 2000_connected.png,1127,614,17,30,323.0,20.28,0.649,1.877,0.901,97.55,1815.6,True,connected
+869,Pic_20260914104358969-23.bmp,Exp 2000,p00869_Exp 2000_connected.png,1154,612,38,42,926.0,34.34,0.664,1.18,0.884,127.85,2585.19,True,connected
+870,Pic_20260914104358969-23.bmp,Exp 2000,p00870_Exp 2000_connected.png,1322,552,40,34,1046.5,36.5,0.879,1.182,0.983,130.79,3916.78,True,connected
+871,Pic_20260914104358969-23.bmp,Exp 2000,p00871_Exp 2000_connected.png,169,500,20,13,176.5,14.99,0.793,1.583,0.962,312.82,9901.51,True,connected
+872,Pic_20260914104358969-23.bmp,Exp 2000,p00872_Exp 2000_connected.png,1179,485,54,50,1503.0,43.75,0.647,1.853,0.91,107.25,2712.31,True,connected
+873,Pic_20260914104358969-23.bmp,Exp 2000,p00873_Exp 2000_overlapped.png,389,469,16,19,188.0,15.47,0.802,1.483,0.954,165.18,5700.53,True,overlapped
+874,Pic_20260914104358969-23.bmp,Exp 2000,p00874_Exp 2000_connected.png,413,457,12,17,119.0,12.31,0.751,1.714,0.967,207.65,6539.49,True,connected
+875,Pic_20260914104358969-23.bmp,Exp 2000,p00875_Exp 2000_connected.png,1505,440,45,43,1128.0,37.9,0.727,1.34,0.928,95.75,2330.6,True,connected
+876,Pic_20260914104358969-23.bmp,Exp 2000,p00876_Exp 2000_connected.png,145,411,12,20,121.5,12.44,0.61,2.19,0.917,150.44,4415.38,True,connected
+877,Pic_20260914104358969-23.bmp,Exp 2000,p00877_Exp 2000_connected.png,180,391,12,33,171.5,14.78,0.376,4.333,0.866,122.55,2243.44,True,connected
+878,Pic_20260914104358969-23.bmp,Exp 2000,p00878_Exp 2000_connected.png,1409,337,37,35,997.0,35.63,0.886,1.059,0.981,130.42,4755.5,True,connected
+879,Pic_20260914104358969-23.bmp,Exp 2000,p00879_Exp 2000_connected.png,1822,309,38,35,975.0,35.23,0.872,1.065,0.978,110.5,2702.14,True,connected
+880,Pic_20260914104358969-23.bmp,Exp 2000,p00880_Exp 2000_connected.png,397,220,19,18,194.5,15.74,0.734,1.915,0.96,121.21,2369.08,True,connected
+881,Pic_20260914104358969-23.bmp,Exp 2000,p00881_Exp 2000_connected.png,1518,198,39,37,973.0,35.2,0.778,1.062,0.958,91.56,1931.72,True,connected
+882,Pic_20260914104358969-23.bmp,Exp 2000,p00882_Exp 2000_connected.png,1211,148,60,46,1479.5,43.4,0.455,1.334,0.757,96.56,1798.69,True,connected
+883,Pic_20260914104358969-23.bmp,Exp 2000,p00883_Exp 2000_connected.png,236,119,18,18,186.0,15.39,0.738,1.824,0.956,271.49,16876.88,True,connected
+884,Pic_20260914104358969-23.bmp,Exp 2000,p00884_Exp 2000_connected.png,338,116,19,19,177.5,15.03,0.651,1.824,0.939,138.56,6880.95,True,connected
+885,Pic_20260914104358969-23.bmp,Exp 2000,p00885_Exp 2000_overlapped.png,387,83,15,14,136.5,13.18,0.839,1.44,0.972,115.77,2013.89,True,overlapped
+886,Pic_20260914104358969-23.bmp,Exp 2000,p00886_Exp 2000_connected.png,862,33,11,16,102.0,11.4,0.734,1.926,0.949,262.39,8672.59,True,connected
+887,Pic_20260914104358980-24.bmp,Exp 2000,p00887_Exp 2000_connected.png,1281,1294,37,75,2149.5,52.31,0.683,2.257,0.969,80.85,1527.42,True,connected
+888,Pic_20260914104358980-24.bmp,Exp 2000,p00888_Exp 2000_connected.png,1093,1164,45,60,1801.0,47.89,0.775,1.57,0.972,101.96,2989.69,True,connected
+889,Pic_20260914104358980-24.bmp,Exp 2000,p00889_Exp 2000_connected.png,1349,1133,36,36,922.0,34.26,0.836,1.0,0.971,92.19,1675.73,True,connected
+890,Pic_20260914104358980-24.bmp,Exp 2000,p00890_Exp 2000_connected.png,1279,1074,34,56,1309.5,40.83,0.758,1.946,0.979,91.14,1551.73,True,connected
+891,Pic_20260914104358980-24.bmp,Exp 2000,p00891_Exp 2000_connected.png,1371,973,56,64,1901.0,49.2,0.623,1.845,0.88,111.67,4924.4,True,connected
+892,Pic_20260914104358980-24.bmp,Exp 2000,p00892_Exp 2000_connected.png,1536,898,47,93,2067.5,51.31,0.436,2.708,0.795,106.31,2152.18,True,connected
+893,Pic_20260914104358980-24.bmp,Exp 2000,p00893_Exp 2000_single.png,814,896,21,24,351.0,21.14,0.852,1.15,0.968,138.11,1524.62,True,single
+894,Pic_20260914104358980-24.bmp,Exp 2000,p00894_Exp 2000_connected.png,228,865,23,11,163.5,14.43,0.674,2.2,0.948,182.17,3892.89,True,connected
+895,Pic_20260914104358980-24.bmp,Exp 2000,p00895_Exp 2000_connected.png,474,858,19,16,149.0,13.77,0.635,2.377,0.949,165.93,5586.21,True,connected
+896,Pic_20260914104358980-24.bmp,Exp 2000,p00896_Exp 2000_connected.png,1132,855,81,73,3002.5,61.83,0.385,1.389,0.721,107.06,2849.28,True,connected
+897,Pic_20260914104358980-24.bmp,Exp 2000,p00897_Exp 2000_connected.png,771,853,19,28,235.5,17.32,0.526,2.087,0.855,170.17,3139.83,True,connected
+898,Pic_20260914104358980-24.bmp,Exp 2000,p00898_Exp 2000_overlapped.png,1359,838,34,28,689.0,29.62,0.764,1.251,0.939,126.4,1840.99,True,overlapped
+899,Pic_20260914104358980-24.bmp,Exp 2000,p00899_Exp 2000_connected.png,65,829,19,20,213.5,16.49,0.732,1.587,0.947,188.4,8172.95,True,connected
+900,Pic_20260914104358980-24.bmp,Exp 2000,p00900_Exp 2000_connected.png,119,795,17,25,236.5,17.35,0.696,1.895,0.954,157.52,4182.66,True,connected
+901,Pic_20260914104358980-24.bmp,Exp 2000,p00901_Exp 2000_single.png,268,786,20,22,294.0,19.35,0.85,1.074,0.962,159.63,8090.57,True,single
+902,Pic_20260914104358980-24.bmp,Exp 2000,p00902_Exp 2000_connected.png,108,782,16,27,148.5,13.75,0.411,3.824,0.858,208.29,6478.06,True,connected
+903,Pic_20260914104358980-24.bmp,Exp 2000,p00903_Exp 2000_overlapped.png,725,781,16,12,130.5,12.89,0.79,1.364,0.953,262.01,6295.86,True,overlapped
+904,Pic_20260914104358980-24.bmp,Exp 2000,p00904_Exp 2000_connected.png,940,772,46,101,2341.0,54.6,0.345,2.222,0.642,101.82,2760.92,True,connected
+905,Pic_20260914104358980-24.bmp,Exp 2000,p00905_Exp 2000_connected.png,269,745,33,33,235.0,17.3,0.318,5.852,0.892,126.63,4729.23,True,connected
+906,Pic_20260914104358980-24.bmp,Exp 2000,p00906_Exp 2000_connected.png,70,740,22,25,262.5,18.28,0.661,2.8,0.978,190.06,6671.28,True,connected
+907,Pic_20260914104358980-24.bmp,Exp 2000,p00907_Exp 2000_connected.png,1134,730,37,43,1196.5,39.03,0.863,1.167,0.982,107.75,4813.3,True,connected
+908,Pic_20260914104358980-24.bmp,Exp 2000,p00908_Exp 2000_connected.png,1071,713,42,54,1508.0,43.82,0.748,1.293,0.951,108.51,4689.83,True,connected
+909,Pic_20260914104358980-24.bmp,Exp 2000,p00909_Exp 2000_connected.png,1492,709,12,27,153.5,13.98,0.447,2.634,0.821,195.39,2372.87,True,connected
+910,Pic_20260914104358980-24.bmp,Exp 2000,p00910_Exp 2000_single.png,223,707,18,25,274.0,18.68,0.746,1.024,0.956,134.22,2178.17,True,single
+911,Pic_20260914104358980-24.bmp,Exp 2000,p00911_Exp 2000_connected.png,106,684,26,25,384.5,22.13,0.701,1.834,0.937,162.25,6025.26,True,connected
+912,Pic_20260914104358980-24.bmp,Exp 2000,p00912_Exp 2000_connected.png,1534,670,9,35,170.0,14.71,0.364,4.592,0.888,220.2,3354.77,True,connected
+913,Pic_20260914104358980-24.bmp,Exp 2000,p00913_Exp 2000_connected.png,180,667,21,27,248.5,17.79,0.538,1.873,0.826,272.18,8393.71,True,connected
+914,Pic_20260914104358980-24.bmp,Exp 2000,p00914_Exp 2000_connected.png,1007,665,37,38,1056.5,36.68,0.91,1.02,0.986,144.42,7775.41,True,connected
+915,Pic_20260914104358980-24.bmp,Exp 2000,p00915_Exp 2000_connected.png,941,649,43,57,1388.5,42.05,0.594,1.584,0.886,114.31,2385.54,True,connected
+916,Pic_20260914104358980-24.bmp,Exp 2000,p00916_Exp 2000_connected.png,1135,638,53,40,1387.5,42.03,0.726,1.773,0.962,127.0,4208.47,True,connected
+917,Pic_20260914104358980-24.bmp,Exp 2000,p00917_Exp 2000_connected.png,568,613,15,18,136.5,13.18,0.694,2.154,0.965,289.24,9784.15,True,connected
+918,Pic_20260914104358980-24.bmp,Exp 2000,p00918_Exp 2000_connected.png,995,603,32,27,542.0,26.27,0.72,1.505,0.909,139.05,2376.15,True,connected
+919,Pic_20260914104358980-24.bmp,Exp 2000,p00919_Exp 2000_connected.png,783,598,20,16,136.0,13.16,0.539,2.286,0.861,194.57,5359.87,True,connected
+920,Pic_20260914104358980-24.bmp,Exp 2000,p00920_Exp 2000_single.png,77,594,12,15,119.0,12.31,0.81,1.273,0.952,278.06,7743.91,True,single
+921,Pic_20260914104358980-24.bmp,Exp 2000,p00921_Exp 2000_connected.png,1208,566,21,18,201.0,16.0,0.703,1.975,0.948,197.02,11190.24,True,connected
+922,Pic_20260914104358980-24.bmp,Exp 2000,p00922_Exp 2000_connected.png,528,551,22,16,170.5,14.73,0.651,2.118,0.947,291.16,9544.6,True,connected
+923,Pic_20260914104358980-24.bmp,Exp 2000,p00923_Exp 2000_overlapped.png,243,542,19,20,215.0,16.55,0.752,1.362,0.935,230.31,8675.64,True,overlapped
+924,Pic_20260914104358980-24.bmp,Exp 2000,p00924_Exp 2000_connected.png,978,511,38,33,808.5,32.08,0.782,1.024,0.937,228.83,5540.79,True,connected
+925,Pic_20260914104358980-24.bmp,Exp 2000,p00925_Exp 2000_connected.png,1576,503,44,31,639.5,28.53,0.523,2.313,0.853,144.72,1673.89,True,connected
+926,Pic_20260914104358980-24.bmp,Exp 2000,p00926_Exp 2000_connected.png,1466,502,34,59,1473.0,43.31,0.77,1.796,0.969,136.41,2676.47,True,connected
+927,Pic_20260914104358980-24.bmp,Exp 2000,p00927_Exp 2000_connected.png,789,480,18,16,119.0,12.31,0.523,1.508,0.835,178.2,4143.0,True,connected
+928,Pic_20260914104358980-24.bmp,Exp 2000,p00928_Exp 2000_connected.png,1299,473,66,70,2417.0,55.47,0.573,1.867,0.858,100.04,3643.98,True,connected
+929,Pic_20260914104358980-24.bmp,Exp 2000,p00929_Exp 2000_connected.png,370,461,18,20,221.0,16.77,0.764,1.541,0.944,221.15,8625.76,True,connected
+930,Pic_20260914104358980-24.bmp,Exp 2000,p00930_Exp 2000_connected.png,1563,450,39,40,1146.5,38.21,0.868,1.098,0.977,199.29,8597.55,True,connected
+931,Pic_20260914104358980-24.bmp,Exp 2000,p00931_Exp 2000_connected.png,675,441,18,17,131.5,12.94,0.496,2.227,0.824,151.82,1534.17,True,connected
+932,Pic_20260914104358980-24.bmp,Exp 2000,p00932_Exp 2000_single.png,370,439,17,18,189.5,15.53,0.791,1.182,0.948,268.07,8109.43,True,single
+933,Pic_20260914104358980-24.bmp,Exp 2000,p00933_Exp 2000_connected.png,1200,419,52,85,2479.0,56.18,0.438,2.041,0.783,118.46,2652.86,True,connected
+934,Pic_20260914104358980-24.bmp,Exp 2000,p00934_Exp 2000_connected.png,919,384,36,42,297.5,19.46,0.282,5.547,0.887,124.2,4761.5,True,connected
+935,Pic_20260914104358980-24.bmp,Exp 2000,p00935_Exp 2000_connected.png,1405,382,43,39,1092.5,37.3,0.769,1.34,0.937,140.24,4088.57,True,connected
+936,Pic_20260914104358980-24.bmp,Exp 2000,p00936_Exp 2000_connected.png,1293,375,65,35,1621.5,45.44,0.694,2.195,0.963,112.91,1958.58,True,connected
+937,Pic_20260914104358980-24.bmp,Exp 2000,p00937_Exp 2000_connected.png,685,362,30,22,205.5,16.18,0.409,4.097,0.917,138.5,3813.63,True,connected
+938,Pic_20260914104358980-24.bmp,Exp 2000,p00938_Exp 2000_connected.png,175,346,19,20,212.5,16.45,0.729,1.833,0.951,155.9,2169.55,True,connected
+939,Pic_20260914104358980-24.bmp,Exp 2000,p00939_Exp 2000_connected.png,1832,343,38,37,1026.5,36.15,0.867,1.063,0.976,127.66,2505.77,True,connected
+940,Pic_20260914104358980-24.bmp,Exp 2000,p00940_Exp 2000_connected.png,1618,322,51,42,1317.5,40.96,0.748,1.241,0.946,121.81,2633.52,True,connected
+941,Pic_20260914104358980-24.bmp,Exp 2000,p00941_Exp 2000_connected.png,1762,313,39,32,918.5,34.2,0.87,1.226,0.979,117.03,2420.54,True,connected
+942,Pic_20260914104358980-24.bmp,Exp 2000,p00942_Exp 2000_connected.png,551,300,19,46,309.0,19.84,0.338,5.061,0.867,127.15,2176.59,True,connected
+943,Pic_20260914104358980-24.bmp,Exp 2000,p00943_Exp 2000_connected.png,1333,292,46,38,1268.0,40.18,0.863,1.155,0.981,122.69,3659.22,True,connected
+944,Pic_20260914104358980-24.bmp,Exp 2000,p00944_Exp 2000_connected.png,926,274,41,41,263.0,18.3,0.224,7.9,0.804,100.36,2440.53,True,connected
+945,Pic_20260914104358980-24.bmp,Exp 2000,p00945_Exp 2000_connected.png,867,266,31,22,422.0,23.18,0.744,1.849,0.962,139.93,2683.89,True,connected
+946,Pic_20260914104358980-24.bmp,Exp 2000,p00946_Exp 2000_connected.png,244,238,21,23,256.5,18.07,0.67,2.105,0.954,108.85,1812.95,True,connected
+947,Pic_20260914104358980-24.bmp,Exp 2000,p00947_Exp 2000_connected.png,1174,223,37,39,1019.5,36.03,0.883,1.02,0.98,109.98,5576.26,True,connected
+948,Pic_20260914104358980-24.bmp,Exp 2000,p00948_Exp 2000_connected.png,1114,209,33,36,863.0,33.15,0.869,1.094,0.98,112.78,1586.87,True,connected
+949,Pic_20260914104358980-24.bmp,Exp 2000,p00949_Exp 2000_overlapped.png,999,160,15,13,116.5,12.18,0.828,1.435,0.959,175.34,3068.87,True,overlapped
+950,Pic_20260914104358980-24.bmp,Exp 2000,p00950_Exp 2000_connected.png,182,138,15,16,121.5,12.44,0.662,2.417,0.957,249.81,5962.94,True,connected
+951,Pic_20260914104358980-24.bmp,Exp 2000,p00951_Exp 2000_overlapped.png,293,136,23,33,370.5,21.72,0.608,1.379,0.888,137.84,3268.54,True,overlapped
+952,Pic_20260914104358980-24.bmp,Exp 2000,p00952_Exp 2000_connected.png,479,79,32,32,364.5,21.54,0.421,2.506,0.741,155.01,4498.17,True,connected
+953,Pic_20260914104358980-24.bmp,Exp 2000,p00953_Exp 2000_connected.png,1901,34,31,27,508.0,25.43,0.772,1.75,0.964,84.6,1553.25,True,connected
+954,Pic_20260914104358980-24.bmp,Exp 2000,p00954_Exp 2000_connected.png,330,27,12,33,266.0,18.4,0.569,3.006,0.933,227.66,4864.86,True,connected
+955,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00955_Exp1000 on_connected.png,776,941,30,34,422.5,23.19,0.43,1.089,0.741,483.5,23392.24,True,connected
+956,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00956_Exp1000 on_single.png,1369,828,17,19,210.5,16.37,0.853,1.176,0.966,87.7,3890.01,True,single
+957,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00957_Exp1000 on_connected.png,43,815,247,70,5749.5,85.56,0.165,4.128,0.604,132.24,5122.99,True,connected
+958,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00958_Exp1000 on_single.png,1194,757,29,32,710.0,30.07,0.885,1.107,0.983,74.42,2653.91,True,single
+959,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00959_Exp1000 on_single.png,1137,750,32,29,695.5,29.76,0.862,1.107,0.98,88.66,3048.17,True,single
+960,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00960_Exp1000 on_single.png,1046,671,35,38,948.0,34.74,0.882,1.13,0.98,70.09,3294.15,True,single
+961,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00961_Exp1000 on_connected.png,26,508,47,145,2905.5,60.82,0.243,3.447,0.607,151.08,8263.17,True,connected
+962,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00962_Exp1000 on_overlapped.png,1393,500,43,29,954.0,34.85,0.848,1.5,0.981,70.21,2113.83,True,overlapped
+963,Pic_20260914105015651-34.bmp,Exp1000 only external light,p00963_Exp1000 on_connected.png,1852,289,24,20,201.5,16.02,0.414,1.979,0.769,250.52,6383.98,True,connected
+964,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00964_Exp1000 on_connected.png,119,962,34,107,1931.5,49.59,0.336,3.49,0.808,83.5,1783.64,True,connected
+965,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00965_Exp1000 on_connected.png,774,941,32,30,414.0,22.96,0.455,1.124,0.733,426.45,21825.4,True,connected
+966,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00966_Exp1000 on_connected.png,1402,742,31,71,1263.0,40.1,0.515,2.676,0.871,578.4,31920.45,True,connected
+967,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00967_Exp1000 on_single.png,1311,722,32,39,922.0,34.26,0.865,1.226,0.978,76.6,1642.76,True,single
+968,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00968_Exp1000 on_connected.png,32,545,34,23,230.0,17.11,0.327,2.431,0.585,484.48,12740.93,True,connected
+969,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00969_Exp1000 on_connected.png,50,504,18,29,254.5,18.0,0.626,1.768,0.875,171.76,3502.52,True,connected
+970,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00970_Exp1000 on_connected.png,1408,494,72,227,5063.0,80.29,0.151,3.265,0.5,137.62,5782.7,True,connected
+971,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00971_Exp1000 on_single.png,1338,392,31,29,631.0,28.34,0.859,1.022,0.968,70.87,2802.63,True,single
+972,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00972_Exp1000 on_connected.png,1667,383,323,81,7576.5,98.22,0.109,5.334,0.512,159.49,5890.8,True,connected
+973,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00973_Exp1000 on_connected.png,1847,288,30,21,287.5,19.13,0.343,1.559,0.698,448.07,10699.62,True,connected
+974,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00974_Exp1000 on_single.png,1545,197,38,40,1156.5,38.37,0.887,1.054,0.982,77.58,2344.25,True,single
+975,Pic_20260914105015661-35.bmp,Exp1000 only external light,p00975_Exp1000 on_single.png,1570,148,38,37,1043.0,36.44,0.889,1.028,0.983,72.63,2393.13,True,single
+976,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00976_Exp1000 on_connected.png,782,941,24,30,312.5,19.95,0.563,2.52,0.893,769.27,29597.05,True,connected
+977,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00977_Exp1000 on_single.png,1266,838,32,34,860.5,33.1,0.896,1.065,0.985,81.35,4227.59,True,single
+978,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00978_Exp1000 on_single.png,1291,682,42,36,1142.5,38.14,0.877,1.171,0.98,86.72,2822.97,True,single
+979,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00979_Exp1000 on_connected.png,56,509,13,26,117.5,12.23,0.374,2.727,0.691,338.58,7947.55,True,connected
+980,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00980_Exp1000 on_connected.png,1766,426,22,25,112.0,11.94,0.239,4.123,0.62,195.38,4049.13,True,connected
+981,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00981_Exp1000 on_connected.png,1848,287,28,22,316.0,20.06,0.385,1.375,0.732,484.26,11667.81,True,connected
+982,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00982_Exp1000 on_single.png,1294,237,35,35,928.0,34.37,0.883,1.0,0.981,73.27,2350.19,True,single
+983,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00983_Exp1000 on_single.png,923,205,32,31,732.0,30.53,0.863,1.033,0.977,72.61,1816.76,True,single
+984,Pic_20260914105015671-36.bmp,Exp1000 only external light,p00984_Exp1000 on_single.png,1579,40,33,32,772.0,31.35,0.881,1.031,0.977,79.48,2081.48,True,single
