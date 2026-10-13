@@ -13,6 +13,8 @@ from .background_engine import BackgroundEngine
 from .particle_physics import FluidBedKinematics
 from .exporter import DatasetExporter
 from .temporal_verifier import TemporalAgglomerationVerifier
+from .pellet_tracker import PelletTracker, KalmanBoxTracker
+from .sequence_model import PelletSequenceModel
 
 __all__ = [
     'SimulationConfig',
@@ -22,6 +24,10 @@ __all__ = [
     'BackgroundEngine',
     'FluidBedKinematics',
     'DatasetExporter',
-    'TemporalAgglomerationVerifier'
+    'TemporalAgglomerationVerifier',
+    'PelletTracker',
+    'KalmanBoxTracker',
+    'PelletSequenceModel'
 ]
+
 

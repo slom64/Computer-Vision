@@ -12,17 +12,18 @@ class SimulationConfig:
     output_grayscale: bool = True       # Sensor outputs monochrome (saved as 3-ch identical BGR or 1-ch)
     
     # ---------------- Pellet Physical Geometry ----------------
-    base_radius: float = 13.5          # Average radius in pixels matching real camera sensor
-    radius_variance: float = 0.08      # Relative variation (+/- 8%)
-    aspect_ratio_min: float = 0.94     # Natural non-sphericity
-    aspect_ratio_max: float = 1.06
+    base_radius: float = 13.0          # Average radius in pixels matching real camera sensor
+    radius_variance: float = 0.14      # Relative variation (+/- 14% to cover small and large pellets)
+    aspect_ratio_min: float = 0.92     # Natural non-sphericity
+    aspect_ratio_max: float = 1.08
     bridge_k: float = 3.2              # Meniscus liquid-bridge blending between agglomerated spheres
     overlap_min: float = 0.80          # Center distance ratio for agglomeration bonds
     overlap_max: float = 0.92
     
     # ---------------- Population & Class Distribution ----------------
     # Controls how many particles exist simultaneously in the chamber
-    num_particles_active: int = 35     # Total concurrent pellets/agglomerates in viewport
+    num_particles_active: int = 240    # Dense swarm matching real fluid bed chamber (200-350 pellets)
+
     
     # Probability distribution of particle types when spawned
     # (single: 1 pellet, dimer: 2, trimer: 3, cluster: 4 to 6)
