@@ -25,6 +25,7 @@ class FluidBedKinematics:
         p1 = self.config.prob_single
         p2 = p1 + self.config.prob_dimer
         p3 = p2 + self.config.prob_trimer
+        p4 = p3 + self.config.prob_cluster
         
         if r < p1:
             return 1
@@ -32,8 +33,10 @@ class FluidBedKinematics:
             return 2
         elif r < p3:
             return 3
+        elif r < p4:
+            return random.randint(4, 6)
         else:
-            return random.randint(4, self.config.max_cluster_size)
+            return random.randint(7, self.config.max_cluster_size)
 
     def spawn_entity(
         self,
@@ -47,7 +50,8 @@ class FluidBedKinematics:
             count=count,
             base_radius=self.config.base_radius,
             radius_variance=self.config.radius_variance,
-            overlap_range=(self.config.overlap_min, self.config.overlap_max)
+            overlap_range=(self.config.overlap_min, self.config.overlap_max),
+            morphology=self.config.cluster_morphology
         )
         self.next_id += 1
         

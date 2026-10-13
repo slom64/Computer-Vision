@@ -1,4 +1,5 @@
 import math
+import random
 from typing import List, Tuple, Optional, Dict, Any
 import cv2
 import numpy as np
@@ -13,28 +14,78 @@ def smin_val(a: np.ndarray, b: np.ndarray, k: float = 3.2) -> np.ndarray:
 class OpticalRenderer:
     """
     Photometric & Optical rendering engine calibrated to fluid bed inspection imaging.
-    Simulates dual specular reflections, 3D surface normals, organic binder meniscus necks,
-    depth-of-field defocus blur, directional motion blur, and camera sensor noise.
+    Features:
+    - Multi-angle dynamic lighting (coaxial, side glancing, multi-azimuth LED banks)
+    - Subsurface diffuse scattering ensuring smooth, natural meniscus necks (no black artifacts)
+    - Dual specular reflections (sharp highlight + broad gloss sheen)
+    - 3D surface normals with liquid-bridge meniscus necks for up to 20-pellet macro-clusters
+    - Physically grounded Ambient Occlusion (AO) crevice shadows
+    - Directional inter-sphere self-shadowing
+    - Depth-of-field progressive defocus blur and velocity motion blur
+    - Poisson-Gaussian camera sensor noise
     """
     def __init__(self, config: SimulationConfig):
         self.config = config
+        self.view_dir = np.array([0.0, 0.0, 1.0], dtype=float)
+        
+        # Current active lighting parameters
         self.light_dir = np.array(config.light_dir, dtype=float)
         self.light_dir /= np.linalg.norm(self.light_dir)
-        self.view_dir = np.array([0.0, 0.0, 1.0], dtype=float)
         self.half_vector = (self.light_dir + self.view_dir) / np.linalg.norm(self.light_dir + self.view_dir)
+        
+        self.current_ambient = config.ambient_intensity
+        self.current_diffuse = config.diffuse_intensity
+        self.current_specular_broad = config.specular_broad
+        self.current_specular_sharp = config.specular_sharp
+        self.current_specular_sharp_exp = config.specular_sharp_exp
+        self.current_lamp_gain = 1.0
+
+    def sample_dynamic_lighting(self):
+        """Randomizes photometric lighting parameters to create diverse illumination batches."""
+        if not self.config.randomize_lighting:
+            return
+            
+        cfg = self.config
+        
+        if cfg.lighting_mode == 'coaxial':
+            # Direct top-down / front coaxial inspection ring light
+            azimuth = random.uniform(0, 2 * math.pi)
+            elevation = math.radians(random.uniform(70.0, 88.0))
+        elif cfg.lighting_mode == 'side_grazing':
+            # Low-angle glancing light to accentuate crevice edges
+            azimuth = random.uniform(0, 2 * math.pi)
+            elevation = math.radians(random.uniform(25.0, 45.0))
+        elif cfg.lighting_mode == 'high_contrast':
+            # Strong point source with sharp shadows
+            azimuth = random.uniform(0, 2 * math.pi)
+            elevation = math.radians(random.uniform(40.0, 65.0))
+        else:
+            # Dynamic multi-angle coverage
+            azimuth = random.uniform(0, 2 * math.pi)
+            elevation = math.radians(random.uniform(35.0, 82.0))
+            
+        lx = math.cos(elevation) * math.cos(azimuth)
+        ly = math.cos(elevation) * math.sin(azimuth)
+        lz = math.sin(elevation)
+        
+        self.light_dir = np.array([lx, ly, lz], dtype=float)
+        self.light_dir /= np.linalg.norm(self.light_dir)
+        self.half_vector = (self.light_dir + self.view_dir) / np.linalg.norm(self.light_dir + self.view_dir)
+        
+        # Randomize intensities
+        self.current_ambient = random.uniform(cfg.ambient_range[0], cfg.ambient_range[1])
+        self.current_diffuse = random.uniform(cfg.diffuse_range[0], cfg.diffuse_range[1])
+        self.current_specular_broad = random.uniform(cfg.specular_range[0], cfg.specular_range[1])
+        self.current_specular_sharp = random.uniform(cfg.specular_range[0], cfg.specular_range[1])
+        self.current_specular_sharp_exp = random.uniform(cfg.specular_exp_range[0], cfg.specular_exp_range[1])
+        self.current_lamp_gain = random.uniform(cfg.lamp_drift_range[0], cfg.lamp_drift_range[1])
 
     def render_entity_patch(
         self,
         entity: PelletEntity
     ) -> Tuple[np.ndarray, np.ndarray, Optional[Tuple[int, int, int, int]], Optional[np.ndarray], Tuple[int, int, int, int]]:
         """
-        Renders a local patch for a single pellet or agglomerate entity.
-        Returns:
-            fg: Foreground intensity patch (float32)
-            fg_alpha: Transparency alpha mask (float32)
-            local_bbox: (x1, y1, x2, y2) bounding box relative to patch
-            local_contour: Nx2 polygon contour for instance segmentation
-            patch_bounds: (x_min, y_min, width, height) relative to entity center
+        Renders a local patch for a single pellet or macro-agglomerate (1 to 20 pellets).
         """
         transformed_nodes = entity.get_world_transformed_nodes()
         k_bridge = self.config.bridge_k
@@ -42,7 +93,7 @@ class OpticalRenderer:
         xs_arr = [s[0] for s in transformed_nodes]
         ys_arr = [s[1] for s in transformed_nodes]
         max_r = max([s[3] for s in transformed_nodes])
-        pad = int(max_r * 1.5) + 12
+        pad = int(max_r * 1.5) + 14
         
         x_min, x_max = int(min(xs_arr) - max_r - pad), int(max(xs_arr) + max_r + pad)
         y_min, y_max = int(min(ys_arr) - max_r - pad), int(max(ys_arr) + max_r + pad)
@@ -62,10 +113,9 @@ class OpticalRenderer:
             d_curr = np.hypot(xs - sx, ys - sy) - sr
             d_union = smin_val(d_union, d_curr, k_bridge)
             
-        pellet_mask = d_union <= 0.0
         edge_alpha = np.clip(-d_union + 0.5, 0.0, 1.0)
         
-        # Surface normal computation with sphere blending
+        # Surface normal computation with smooth liquid-bridge blending
         nx = np.zeros((h, w), dtype=float)
         ny = np.zeros((h, w), dtype=float)
         nz = np.zeros((h, w), dtype=float)
@@ -79,16 +129,19 @@ class OpticalRenderer:
             
             dz = np.zeros_like(dx)
             dz[in_sph] = np.sqrt(np.maximum(0, sr**2 - r2[in_sph]))
-            bridge = (~in_sph) & (r2 <= (sr + k_bridge * 1.5)**2)
-            dz[bridge] = np.maximum(0, sr * 0.35 - (np.sqrt(r2[bridge]) - sr) * 0.5)
+            
+            # Meniscus bridge region: smooth catenoid surface facing the camera
+            bridge = (~in_sph) & (r2 <= (sr + k_bridge * 2.0)**2)
+            dist_from_sph = np.sqrt(r2[bridge]) - sr
+            dz[bridge] = np.maximum(0.0, sr * 0.50 - dist_from_sph * 0.40)
             
             n_len = np.sqrt(dx**2 + dy**2 + dz**2) + 1e-6
             snx = dx / n_len
             sny = dy / n_len
-            snz = dz / n_len
+            snz = np.maximum(0.35, dz / n_len)  # Enforce forward-facing camera normal on front surface
             
             dist = np.sqrt(r2)
-            weight = np.exp(-0.5 * (dist / (sr * 0.6))**2) + 1e-5
+            weight = np.exp(-0.5 * (dist / (sr * 0.7))**2) + 1e-5
             
             nx += snx * weight
             ny += sny * weight
@@ -98,18 +151,29 @@ class OpticalRenderer:
         nx /= total_w
         ny /= total_w
         nz /= total_w
+        
+        # Guarantee that inside the pellet silhouette, the surface normal always points toward the camera
+        nz = np.maximum(nz, 0.45)
+        
         norm = np.sqrt(nx**2 + ny**2 + nz**2) + 1e-6
         nx /= norm
         ny /= norm
         nz /= norm
         
-        # Ambient Occlusion (AO) crevice shadows between connected spheres
+        # Physical Ambient Occlusion (AO) crevice shadows:
+        # Real pellets have high subsurface scattering (albedo ~0.8), so contact valleys
+        # are gentle soft shadows, NEVER black holes!
         ao = np.ones((h, w), dtype=float)
-        if len(transformed_nodes) > 1:
-            for i in range(len(transformed_nodes)):
-                for j in range(i + 1, len(transformed_nodes)):
-                    s1 = transformed_nodes[i]
+        N_nodes = len(transformed_nodes)
+        if N_nodes > 1:
+            for i in range(N_nodes):
+                s1 = transformed_nodes[i]
+                for j in range(i + 1, N_nodes):
                     s2 = transformed_nodes[j]
+                    dist_2d = math.hypot(s1[0] - s2[0], s1[1] - s2[1])
+                    if dist_2d > (s1[3] + s2[3]) * 1.30:
+                        continue # Skip non-adjacent pairs
+                        
                     c1 = np.array([s1[0], s1[1]])
                     c2 = np.array([s2[0], s2[1]])
                     seg = c2 - c1
@@ -127,11 +191,12 @@ class OpticalRenderer:
                     dist_from_spheres = np.sqrt((d1 - s1[3])**2 + (d2 - s2[3])**2)
                     crevice_factor = np.exp(-0.5 * (dist_from_spheres / self.config.ao_crevice_width)**2)
                     ao -= self.config.ao_crevice_strength * crevice_factor * in_segment
-            ao = np.clip(ao, 0.30, 1.0)
+            # Gentle soft shadow floor: never drop below 0.72 (eliminates black neck artifacts)
+            ao = np.clip(ao, 0.72, 1.0)
             
-        # Directional inter-sphere self-shadowing
+        # Directional inter-sphere self-shadowing (only between non-adjacent or distant spheres)
         shadow = np.ones((h, w), dtype=float)
-        if len(transformed_nodes) > 1:
+        if N_nodes > 1:
             for idx_c, caster in enumerate(transformed_nodes):
                 for idx_r, receiver in enumerate(transformed_nodes):
                     if idx_c == idx_r:
@@ -139,7 +204,15 @@ class OpticalRenderer:
                     caster_pos = np.array(caster[:3])
                     receiver_pos = np.array(receiver[:3])
                     rel = caster_pos - receiver_pos
-                    if np.dot(rel, self.light_dir) > 1.8:
+                    dist_centers = math.hypot(rel[0], rel[1])
+                    
+                    # Connected adjacent spheres share a meniscus and do NOT cast hard shadows onto each other
+                    if dist_centers < (caster[3] + receiver[3]) * 0.95:
+                        continue
+                    if dist_centers > (caster[3] + receiver[3]) * 2.5:
+                        continue
+                        
+                    if np.dot(rel, self.light_dir) > 1.6:
                         dx_c = xs - (caster[0] + self.light_dir[0] * caster[3] * 0.6)
                         dy_c = ys - (caster[1] + self.light_dir[1] * caster[3] * 0.6)
                         sh_dist = np.hypot(dx_c, dy_c)
@@ -147,46 +220,49 @@ class OpticalRenderer:
                         d_rec = np.hypot(xs - receiver[0], ys - receiver[1])
                         receiver_mask = d_rec <= receiver[3]
                         shadow[receiver_mask] *= (1.0 - sh_factor[receiver_mask])
-            shadow = np.clip(shadow, 0.35, 1.0)
+            shadow = np.clip(shadow, 0.65, 1.0)
 
-        # Illumination model
+        # Dynamic Illumination model with Subsurface Scattering
         L = self.light_dir
         H = self.half_vector
-        NdotL = np.maximum(0, nx * L[0] + ny * L[1] + nz * L[2])
-        NdotH = np.maximum(0, nx * H[0] + ny * H[1] + nz * H[2])
+        NdotL = np.maximum(0.0, nx * L[0] + ny * L[1] + nz * L[2])
+        NdotH = np.maximum(0.0, nx * H[0] + ny * H[1] + nz * H[2])
         
-        ambient = self.config.ambient_intensity * ao
-        diffuse = self.config.diffuse_intensity * NdotL * shadow * ao
+        # Soft crevice shading with subsurface scattering floor
+        ambient = self.current_ambient * (0.65 + 0.35 * ao)
+        diffuse = self.current_diffuse * NdotL * (0.70 + 0.30 * ao) * shadow
+        subsurface = 0.12 * (0.80 + 0.20 * ao)  # Internal diffuse scattering prevents pitch black valleys
+        
         specular = (
-            self.config.specular_broad * (NdotH ** self.config.specular_broad_exp) +
-            self.config.specular_sharp * (NdotH ** self.config.specular_sharp_exp)
+            self.current_specular_broad * (NdotH ** self.config.specular_broad_exp) +
+            self.current_specular_sharp * (NdotH ** self.config.specular_sharp_exp)
         ) * shadow
         
         # Micro-texture noise on pellet surface
         noise = np.random.normal(1.0, self.config.surface_noise_std, (h, w))
-        intensity = (ambient + diffuse + specular) * noise * 225.0
+        intensity = (ambient + diffuse + subsurface + specular) * noise * 220.0
         intensity = np.clip(intensity, 0, 255.0)
         
-        # Progressive Depth of Field (DoF):
-        # Particles within focus_sharp_tolerance are crystal-sharp (no Gaussian blur)
-        # Particles further in front or behind blur progressively
+        # Progressive Depth of Field (DoF)
         z_dist = abs(entity.position[2] - self.config.focus_z_center)
         excess_z = max(0.0, z_dist - self.config.focus_sharp_tolerance)
         defocus_sigma = excess_z * self.config.defocus_blur_rate
-        attenuation = 1.0 / (1.0 + 0.04 * z_dist)
+        attenuation = 1.0 / (1.0 + 0.035 * z_dist)
         intensity = intensity * attenuation
         
         fg = intensity * edge_alpha * attenuation
         fg_alpha = edge_alpha * attenuation
         
-        if defocus_sigma > 0.35:
-            fg = cv2.GaussianBlur(fg, (0, 0), defocus_sigma)
-            fg_alpha = cv2.GaussianBlur(fg_alpha, (0, 0), defocus_sigma)
+        if defocus_sigma > 0.4:
+            ksize = int(round(defocus_sigma * 3.5)) | 1
+            ksize = max(3, min(ksize, 25))
+            fg = cv2.GaussianBlur(fg, (ksize, ksize), defocus_sigma)
+            fg_alpha = cv2.GaussianBlur(fg_alpha, (ksize, ksize), defocus_sigma)
             
-        # Directional motion blur
-        vx, vy = entity.velocity[:2]
+        # Velocity motion blur
+        vx, vy = entity.velocity[0], entity.velocity[1]
         speed = math.hypot(vx, vy)
-        if speed > 1.5:
+        if speed > 1.2:
             kernel_len = int(min(speed * self.config.motion_blur_scale, self.config.max_motion_blur_kernel))
             if kernel_len >= 3:
                 if kernel_len % 2 == 0:
@@ -227,10 +303,9 @@ class OpticalRenderer:
     ) -> Tuple[np.ndarray, List[Dict[str, Any]]]:
         """
         Renders a full scene by compositing all entities onto the background plate.
-        Returns:
-            final_image: 2D uint8 image (H x W)
-            annotations: List of ground-truth annotations for in-focus objects
         """
+        self.sample_dynamic_lighting()
+        
         H_img, W_img = background.shape[:2]
         canvas = background.astype(float).copy()
         
@@ -287,6 +362,7 @@ class OpticalRenderer:
                             'class_name': class_name,
                             'count': entity.count,
                             'type': entity.pellet_type.value,
+                            'morphology': entity.morphology,
                             'bbox_xyxy': [gx1, gy1, gx2, gy2],
                             'bbox_yolo': [
                                 ((gx1 + gx2) / 2.0) / W_img,
@@ -300,12 +376,10 @@ class OpticalRenderer:
                         
                         if lcontour is not None:
                             global_pts = lcontour + np.array([int(entity.position[0] + x_min), int(entity.position[1] + y_min)])
-                            # Clip polygon to image bounds
                             global_pts[:, 0] = np.clip(global_pts[:, 0], 0, W_img - 1)
                             global_pts[:, 1] = np.clip(global_pts[:, 1], 0, H_img - 1)
                             annot['polygon'] = global_pts.tolist()
                             
-                            # Normalized polygon for YOLO segmentation
                             norm_poly = []
                             for pt in global_pts:
                                 norm_poly.extend([pt[0] / W_img, pt[1] / H_img])
@@ -313,9 +387,9 @@ class OpticalRenderer:
                             
                         annotations.append(annot)
                         
-        # Camera sensor noise
+        # Apply global lamp gain and sensor noise
+        canvas = canvas * getattr(self, 'current_lamp_gain', 1.0)
         noise = np.random.normal(0, self.config.sensor_noise_std, canvas.shape)
         final_img = np.clip(canvas + noise, 0, 255.0).astype(np.uint8)
         
         return final_img, annotations
-
