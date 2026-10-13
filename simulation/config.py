@@ -34,22 +34,25 @@ class SimulationConfig:
     
     # ---------------- Lighting & Shading Model ----------------
     light_dir: Tuple[float, float, float] = (0.15, -0.22, 0.95) # Top-front light source
-    ambient_intensity: float = 0.38
-    diffuse_intensity: float = 0.38
-    specular_broad: float = 0.32
-    specular_sharp: float = 0.22
+    ambient_intensity: float = 0.32
+    diffuse_intensity: float = 0.42
+    specular_broad: float = 0.28
+    specular_sharp: float = 0.28
     specular_broad_exp: float = 5.0
-    specular_sharp_exp: float = 18.0
-    surface_noise_std: float = 0.035   # Micro-roughness on pellet surface
+    specular_sharp_exp: float = 22.0
+    surface_noise_std: float = 0.045   # Micro-roughness on pellet surface
     sensor_noise_std: float = 1.8      # Poisson-Gaussian camera noise floor
+    ao_crevice_strength: float = 0.65  # Ambient occlusion depth in neck valleys
+    ao_crevice_width: float = 3.0      # Valley width in pixels
+    self_shadow_strength: float = 0.50 # Directional inter-sphere shadowing
     
     # ---------------- Optics: Depth of Field & Motion Blur ----------------
     focus_z_center: float = 0.0        # Focal plane location
-    focus_depth_tolerance: float = 6.5 # Particles within |z| < tolerance are considered in-focus
-    defocus_base_sigma: float = 0.75   # In-focus optical PSF
-    defocus_blur_rate: float = 0.12    # Growth rate of defocus blur per unit z-distance
-    motion_blur_scale: float = 0.35    # Exposure time velocity blur scaling factor
-    max_motion_blur_kernel: int = 15   # Max kernel size in pixels
+    focus_sharp_tolerance: float = 1.8 # Particles within |z| < 1.8 are crystal-sharp (zero defocus blur)
+    focus_depth_tolerance: float = 5.5 # Particles within |z| < tolerance are considered in-focus labels
+    defocus_blur_rate: float = 0.22    # Growth rate of progressive defocus blur per unit z-distance
+    motion_blur_scale: float = 0.30    # Exposure time velocity blur scaling factor
+    max_motion_blur_kernel: int = 13   # Max kernel size in pixels
     
     # ---------------- Fluid Bed Kinematics ----------------
     # Viewable chamber region (excluding static metal nozzle on right and bottom flange)

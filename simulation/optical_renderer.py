@@ -103,34 +103,83 @@ class OpticalRenderer:
         ny /= norm
         nz /= norm
         
+        # Ambient Occlusion (AO) crevice shadows between connected spheres
+        ao = np.ones((h, w), dtype=float)
+        if len(transformed_nodes) > 1:
+            for i in range(len(transformed_nodes)):
+                for j in range(i + 1, len(transformed_nodes)):
+                    s1 = transformed_nodes[i]
+                    s2 = transformed_nodes[j]
+                    c1 = np.array([s1[0], s1[1]])
+                    c2 = np.array([s2[0], s2[1]])
+                    seg = c2 - c1
+                    seg_len = np.linalg.norm(seg)
+                    if seg_len < 1e-4:
+                        continue
+                    seg_u = seg / seg_len
+                    pts_x = xs - c1[0]
+                    pts_y = ys - c1[1]
+                    proj_t = (pts_x * seg_u[0] + pts_y * seg_u[1]) / seg_len
+                    in_segment = (proj_t >= 0.15) & (proj_t <= 0.85)
+                    
+                    d1 = np.hypot(xs - s1[0], ys - s1[1])
+                    d2 = np.hypot(xs - s2[0], ys - s2[1])
+                    dist_from_spheres = np.sqrt((d1 - s1[3])**2 + (d2 - s2[3])**2)
+                    crevice_factor = np.exp(-0.5 * (dist_from_spheres / self.config.ao_crevice_width)**2)
+                    ao -= self.config.ao_crevice_strength * crevice_factor * in_segment
+            ao = np.clip(ao, 0.30, 1.0)
+            
+        # Directional inter-sphere self-shadowing
+        shadow = np.ones((h, w), dtype=float)
+        if len(transformed_nodes) > 1:
+            for idx_c, caster in enumerate(transformed_nodes):
+                for idx_r, receiver in enumerate(transformed_nodes):
+                    if idx_c == idx_r:
+                        continue
+                    caster_pos = np.array(caster[:3])
+                    receiver_pos = np.array(receiver[:3])
+                    rel = caster_pos - receiver_pos
+                    if np.dot(rel, self.light_dir) > 1.8:
+                        dx_c = xs - (caster[0] + self.light_dir[0] * caster[3] * 0.6)
+                        dy_c = ys - (caster[1] + self.light_dir[1] * caster[3] * 0.6)
+                        sh_dist = np.hypot(dx_c, dy_c)
+                        sh_factor = self.config.self_shadow_strength * np.clip(1.0 - (sh_dist / (caster[3] * 1.15)), 0.0, 1.0)
+                        d_rec = np.hypot(xs - receiver[0], ys - receiver[1])
+                        receiver_mask = d_rec <= receiver[3]
+                        shadow[receiver_mask] *= (1.0 - sh_factor[receiver_mask])
+            shadow = np.clip(shadow, 0.35, 1.0)
+
         # Illumination model
         L = self.light_dir
         H = self.half_vector
         NdotL = np.maximum(0, nx * L[0] + ny * L[1] + nz * L[2])
         NdotH = np.maximum(0, nx * H[0] + ny * H[1] + nz * H[2])
         
-        ambient = self.config.ambient_intensity
-        diffuse = self.config.diffuse_intensity * NdotL
+        ambient = self.config.ambient_intensity * ao
+        diffuse = self.config.diffuse_intensity * NdotL * shadow * ao
         specular = (
             self.config.specular_broad * (NdotH ** self.config.specular_broad_exp) +
             self.config.specular_sharp * (NdotH ** self.config.specular_sharp_exp)
-        )
+        ) * shadow
         
         # Micro-texture noise on pellet surface
         noise = np.random.normal(1.0, self.config.surface_noise_std, (h, w))
-        intensity = (ambient + diffuse + specular) * noise * 220.0
+        intensity = (ambient + diffuse + specular) * noise * 225.0
         intensity = np.clip(intensity, 0, 255.0)
         
-        # Depth of Field (defocus blur & intensity attenuation)
+        # Progressive Depth of Field (DoF):
+        # Particles within focus_sharp_tolerance are crystal-sharp (no Gaussian blur)
+        # Particles further in front or behind blur progressively
         z_dist = abs(entity.position[2] - self.config.focus_z_center)
-        defocus_sigma = self.config.defocus_base_sigma + self.config.defocus_blur_rate * z_dist
+        excess_z = max(0.0, z_dist - self.config.focus_sharp_tolerance)
+        defocus_sigma = excess_z * self.config.defocus_blur_rate
         attenuation = 1.0 / (1.0 + 0.04 * z_dist)
         intensity = intensity * attenuation
         
-        fg = intensity * edge_alpha
+        fg = intensity * edge_alpha * attenuation
         fg_alpha = edge_alpha * attenuation
         
-        if defocus_sigma > 0.5:
+        if defocus_sigma > 0.35:
             fg = cv2.GaussianBlur(fg, (0, 0), defocus_sigma)
             fg_alpha = cv2.GaussianBlur(fg_alpha, (0, 0), defocus_sigma)
             

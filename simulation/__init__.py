@@ -12,6 +12,7 @@ from .optical_renderer import OpticalRenderer
 from .background_engine import BackgroundEngine
 from .particle_physics import FluidBedKinematics
 from .exporter import DatasetExporter
+from .temporal_verifier import TemporalAgglomerationVerifier
 
 __all__ = [
     'SimulationConfig',
@@ -20,6 +21,7 @@ __all__ = [
     'OpticalRenderer',
     'BackgroundEngine',
     'FluidBedKinematics',
-    'DatasetExporter'
+    'DatasetExporter',
+    'TemporalAgglomerationVerifier'
 ]
 
