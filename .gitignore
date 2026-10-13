@@ -13,3 +13,10 @@
 /جدول_مراحل_التسليم_والمخرجات.xlsx
 /عقد_نظام_مراقبة_الجسيمات_بنيان_تك_ش2.docx
 presentation/*
+/Real-Data/*
+/__pycache__/*
+/outputs/*
+/simulation_cache/*
+*.mp4
+*.gif
+*.pt
