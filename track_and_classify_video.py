@@ -145,23 +145,29 @@ def run_video_tracking(args):
     # 2. Load Spatio-Temporal Sequence Model (Transformer / LSTM)
     seq_model = None
     if os.path.exists(args.sequence_model):
-        checkpoint = torch.load(args.sequence_model, map_location=device, weights_only=False)
-        arch = checkpoint.get('arch', 'transformer')
-        d_model = checkpoint.get('d_model', 256)
-        num_layers = checkpoint.get('num_layers', 4)
-        nhead = checkpoint.get('nhead', 8)
-        
-        seq_model = PelletSequenceModel(
-            arch=arch,
-            num_classes=2,
-            d_model=d_model,
-            num_layers=num_layers,
-            nhead=nhead,
-            crop_size=96
-        ).to(device)
-        seq_model.load_state_dict(checkpoint['model_state_dict'])
-        seq_model.eval()
-        print(f"Loaded {arch.upper()} Sequence Model (d_model={d_model}, layers={num_layers})")
+        try:
+            checkpoint = torch.load(args.sequence_model, map_location=device, weights_only=False)
+            if isinstance(checkpoint, dict) and 'model_state_dict' in checkpoint:
+                arch = checkpoint.get('arch', 'transformer')
+                d_model = checkpoint.get('d_model', 256)
+                num_layers = checkpoint.get('num_layers', 4)
+                nhead = checkpoint.get('nhead', 8)
+                
+                seq_model = PelletSequenceModel(
+                    arch=arch,
+                    num_classes=2,
+                    d_model=d_model,
+                    num_layers=num_layers,
+                    nhead=nhead,
+                    crop_size=96
+                ).to(device)
+                seq_model.load_state_dict(checkpoint['model_state_dict'])
+                seq_model.eval()
+                print(f"Loaded {arch.upper()} Sequence Model (d_model={d_model}, layers={num_layers})")
+            else:
+                print("Sequence model file format is legacy. Falling back to ByteTrack kinematics.")
+        except Exception as e:
+            print(f"Notice: Could not load sequence model ({e}). Using ByteTrack kinematics.")
     else:
         print(f"Notice: Sequence model {args.sequence_model} not found yet. Using heuristic tracker state.")
         

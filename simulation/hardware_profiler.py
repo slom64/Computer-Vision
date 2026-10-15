@@ -56,15 +56,15 @@ def profile_hardware() -> HardwareProfile:
             device_name=dev_name,
             vram_gb=vram_gb,
             cuda_available=True,
-            recommended_yolo_model='yolo11x.pt', # Maximum capacity YOLO11 model
-            recommended_imgsz=2048,              # Native uncompressed camera sensor resolution
-            recommended_batch_size=16,           # Large batch size for stable gradients
+            recommended_yolo_model='yolo11m.pt', # Balanced high-accuracy & fast YOLO11 model (20M params)
+            recommended_imgsz=1024,              # Fast 1024x1024 resolution (~15s/epoch on RTX 5090)
+            recommended_batch_size=16,           # Saturated tensor core throughput
             recommended_dataset_frames=600,      # Massive synthetic dataset (~150,000+ labeled pellets)
-            recommended_workers=min(8, os.cpu_count() or 4),
+            recommended_workers=min(4, os.cpu_count() or 2),
             transformer_d_model=512,             # Heavy spatio-temporal representation
             transformer_num_layers=8,            # 8-layer deep transformer encoder
             transformer_batch_size=128,          # Fast massive sequence parallel processing
-            description=f"High-Performance Flagship ({dev_name}, {vram_gb:.1f} GB VRAM). Unlocking maximum model capacity (YOLO11x @ 2048px native resolution & 8-layer Spatio-Temporal Transformer)."
+            description=f"High-Performance Flagship ({dev_name}, {vram_gb:.1f} GB VRAM). Accelerated training profile (YOLO11m @ 1024px & batch 16, ~15s per epoch)."
         )
     # Tier 2: Mid-Range Workstation / Laptop (RTX 3070, RTX 4070, RTX 3080, T4)
     elif vram_gb >= 7.5:

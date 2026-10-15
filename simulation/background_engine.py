@@ -62,6 +62,10 @@ class BackgroundEngine:
         self.cached_plates.append(median_bg)
         return median_bg
 
+    def load_or_extract_background(self, **kwargs) -> np.ndarray:
+        """Alias for extract_from_real_data for backward compatibility."""
+        return self.extract_from_real_data(**kwargs)
+
     def generate_procedural_background(self) -> np.ndarray:
         """
         Generates a synthetic fluid bed chamber background with metallic side nozzle,
