@@ -19,4 +19,12 @@ presentation/*
 /simulation_cache/*
 *.mp4
 *.gif
-*.pt
+*.pt
+weights/
+weights/*
+Weights/
+Weights/*
+__pycache__/
+**/__pycache__/**
+*.py[cod]
+*.class
