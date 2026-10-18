@@ -3,6 +3,7 @@ from enum import Enum
 from typing import List, Dict, Any, Tuple, Optional
 import numpy as np
 import cv2
+import torch
 
 from simulation.pellet_tracker import PelletTracker, KalmanBoxTracker, TrackState
 from simulation.reflection_filter import MetalReflectionFilter
@@ -18,22 +19,30 @@ class WallStickingMonitor:
     """
     Industrial Early Agglomeration & Wall Adhesion Monitor for Fluid Bed Processors.
     
-    Identifies early adhesion events (single pellets or nascent clusters adhering to chamber
-    walls or spray nozzle structures) BEFORE catastrophic fluid-bed caking/collapse occurs.
-    
-    Key Features:
-      - Integrated Metal Reflection Filtering: Suppresses mirror images and splits pseudo-dimers.
-      - Temporal Kinematic Analysis: Centroid drift D < 6.0 px, mean velocity v < 2.5 px/frame.
-      - Persistence Threshold: Flags EARLY_STICKING_WARNING at 7+ frames (client specification).
-      - Growth Rate Monitor: Tracks bounding box area dA/dt to detect active cake accretion.
-      - Chamber Wall Zonation: Enforces high sensitivity near right/left metallic walls & nozzles.
-      - System Alert Levels: GREEN (Normal), YELLOW (Early Warning), RED (Critical Caking).
+    Unified Arbitration Architecture:
+      1. Priority 1 (Physical Adhesion):
+         - Evaluates stationary persistence near chamber walls and spray nozzles.
+         - Any track classified as EARLY_STICKING_WARNING or CONFIRMED_WALL_CAKING is
+           EXPLICITLY EXEMPTED from the sequence model. It is never re-evaluated or overwritten.
+         - Receives a single authoritative adhesion label ('EARLY STUCK' or 'CAKING').
+      2. Priority 2 (Aerodynamic Classification):
+         - Non-adhering free-flowing particles are fed to the sequence model (LSTM / Transformer)
+           to classify whether they are single pellets, transient optical overlaps, or genuine
+           aerodynamic agglomerates.
+      3. Metal Reflection Suppression:
+         - Specular reflections on metallic walls (X >= 1876) are filtered out beforehand,
+           preventing false double-counting and pseudo-dimers.
+      4. Single Authoritative Label Guarantee:
+         - Every detected particle in the camera view receives EXACTLY ONE unambiguous label.
+         - No track is ever evaluated twice or assigned conflicting tags.
     """
 
     def __init__(
         self,
         tracker: Optional[PelletTracker] = None,
         reflection_filter: Optional[MetalReflectionFilter] = None,
+        sequence_model: Optional[Any] = None,
+        device: Optional[str] = None,
         min_stuck_frames_warning: int = 7,
         min_stuck_frames_confirmed: int = 15,
         max_stationary_speed: float = 2.8,
@@ -50,7 +59,17 @@ class WallStickingMonitor:
             min_hits_to_confirm=2
         )
         self.reflection_filter = reflection_filter or MetalReflectionFilter(wall_x_right=1876.0)
+        self.sequence_model = sequence_model
         
+        if device is None:
+            self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        else:
+            self.device = device
+            
+        if self.sequence_model is not None:
+            self.sequence_model.to(self.device)
+            self.sequence_model.eval()
+            
         self.min_stuck_frames_warning = min_stuck_frames_warning
         self.min_stuck_frames_confirmed = min_stuck_frames_confirmed
         self.max_stationary_speed = max_stationary_speed
@@ -62,6 +81,7 @@ class WallStickingMonitor:
         # Track adhesion analytics: track_id -> dict of statistics
         self.track_stats: Dict[int, Dict[str, Any]] = {}
         self.frame_index: int = 0
+        self.prev_frame_number: Optional[int] = None
         self.alert_history: List[Dict[str, Any]] = []
 
     def is_in_wall_zone(self, cx: float, cy: float) -> bool:
@@ -71,46 +91,47 @@ class WallStickingMonitor:
     def process_frame(
         self,
         raw_detections: List[Dict[str, Any]],
-        image: Optional[np.ndarray] = None
+        image: Optional[np.ndarray] = None,
+        frame_number: Optional[int] = None
     ) -> Dict[str, Any]:
         """
-        Processes a single video frame through the full detection, reflection suppression,
-        tracking, and wall adhesion monitoring pipeline.
+        Processes a single video frame with strict priority-based arbitration between
+        early sticking detection and sequence LSTM / Transformer modeling.
         
         Args:
             raw_detections: Detections from YOLO detector with 'bbox_xyxy', 'confidence', 'class_id'.
             image: Optional BGR image frame for photometric filtering and crop extraction.
+            frame_number: Optional integer recording frame index (to detect recording discontinuities).
             
         Returns:
-            Dictionary containing:
-                'active_tracks': List of active KalmanBoxTrackers
-                'adhesion_states': Dict mapping track_id -> AdhesionState
-                'adhesion_details': Dict mapping track_id -> detailed metrics
-                'early_warning_tracks': List of track_ids in EARLY_STICKING_WARNING
-                'confirmed_caking_tracks': List of track_ids in CONFIRMED_WALL_CAKING
-                'suppressed_reflections': List of detections filtered out as metal reflections
-                'system_alert_level': 'GREEN', 'YELLOW', or 'RED'
-                'bed_adhesion_index': Float from 0.0 to 1.0
+            Dictionary containing active tracks, adhesion states, authoritative labels,
+            reflections filtered, and system alert level.
         """
         self.frame_index += 1
         
+        # Check for temporal gap between discontinuous bursts (e.g. machine recording paused)
+        if frame_number is not None and self.prev_frame_number is not None:
+            if frame_number > self.prev_frame_number + 5:
+                # Temporal discontinuity: reset tracker to start fresh burst
+                self.tracker.reset()
+                self.track_stats.clear()
+        if frame_number is not None:
+            self.prev_frame_number = frame_number
+
         # Step 1: Suppress Metal Reflections and correct Pseudo-Agglomerates
         clean_dets, suppressed_reflections = self.reflection_filter.filter_detections(raw_detections, image)
         
         # Step 2: Multi-Object ByteTrack association
         active_tracks = self.tracker.update(clean_dets, image=image)
         
-        # Step 3: Update adhesion analytics for each track
+        # Step 3: Kinematic Adhesion Analysis & State Determination
         adhesion_states = {}
         adhesion_details = {}
         early_warning_tracks = []
         confirmed_caking_tracks = []
         
-        current_active_ids = set()
-        
         for trk in active_tracks:
             tid = trk.id
-            current_active_ids.add(tid)
             box = trk.get_state_xyxy()
             cx = (box[0] + box[2]) / 2.0
             cy = (box[1] + box[3]) / 2.0
@@ -129,7 +150,11 @@ class WallStickingMonitor:
                     'adhesion_state': AdhesionState.FREE_FLOWING,
                     'warning_frame': None,
                     'confirmed_frame': None,
-                    'class_id': trk.history_classes[-1] if trk.history_classes else 0
+                    'class_id': trk.history_classes[-1] if trk.history_classes else 0,
+                    'authoritative_label': f"P #{tid}",
+                    'label_color': (0, 220, 0),
+                    'eval_source': "YOLO_INIT",
+                    'is_optical_overlap': False
                 }
             else:
                 stats = self.track_stats[tid]
@@ -145,8 +170,7 @@ class WallStickingMonitor:
             stats = self.track_stats[tid]
             recent_pos = stats['positions'][-15:]
             
-            # Compute kinematic metrics
-            # 1. Average step speed over recent frames
+            # Kinematic Metrics
             if len(recent_pos) >= 2:
                 displacements = [
                     math.hypot(recent_pos[i][0] - recent_pos[i-1][0], recent_pos[i][1] - recent_pos[i-1][1])
@@ -157,13 +181,11 @@ class WallStickingMonitor:
                 vx, vy = trk.get_velocity()
                 avg_speed = math.hypot(vx, vy)
                 
-            # 2. Maximum drift from centroid anchor
             mean_cx = float(np.mean([p[0] for p in recent_pos]))
             mean_cy = float(np.mean([p[1] for p in recent_pos]))
             drifts = [math.hypot(p[0] - mean_cx, p[1] - mean_cy) for p in recent_pos]
             max_drift = float(np.max(drifts)) if drifts else 0.0
             
-            # 3. Area growth rate (detects active agglomerate growth on wall)
             if len(stats['areas']) >= 6:
                 initial_area = np.mean(stats['areas'][:3])
                 latest_area = np.mean(stats['areas'][-3:])
@@ -172,14 +194,10 @@ class WallStickingMonitor:
                 area_growth_ratio = 1.0
 
             in_wall = self.is_in_wall_zone(mean_cx, mean_cy)
-            
-            # Determine Adhesion State
-            # Condition for Stationary Adhesion:
-            # Low speed (avg_speed < max_stationary_speed) AND Low spatial drift (max_drift < max_stationary_drift)
             is_kinematically_stuck = (avg_speed <= self.max_stationary_speed) and (max_drift <= self.max_stationary_drift)
-            
             is_caking_stuck = is_kinematically_stuck or (in_wall and avg_speed <= self.max_stationary_speed and max_drift <= 12.0)
             
+            # Adhesion State Decision
             if stats['hits'] >= self.min_stuck_frames_confirmed and is_caking_stuck:
                 state = AdhesionState.CONFIRMED_WALL_CAKING
                 if stats['confirmed_frame'] is None:
@@ -195,7 +213,7 @@ class WallStickingMonitor:
             else:
                 state = AdhesionState.FREE_FLOWING
                 
-            # Upgrade state if cluster is actively growing on the wall
+            # Active agglomeration growth upgrade
             if state == AdhesionState.EARLY_STICKING_WARNING and area_growth_ratio > 1.45:
                 state = AdhesionState.CONFIRMED_WALL_CAKING
                 if tid not in confirmed_caking_tracks:
@@ -205,7 +223,77 @@ class WallStickingMonitor:
 
             stats['adhesion_state'] = state
             adhesion_states[tid] = state
-            
+
+            # =========================================================================
+            # MUTUAL EXCLUSION & ARBITRATION PIPELINE
+            # =========================================================================
+            # Case 1: Track is adhering to the chamber wall / nozzle.
+            # PRIORITY 1: Physical adhesion takes precedence over free-flight sequence modeling.
+            # Sequence model inference is EXEMPT / BYPASSED to prevent duplicate evaluations.
+            if state in [AdhesionState.EARLY_STICKING_WARNING, AdhesionState.CONFIRMED_WALL_CAKING]:
+                stats['eval_source'] = "EARLY_STICKING_MONITOR"
+                stats['sequence_eval_skipped'] = True
+                stats['is_optical_overlap'] = False
+                
+                if state == AdhesionState.CONFIRMED_WALL_CAKING:
+                    stats['authoritative_label'] = f"CAKING #{tid} (hits={stats['hits']})"
+                    stats['label_color'] = (0, 0, 255) # Red
+                else:
+                    stats['authoritative_label'] = f"EARLY STUCK #{tid} (hits={stats['hits']})"
+                    stats['label_color'] = (0, 215, 255) # Yellow
+
+            # Case 2: Track is free-flowing through the fluid bed.
+            # PRIORITY 2: Aerodynamic Sequence Model (LSTM / Transformer) to classify
+            # free-flying Single vs Agglomerate vs Transient Optical Overlap.
+            else:
+                stats['sequence_eval_skipped'] = False
+                
+                if self.sequence_model is not None and len(trk.history_crops) >= 3:
+                    stats['eval_source'] = "SEQUENCE_MODEL"
+                    
+                    # Prepare rolling crops tensor (1, T, 3, 96, 96)
+                    crops = trk.history_crops[-8:]
+                    crop_tensors = []
+                    for c in crops:
+                        # Resize to 96x96 if needed and normalize
+                        if c.shape[:2] != (96, 96):
+                            c_res = cv2.resize(c, (96, 96))
+                        else:
+                            c_res = c
+                        t = torch.from_numpy(c_res).permute(2, 0, 1).float() / 255.0
+                        crop_tensors.append(t)
+                        
+                    crop_seq = torch.stack(crop_tensors).unsqueeze(0).to(self.device)
+                    
+                    with torch.no_grad():
+                        pred = self.sequence_model(crop_seq)
+                        probs = pred['class_probs'][0].cpu().numpy()
+                        ov_prob = float(pred['overlap_prob'][0, 0].cpu().numpy())
+                        
+                    is_overlap = ov_prob > 0.50
+                    seq_class = int(np.argmax(probs))
+                    stats['is_optical_overlap'] = is_overlap
+                    
+                    if is_overlap:
+                        stats['authoritative_label'] = f"OVERLAP #{tid}"
+                        stats['label_color'] = (255, 220, 100) # Light Blue
+                    elif seq_class == 1:
+                        stats['authoritative_label'] = f"AGGLOM #{tid}"
+                        stats['label_color'] = (255, 165, 0) # Cyan/Orange
+                    else:
+                        stats['authoritative_label'] = f"P #{tid}"
+                        stats['label_color'] = (0, 220, 0) # Green
+                else:
+                    # Fallback to YOLO single frame detector
+                    stats['eval_source'] = "YOLO_SINGLE_FRAME"
+                    stats['is_optical_overlap'] = False
+                    if stats['class_id'] == 1:
+                        stats['authoritative_label'] = f"AGGLOM #{tid}"
+                        stats['label_color'] = (255, 165, 0)
+                    else:
+                        stats['authoritative_label'] = f"P #{tid}"
+                        stats['label_color'] = (0, 220, 0)
+
             adhesion_details[tid] = {
                 'track_id': tid,
                 'state': state,
@@ -219,6 +307,11 @@ class WallStickingMonitor:
                 'is_in_wall_zone': in_wall,
                 'bbox_xyxy': box,
                 'class_id': stats['class_id'],
+                'eval_source': stats['eval_source'],
+                'sequence_eval_skipped': stats.get('sequence_eval_skipped', False),
+                'authoritative_label': stats['authoritative_label'],
+                'label_color': stats['label_color'],
+                'is_optical_overlap': stats.get('is_optical_overlap', False),
                 'frames_since_warning': (self.frame_index - stats['warning_frame']) if stats['warning_frame'] else 0
             }
 
@@ -233,7 +326,6 @@ class WallStickingMonitor:
         else:
             system_alert_level = "GREEN"
             
-        # Bed Adhesion Index: 0.0 (Clean) to 1.0 (Critical)
         adhesion_index = min(1.0, (num_warning * 0.25) + (num_caking * 0.50))
         
         result = {
@@ -264,25 +356,22 @@ class WallStickingMonitor:
         self,
         frame: np.ndarray,
         result: Dict[str, Any],
+        ground_truth: Optional[List[Dict[str, Any]]] = None,
         show_trajectories: bool = True
     ) -> np.ndarray:
         """
-        Renders industrial inspection HUD with color-coded alerts and wall boundaries.
-        Colors:
-          - Green: Free-flowing single/agglomerate pellets
-          - Yellow: EARLY STICKING WARNING (>= 7 frames)
-          - Red / Amber: CONFIRMED WALL CAKING (>= 15 frames)
-          - Gray dashed: Suppressed Metal Reflection
+        Renders clean industrial HUD where each particle receives EXACTLY ONE authoritative label.
+        Never produces duplicate or conflicting annotations.
         """
         annotated = frame.copy()
         H, W = annotated.shape[:2]
         
-        # 1. Draw Chamber Wall Boundary
+        # 1. Chamber Wall Boundary Line
         wall_x = int(self.reflection_filter.wall_x_right)
         cv2.line(annotated, (wall_x, 0), (wall_x, H), (140, 140, 140), 1, cv2.LINE_AA)
         cv2.putText(annotated, "WALL BOUNDARY", (wall_x - 120, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (180, 180, 180), 1)
 
-        # 2. Draw Suppressed Metal Reflections in dashed Gray
+        # 2. Suppressed Metal Reflections (Single Dashed Gray Box)
         for r in result['suppressed_reflections']:
             box = [int(v) for v in r['bbox_xyxy']]
             cv2.rectangle(annotated, (box[0], box[1]), (box[2], box[3]), (100, 100, 100), 1)
@@ -291,51 +380,47 @@ class WallStickingMonitor:
                 cv2.FONT_HERSHEY_SIMPLEX, 0.38, (140, 140, 140), 1
             )
 
-        # 3. Draw Active Tracks with Adhesion Color Coding
+        # 3. Ground Truth Annotations (Purple, rendered underneath detections for clarity)
+        if ground_truth:
+            for gt in ground_truth:
+                gbox = [int(v) for v in gt['box']]
+                cv2.rectangle(annotated, (gbox[0], gbox[1]), (gbox[2], gbox[3]), (220, 0, 220), 2)
+                cv2.putText(
+                    annotated, "GT STICKING", (gbox[0], gbox[3] + 16),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.40, (220, 0, 220), 1
+                )
+
+        # 4. Active Tracks (Strictly ONE Label and ONE Box Per Track)
         for tid, details in result['adhesion_details'].items():
             box = [int(v) for v in details['bbox_xyxy']]
             state = details['state']
-            hits = details['hits']
+            label = details['authoritative_label']
+            color = details['label_color']
+            thickness = 2 if state in [AdhesionState.EARLY_STICKING_WARNING, AdhesionState.CONFIRMED_WALL_CAKING] else 1
             
-            if state == AdhesionState.CONFIRMED_WALL_CAKING:
-                color = (0, 0, 255) # Bright Red
-                label = f"CAKING #{tid} (hits={hits})"
-                thickness = 2
-            elif state == AdhesionState.EARLY_STICKING_WARNING:
-                color = (0, 215, 255) # Bright Yellow / Gold (BGR)
-                label = f"EARLY STUCK #{tid} (hits={hits})"
-                thickness = 2
-            elif details['class_id'] == 1:
-                color = (255, 165, 0) # Cyan/Orange for agglomerate
-                label = f"AGGLOM #{tid}"
-                thickness = 1
-            else:
-                color = (0, 220, 0) # Green for free single
-                label = f"P #{tid}"
-                thickness = 1
-                
+            # Single bounding box
             cv2.rectangle(annotated, (box[0], box[1]), (box[2], box[3]), color, thickness)
             
-            # Label background banner
+            # Single label banner
             (lw, lh), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.40, 1)
             cv2.rectangle(annotated, (box[0], box[1] - lh - 6), (box[0] + lw + 4, box[1]), color, -1)
             text_color = (0, 0, 0) if state in [AdhesionState.EARLY_STICKING_WARNING, AdhesionState.FREE_FLOWING] else (255, 255, 255)
             cv2.putText(annotated, label, (box[0] + 2, box[1] - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.40, text_color, 1)
             
-            # Draw stationary drift anchor
+            # Stationary drift anchor for stuck pellets
             if state in [AdhesionState.EARLY_STICKING_WARNING, AdhesionState.CONFIRMED_WALL_CAKING]:
                 mx, my = int(details['mean_anchor'][0]), int(details['mean_anchor'][1])
                 cv2.circle(annotated, (mx, my), 3, color, -1)
                 
-            # Draw trajectory path
-            if show_trajectories and tid in self.track_stats:
-                pts = self.track_stats[tid]['positions'][-12:]
+            # Trajectory path for free-flowing pellets
+            if show_trajectories and tid in self.track_stats and state == AdhesionState.FREE_FLOWING:
+                pts = self.track_stats[tid]['positions'][-10:]
                 for i in range(1, len(pts)):
                     p1 = (int(pts[i-1][0]), int(pts[i-1][1]))
                     p2 = (int(pts[i][0]), int(pts[i][1]))
                     cv2.line(annotated, p1, p2, color, 1, cv2.LINE_AA)
 
-        # 4. Top Status Header HUD
+        # 5. Top Status Header HUD
         alert_lvl = result['system_alert_level']
         if alert_lvl == "RED":
             hdr_bg = (0, 0, 180)
@@ -350,19 +435,19 @@ class WallStickingMonitor:
         cv2.rectangle(annotated, (0, 0), (W, 46), hdr_bg, -1)
         cv2.putText(
             annotated, f"[EARLY DETECTION MONITOR] {status_txt}",
-            (16, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (255, 255, 255), 2
+            (16, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2
         )
         
         info_str = (
             f"Frame: {result['frame_index']:04d} | "
             f"Early Warning: {len(result['early_warning_tracks'])} | "
             f"Caking: {len(result['confirmed_caking_tracks'])} | "
-            f"Reflections Filtered: {result['suppressed_reflections_count']} | "
+            f"Reflections: {result['suppressed_reflections_count']} | "
             f"Adhesion Index: {result['bed_adhesion_index']:.2f}"
         )
         cv2.putText(
             annotated, info_str,
-            (W - 750, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.48, (255, 255, 255), 1
+            (W - 740, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (255, 255, 255), 1
         )
         
         return annotated
@@ -372,4 +457,5 @@ class WallStickingMonitor:
         self.tracker.reset()
         self.track_stats.clear()
         self.frame_index = 0
+        self.prev_frame_number = None
         self.alert_history.clear()
