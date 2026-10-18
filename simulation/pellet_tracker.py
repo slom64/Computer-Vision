@@ -112,6 +112,8 @@ class KalmanBoxTracker:
         self.time_since_update = 0
         self.hits += 1
         self.hit_streak += 1
+        if self.state == TrackState.LOST:
+            self.state = TrackState.CONFIRMED
         
         z = self._xyxy_to_z(bbox_xyxy)
         y = z - self.H @ self.x  # Innovation

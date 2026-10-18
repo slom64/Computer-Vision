@@ -15,6 +15,8 @@ from .exporter import DatasetExporter
 from .temporal_verifier import TemporalAgglomerationVerifier
 from .pellet_tracker import PelletTracker, KalmanBoxTracker
 from .sequence_model import PelletSequenceModel
+from .reflection_filter import MetalReflectionFilter
+from .wall_sticking_monitor import WallStickingMonitor, AdhesionState
 
 __all__ = [
     'SimulationConfig',
@@ -27,7 +29,10 @@ __all__ = [
     'TemporalAgglomerationVerifier',
     'PelletTracker',
     'KalmanBoxTracker',
-    'PelletSequenceModel'
+    'PelletSequenceModel',
+    'MetalReflectionFilter',
+    'WallStickingMonitor',
+    'AdhesionState'
 ]
 
 
