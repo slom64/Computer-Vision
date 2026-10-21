@@ -5,7 +5,6 @@
 /Review-Imaging Fluid bed.pdf
 /runs
 /sequence_dataset
-/sequence_model.pt
 /Testset
 /yolo11n.pt
 /yolo26n.pt
@@ -15,16 +14,21 @@
 presentation/*
 /Real-Data/*
 /__pycache__/*
-/outputs/*
 /simulation_cache/*
 *.mp4
 *.gif
-*.pt
-weights/
-weights/*
-Weights/
-Weights/*
 __pycache__/
 **/__pycache__/**
 *.py[cod]
 *.class
+outputs/demo/*
+outputs/early_detection/*
+outputs/previews/*
+outputs/real_predictions/*
+outputs/sequence_dataset/*
+outputs/synthetic_dataset/*
+outputs/synthetic_pellet_dataset/*
+outputs/temporal_predictions/*
+outputs/test_macro_run/*
+outputs/test_synthetic_run/*
+outputs/tracking_results/*
