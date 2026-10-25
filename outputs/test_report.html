@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sensum PATVIS APA — Fluid Bed Inspection Report (Batch TEST-001)</title>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f7f9fa;
+        color: #2c3e50;
+        margin: 0;
+        padding: 30px;
+    }
+    .report-container {
+        max-width: 950px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+        padding: 36px;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #00d2ff;
+        padding-bottom: 20px;
+        margin-bottom: 25px;
+    }
+    .brand-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #0c2340;
+    }
+    .brand-sub {
+        font-size: 13px;
+        color: #64748b;
+        font-weight: 600;
+    }
+    .verdict-badge {
+        background-color: #ff4444;
+        color: #ffffff;
+        padding: 8px 24px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+    .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+    .kpi-box {
+        background: #f1f5f9;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+    }
+    .kpi-box h4 {
+        margin: 0 0 6px 0;
+        font-size: 11px;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .kpi-box .val {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0f172a;
+    }
+    .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-top: 30px;
+        margin-bottom: 12px;
+        border-left: 4px solid #00d2ff;
+        padding-left: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 25px;
+    }
+    th, td {
+        padding: 10px 14px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 13px;
+    }
+    th {
+        background-color: #f8fafc;
+        color: #475569;
+        font-weight: 600;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 15px;
+    }
+    .sample-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px;
+        text-align: center;
+    }
+    .sample-card img {
+        max-width: 100%;
+        height: 100px;
+        object-fit: contain;
+        background: #0f172a;
+        border-radius: 4px;
+    }
+    .sample-meta {
+        font-size: 10px;
+        color: #475569;
+        margin-top: 6px;
+        line-height: 1.4;
+    }
+    .print-btn {
+        background: #00d2ff;
+        color: #0c2340;
+        border: none;
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+        float: right;
+        margin-bottom: 20px;
+    }
+    @media print {
+        body { padding: 0; background: #fff; }
+        .print-btn { display: none; }
+        .report-container { box-shadow: none; padding: 0; }
+    }
+</style>
+</head>
+<body>
+<div class="report-container">
+    <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+    <div class="header">
+        <div>
+            <div class="brand-title">SENSUM PATVIS APA</div>
+            <div class="brand-sub">Fluid Bed In-Line Process Analytical Technology Report</div>
+            <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Batch: <strong>TEST-001</strong> | Timestamp: 2026-10-25 07:39:34</div>
+        </div>
+        <div class="verdict-badge">FAIL</div>
+    </div>
+
+    <div class="kpi-grid">
+        <div class="kpi-box">
+            <h4>Total Particles</h4>
+            <div class="val">0</div>
+        </div>
+        <div class="kpi-box">
+            <h4>Agglomeration Rate</h4>
+            <div class="val" style="color: #ff4444;">0.0%</div>
+        </div>
+        <div class="kpi-box">
+            <h4>Wall Sticking Incidents</h4>
+            <div class="val">0</div>
+        </div>
+        <div class="kpi-box">
+            <h4>Throughput Rate</h4>
+            <div class="val">0.0/s</div>
+        </div>
+    </div>
+
+    <div class="section-title">Process Inspection Summary</div>
+    <table>
+        <tr><th>Parameter</th><th>Recorded Value</th><th>Specification / Target</th></tr>
+        <tr><td>Inspection Camera</td><td>Test Camera</td><td>Daheng MER2-301-125U3M (3.1 MP Monochrome)</td></tr>
+        <tr><td>Single Pellets Inspected</td><td>0</td><td>Continuous flow yield</td></tr>
+        <tr><td>Confirmed Agglomerates</td><td>0</td><td>Minimal (< 10%)</td></tr>
+        <tr><td>Smoothed Agglomeration Rate</td><td>100.0%</td><td>Action Limit: < 25.0%</td></tr>
+        <tr><td>Wall Adhesion Status</td><td>CRITICAL: High agglomeration rate (100.0% >= 25.0%)</td><td>Free-flowing fluidization</td></tr>
+        <tr><td>Process Health Verdict</td><td><strong>FAIL</strong></td><td>Quality Release Standard</td></tr>
+    </table>
+
+    <div class="section-title">Representative Captured Agglomerates</div>
+    <div class="gallery-grid">
+        <p style='color:#64748b;'>No significant agglomerates detected during this inspection period.</p>
+    </div>
+
+    <div style="margin-top: 40px; font-size: 10px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 14px;">
+        Generated automatically by Sensum PATVIS APA Inspection System • Fluid Bed Process Analytical Technology
+    </div>
+</div>
+</body>
+</html>
